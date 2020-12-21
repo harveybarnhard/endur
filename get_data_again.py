@@ -46,7 +46,6 @@ activities = pd.DataFrame(
     ]
 )
 while True:
-
     # get page of activities from Strava
     r = requests.get(url + '?access_token=' + access_token + '&per_page=200' + '&page=' + str(page))
     r = r.json()
