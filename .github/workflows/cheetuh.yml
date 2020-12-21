@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pandas
+        pip install pandas requests json time os
     - name: Test with pytest
       run: |
         python get_data_again.py
