@@ -23,7 +23,7 @@ jobs:
         pip install pandas requests datetime
     - name: Pull data
       run: |
-        python ./endur/get_data_again.py
+        python endur/get_data_again.py
     - name: Prepare data for visualization
       run: |
-        python ./endur/data_sample.py
+        python endur/data_sample.py
