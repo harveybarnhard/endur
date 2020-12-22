@@ -1,4 +1,4 @@
-name: Python application
+name: Endur: Pull data, visualize, and upload
 
 on:
   push:
@@ -21,6 +21,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pandas requests datetime
-    - name: Test with pytest
+    - name: Pull data
       run: |
-        python get_data_again.py
+        python endur/get_data_again.py
+    - name: Prepare data for visualization
+      run: |
+        python endur/data_sample.py
