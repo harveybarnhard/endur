@@ -40,6 +40,8 @@ jobs:
     - name: Encrypt tokens
       run: |
         sh endur/encrypt_secret.sh
+      env:
+        STRAVA_TOKENS_PHRASE: ${{ secrets.STRAVA_TOKENS_PHRASE }}
     - name: Commit any changes to data files, including encrypted tokens
       run: |
         git config --local user.name "harveybarnhard"
