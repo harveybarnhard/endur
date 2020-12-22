@@ -1,4 +1,4 @@
-name: Endur: Pull data, visualize, and upload
+name: Pull data, visualize, and upload
 
 on:
   push:
