@@ -5,6 +5,8 @@ import time
 import os
 
 # Get the tokens from file to connect to Strava
+client_id = os.getenv('STRAVA_CLIENT_ID')
+client_secret = os.getenv('STRAVA_CLIENT_SECRET')
 with open('strava_tokens.json') as json_file:
     strava_tokens = json.load(json_file)
 # If access_token has expired then use the refresh_token to get the new access_token
@@ -13,8 +15,8 @@ if strava_tokens['expires_at'] < time.time():
     response = requests.post(
                         url = 'https://www.strava.com/oauth/token',
                         data = {
-                                'client_id': os.getenv(''),
-                                'client_secret': '9aa685a179b02898ba1f4c67e52a71af12f16722',
+                                'client_id': client_id,
+                                'client_secret': client_secret,
                                 'grant_type': 'refresh_token',
                                 'refresh_token': strava_tokens['refresh_token']
                                 }
@@ -26,7 +28,8 @@ if strava_tokens['expires_at'] < time.time():
         json.dump(new_strava_tokens, outfile)
     # Use new Strava tokens from now
     strava_tokens = new_strava_tokens
-#Loop through all activities
+
+# Loop through all activities
 page = 1
 url = "https://www.strava.com/api/v3/activities"
 access_token = strava_tokens['access_token']
@@ -67,4 +70,6 @@ while True:
         activities.loc[x + (page-1)*200,'external_id'] = r[x]['external_id']
 # increment page
     page += 1
-activities.to_csv('strava_activities.csv')
+
+# Save full data
+activities.to_csv('data/strava_activities.csv', index=False)
