@@ -1,14 +1,16 @@
-name: Pull data, visualize, and upload
+name: Pull data and subset
 
 on:
   push:
-    branches: main
+    branches:
+      - main
     paths-ignore:
       - 'LICENSE'
       - 'NOTES.txt'
       - 'README.md'
   pull_request:
-    branches: main
+    branches:
+      - main
 
 jobs:
   build:
@@ -25,9 +27,25 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pandas requests datetime
+    - name: Decrypt tokens
+      run: |
+        sh endur/decrypt_secret.sh
     - name: Pull data
       run: |
         python endur/get_data_again.py
     - name: Prepare data for visualization
       run: |
         python endur/data_sample.py
+    - name: Encrypt tokens
+      run: |
+        sh endur/encrypt_secret.sh
+    - name: Commit any changes to data files, including encrypted tokens
+      run: |
+        git config --local user.name "harveybarnhard"
+        git add ./data
+        git commit -m "Auto-updating Strava data and tokens"
+    - name: Push encrypted tokens back to repository
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force: true
