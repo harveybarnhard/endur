@@ -3,6 +3,10 @@ name: Pull data, visualize, and upload
 on:
   push:
     branches: main
+    paths-ignore:
+      - 'LICENSE'
+      - 'NOTES.txt'
+      - 'README.md'
   pull_request:
     branches: main
 
