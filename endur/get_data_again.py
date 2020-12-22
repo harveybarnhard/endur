@@ -7,7 +7,7 @@ import os
 # Get the tokens from file to connect to Strava
 client_id = os.getenv('STRAVA_CLIENT_ID')
 client_secret = os.getenv('STRAVA_CLIENT_SECRET')
-with open('../data/strava_tokens.json') as json_file:
+with open('./data/strava_tokens.json') as json_file:
     strava_tokens = json.load(json_file)
 # If access_token has expired then use the refresh_token to get the new access_token
 if strava_tokens['expires_at'] < time.time():
@@ -24,7 +24,7 @@ if strava_tokens['expires_at'] < time.time():
     # Save response as json in new variable
     new_strava_tokens = response.json()
     # Save new tokens to file
-    with open('../data/strava_tokens.json', 'w') as outfile:
+    with open('./data/strava_tokens.json', 'w') as outfile:
         json.dump(new_strava_tokens, outfile)
     # Use new Strava tokens from now
     strava_tokens = new_strava_tokens
@@ -71,4 +71,4 @@ while True:
     page += 1
 
 # Save full data
-activities.to_csv('../data/strava_activities.csv', index=False)
+activities.to_csv('./data/strava_activities.csv', index=False)
