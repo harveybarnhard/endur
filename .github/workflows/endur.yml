@@ -34,6 +34,9 @@ jobs:
     - name: Pull data
       run: |
         python endur/get_data_again.py
+      env:
+        STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+        STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
     - name: Prepare data for visualization
       run: |
         python endur/data_sample.py
