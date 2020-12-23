@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4509197607,Slippery Nelson,2020-12-23T12:11:41Z,Run,13804.4,3604,3610,249.2,"[44.262283, -72.053694]"
 4505260075,"High Intensity ""Recovery""",2020-12-22T12:30:07Z,VirtualRide,43917.5,4059,4170,282.0,"[37.526601, -77.420772]"
 4501874910,Recovery 15min,2020-12-21T17:26:54Z,VirtualRide,6779.7,904,1833,96.0,"[40.778418, -73.973077]"
 4498450688,Ramp Test (347w | 4.63w/kg),2020-12-20T18:25:50Z,VirtualRide,20493.9,2156,2182,32.0,"[-11.639897, 166.986834]"
