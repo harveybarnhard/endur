@@ -51,8 +51,5 @@ activities['monday'] = pd.to_datetime(activities['monday'])
 activities = activities.sort_values(by='monday')
 activities['monday'] = activities['monday'].dt.strftime('%m-%d-%Y')
 
-# Subset
-activities = activities[['monday', 'Run_moving_time', 'Ride_moving_time', 'VirtualRide_moving_time','Other_moving_time', 'Swim_moving_time']]
-
 # Write data
 activities.to_csv('./data/strava_activities_sub.csv', index=False)
