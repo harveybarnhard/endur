@@ -13,8 +13,11 @@
 
 // set the dimensions and margins of the graph
 var margin = {top: 60, right: 230, bottom: 50, left: 50},
-    width = 660 - margin.left - margin.right,
+    width = 1200 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
+
+// parse the date / time
+var parseTime = d3.timeParse("%m-%d-%Y");
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -26,8 +29,12 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv", function(data) {
+d3.csv("data/strava_activities_sub.csv", function(data) {
 
+  // format the data
+  data.forEach(function(d) {
+      d.monday = parseTime(d.monday);
+  });
 
   //////////
   // GENERAL //
@@ -46,38 +53,21 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .keys(keys)
     (data)
 
-
-
   //////////
   // AXIS //
   //////////
 
   // Add X axis
-  var x = d3.scaleLinear()
-    .domain(d3.extent(data, function(d) { return d.year; }))
+  var x = d3.scaleTime()
+    .domain(d3.extent(data, function(d) { return d.monday; }))
     .range([ 0, width ]);
   var xAxis = svg.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(5))
-
-  // Add X axis label:
-  svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", width)
-      .attr("y", height+40 )
-      .text("Time (year)");
-
-  // Add Y axis label:
-  svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", 0)
-      .attr("y", -20 )
-      .text("# of baby born")
-      .attr("text-anchor", "start")
+    .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b-%Y")))
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, 200000])
+    .domain([0, 100000])
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y).ticks(5))
@@ -108,7 +98,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // Area generator
   var area = d3.area()
-    .x(function(d) { return x(d.data.year); })
+    .x(function(d) { return x(d.data.monday); })
     .y0(function(d) { return y(d[0]); })
     .y1(function(d) { return y(d[1]); })
 
@@ -139,7 +129,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     // If no selection, back to initial coordinate. Otherwise, update X axis domain
     if(!extent){
       if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
-      x.domain(d3.extent(data, function(d) { return d.year; }))
+      x.domain(d3.extent(data, function(d) { return d.monday; }))
     }else{
       x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
       areaChart.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
@@ -185,7 +175,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
       .data(keys)
       .enter()
       .append("rect")
-        .attr("x", 400)
+        .attr("x", 50)
         .attr("y", function(d,i){ return 10 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
         .attr("width", size)
         .attr("height", size)
@@ -198,7 +188,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
       .data(keys)
       .enter()
       .append("text")
-        .attr("x", 400 + size*1.2)
+        .attr("x", 50 + size*1.2)
         .attr("y", function(d,i){ return 10 + i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
         .style("fill", function(d){ return color(d)})
         .text(function(d){ return d})
