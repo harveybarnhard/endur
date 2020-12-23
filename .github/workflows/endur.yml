@@ -40,9 +40,10 @@ jobs:
     - name: Prepare data for visualization
       run: |
         python endur/data_sample.py
-    - name: Encrypt tokens
+    - name: Encrypt tokens and remove unencrypted tokens
       run: |
         sh endur/encrypt_secret.sh
+        rm ./data/strava_tokens.json
       env:
         STRAVA_TOKENS_PHRASE: ${{ secrets.STRAVA_TOKENS_PHRASE }}
     - name: Commit any changes to data files, including encrypted tokens
