@@ -31,6 +31,16 @@ jobs:
       run: sh endur/decrypt_secret.sh
       env:
         STRAVA_TOKENS_PHRASE: ${{ secrets.STRAVA_TOKENS_PHRASE }}
+    - name: Commit any changes to data files, including encrypted tokens
+      run: |
+        git config --local user.name "harveybarnhard"
+        git add ./data
+        git commit -m "Auto-updating Strava data and tokens"
+    - name: Push encrypted tokens back to repository
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force: true
     - name: Pull data
       run: |
         python endur/get_data_again.py
