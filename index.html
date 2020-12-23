@@ -6,11 +6,11 @@
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
+<div id="active_time" style="width: 90%"></div>
 
 
 <script>
-
+// Modified from: https://www.d3-graph-gallery.com/graph/stackedarea_template.html
 // set the dimensions and margins of the graph
 var margin = {top: 60, right: 230, bottom: 50, left: 50},
     width = 1200 - margin.left - margin.right,
@@ -20,7 +20,7 @@ var margin = {top: 60, right: 230, bottom: 50, left: 50},
 var parseTime = d3.timeParse("%m-%d-%Y");
 
 // append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
+var svg = d3.select("#active_time")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -36,9 +36,9 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
       d.monday = parseTime(d.monday);
   });
 
-  //////////
+  // ------- //
   // GENERAL //
-  //////////
+  // ------- //
 
   // List of groups = header of the csv files
   var keys = data.columns.slice(1)
@@ -53,9 +53,9 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
     .keys(keys)
     (data)
 
-  //////////
+  // ---- //
   // AXIS //
-  //////////
+  // ---- //
 
   // Add X axis
   var x = d3.scaleTime()
@@ -74,11 +74,11 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
 
 
 
-  //////////
+  // ------------------ //
   // BRUSHING AND CHART //
-  //////////
+  // ------------------ //
 
-  // Add a clipPath: everything out of this area won't be drawn.
+  // Add a clipPath, outside of which no shapes are drawn
   var clip = svg.append("defs").append("svg:clipPath")
       .attr("id", "clip")
       .append("svg:rect")
@@ -87,12 +87,13 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
       .attr("x", 0)
       .attr("y", 0);
 
-  // Add brushing
-  var brush = d3.brushX()                 // Add the brush feature using the d3.brush function
-      .extent( [ [0,0], [width,height] ] ) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-      .on("end", updateChart) // Each time the brush selection changes, trigger the 'updateChart' function
+  // Add brushing, initializing by showing the entire plot, then allowing
+  //
+  var brush = d3.brushX()
+      .extent( [ [0,0], [width,height] ] )
+      .on("end", updateChart)
 
-  // Create the scatter variable: where both the circles and the brush take place
+  // Create the area chart
   var areaChart = svg.append('g')
     .attr("clip-path", "url(#clip)")
 
@@ -101,6 +102,35 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
     .x(function(d) { return x(d.data.monday); })
     .y0(function(d) { return y(d[0]); })
     .y1(function(d) { return y(d[1]); })
+    .curve(d3.curveMonotoneX) // Smooth it out a little
+
+  // --------------- //
+  // HIGHLIGHT GROUP //
+  // --------------- //
+
+  // What to do when one group is hovered in legend
+  var highlight = function(d){
+    console.log(d)
+    // reduce opacity of all groups
+    d3.selectAll(".myArea").style("opacity", .2)
+    // expect the one that is hovered
+    d3.select("."+d)
+      .style("opacity", 1)
+  }
+
+  // And when it is not hovered anymore in legend
+  var noHighlight = function(d){
+    d3.selectAll(".myArea")
+      .style("opacity", 1)
+  }
+
+  // What to do when one group is hovered in chart
+  var areaHighlight = function(d) {
+    console.log(d)
+    d3.selectAll(".myArea").style("opacity", .2)
+    d3.select(this)
+      .style("opacity", 1)
+  }
 
   // Show the areas
   areaChart
@@ -112,6 +142,18 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
       .style("fill", function(d) { return color(d.key); })
       .attr("d", area)
 
+  // Show the areas
+  svg
+    .selectAll("mylayers")
+    .data(stackedData)
+    .enter()
+    .append("path")
+      .attr("class", function(d) { return "myArea " + d.key })
+      .style("fill", function(d) { return color(d.key); })
+      .attr("d", area)
+      .on("mouseover", areaHighlight)
+      .on("mouseleave", noHighlight)
+
   // Add the brushing
   areaChart
     .append("g")
@@ -121,7 +163,7 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
   var idleTimeout
   function idled() { idleTimeout = null; }
 
-  // A function that update the chart for given boundaries
+  // A function that updates the chart for given boundaries
   function updateChart() {
 
     extent = d3.event.selection
@@ -143,59 +185,35 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
       .attr("d", area)
     }
 
-
-
-    //////////
-    // HIGHLIGHT GROUP //
-    //////////
-
-    // What to do when one group is hovered
-    var highlight = function(d){
-      console.log(d)
-      // reduce opacity of all groups
-      d3.selectAll(".myArea").style("opacity", .1)
-      // expect the one that is hovered
-      d3.select("."+d).style("opacity", 1)
-    }
-
-    // And when it is not hovered anymore
-    var noHighlight = function(d){
-      d3.selectAll(".myArea").style("opacity", 1)
-    }
-
-
-
-    //////////
+    // ------ //
     // LEGEND //
-    //////////
+    // ------ //
 
-    // Add one dot in the legend for each name.
+    // Add one square in the legend for each name.
     var size = 20
     svg.selectAll("myrect")
       .data(keys)
       .enter()
       .append("rect")
-        .attr("x", 50)
-        .attr("y", function(d,i){ return 10 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("x", 30)
+        .attr("y", function(d,i){ return 10 + i*(size+5)}) // 5 is where the first square appears. size*5 is the distance between dots
         .attr("width", size)
         .attr("height", size)
         .style("fill", function(d){ return color(d)})
         .on("mouseover", highlight)
         .on("mouseleave", noHighlight)
 
-    // Add one dot in the legend for each name.
+    // Add one square in the legend for each name.
     svg.selectAll("mylabels")
       .data(keys)
       .enter()
       .append("text")
-        .attr("x", 50 + size*1.2)
-        .attr("y", function(d,i){ return 10 + i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("x", 30 + size*1.2)
+        .attr("y", function(d,i){ return 10 + i*(size+5) + (size/2)})
         .style("fill", function(d){ return color(d)})
         .text(function(d){ return d})
         .attr("text-anchor", "left")
         .style("alignment-baseline", "middle")
-        .on("mouseover", highlight)
-        .on("mouseleave", noHighlight)
 
 })
 </script>
