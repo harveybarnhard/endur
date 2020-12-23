@@ -31,6 +31,31 @@ var svg = d3.select("#active_time")
 // Parse the Data
 d3.csv("data/strava_activities_sub.csv", function(data) {
 
+var select1 = "Run_moving_time",
+    select2 = "Ride_moving_time",
+    select3 = "VirtualRide_moving_time",
+    select4 = "Other_moving_time";
+
+var title1 = "Run",
+    title2 = "Ride",
+    title3 = "VirtualRide",
+    title4 = "Other"
+
+headerBar = ["monday"];
+headerBar.push(title1, title2, title3, title4);
+
+var data = data.map(function(d){
+    return {
+      monday:d.monday,
+      [title1]: d[select1],
+      [title2]: d[select2],
+      [title3]: d[select3],
+      [title4]: d[select4]
+    }
+});
+
+data["columns"] = headerBar;
+
   // format the data
   data.forEach(function(d) {
       d.monday = parseTime(d.monday);
@@ -48,7 +73,7 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
     .domain(keys)
     .range(d3.schemeSet2);
 
-  //stack the data?
+  //stack the data
   var stackedData = d3.stack()
     .keys(keys)
     (data)
@@ -71,8 +96,6 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y).ticks(5))
-
-
 
   // ------------------ //
   // BRUSHING AND CHART //
@@ -113,7 +136,7 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
     console.log(d)
     // reduce opacity of all groups
     d3.selectAll(".myArea").style("opacity", .2)
-    // expect the one that is hovered
+    // except the one that is hovered
     d3.select("."+d)
       .style("opacity", 1)
   }
@@ -132,33 +155,23 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
       .style("opacity", 1)
   }
 
-  // Show the areas
-  areaChart
-    .selectAll("mylayers")
-    .data(stackedData)
-    .enter()
-    .append("path")
-      .attr("class", function(d) { return "myArea " + d.key })
-      .style("fill", function(d) { return color(d.key); })
-      .attr("d", area)
-
-  // Show the areas
-  svg
-    .selectAll("mylayers")
-    .data(stackedData)
-    .enter()
-    .append("path")
-      .attr("class", function(d) { return "myArea " + d.key })
-      .style("fill", function(d) { return color(d.key); })
-      .attr("d", area)
-      .on("mouseover", areaHighlight)
-      .on("mouseleave", noHighlight)
-
-  // Add the brushing
+  // Create chart. Note that brushing is applied BEFORE the actual creation of
+  // the chart and ".attr("pointer-events", "all")" is used so that the
+  // highlighting even still occurs even after brush is applied
   areaChart
     .append("g")
-      .attr("class", "brush")
-      .call(brush);
+    .attr("class", "brush")
+    .call(brush)
+    .selectAll("mylayers")
+    .data(stackedData)
+    .enter()
+    .append("path")
+      .attr("class", function(d) { return "myArea " + d.key })
+      .style("fill", function(d) { return color(d.key); })
+      .attr("d", area)
+      .attr("pointer-events", "all")
+      .on("mouseover", areaHighlight)
+      .on("mouseleave", noHighlight)
 
   var idleTimeout
   function idled() { idleTimeout = null; }
@@ -214,6 +227,18 @@ d3.csv("data/strava_activities_sub.csv", function(data) {
         .text(function(d){ return d})
         .attr("text-anchor", "left")
         .style("alignment-baseline", "middle")
+
+        // Show the areas
+        // svg
+        //   .selectAll("mylayers")
+        //   .data(stackedData)
+        //   .enter()
+        //   .append("path")
+        //     .attr("class", function(d) { return "myArea " + d.key })
+        //     .style("fill", function(d) { return color(d.key); })
+        //     .attr("d", area)
+        //     .on("mouseover", areaHighlight)
+        //     .on("mouseleave", noHighlight)
 
 })
 </script>
