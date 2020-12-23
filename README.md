@@ -1,8 +1,9 @@
 # endur
 Using Strava data to create personalized reports
 
-# Replication Steps:
-Here are the steps I took to get this up-and-running:
+# Replication Steps
+Here are the steps I took to get this up-and-running. If other people start using this I'll find a more streamlined
+way to replicate this, especially by removing the need for steps 4 and 5.
 
 ## Step 1: Prepare Strava
 Create an "application" on [Strava](https://www.strava.com/settings/api). Put "local host" (without the quotes)
