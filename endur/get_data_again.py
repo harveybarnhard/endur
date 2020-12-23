@@ -32,6 +32,7 @@ if strava_tokens['expires_at'] < time.time():
 # Loop through all activities
 page = 1
 url = "https://www.strava.com/api/v3/activities"
+print(strava_tokens)
 access_token = strava_tokens['access_token']
 
 # Create the dataframe ready for the API call to store your activity data
