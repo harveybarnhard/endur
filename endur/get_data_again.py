@@ -9,8 +9,6 @@ client_id = os.getenv('STRAVA_CLIENT_ID')
 client_secret = os.getenv('STRAVA_CLIENT_SECRET')
 with open('./data/strava_tokens.json') as json_file:
     strava_tokens = json.load(json_file)
-print(strava_tokens)
-print(client_id)
 # If access_token has expired then use the refresh_token to get the new access_token
 if strava_tokens['expires_at'] < time.time():
     # Make Strava auth API call with current refresh token
@@ -34,7 +32,6 @@ if strava_tokens['expires_at'] < time.time():
 # Loop through all activities
 page = 1
 url = "https://www.strava.com/api/v3/activities"
-print(strava_tokens)
 access_token = strava_tokens['access_token']
 
 # Create the dataframe ready for the API call to store your activity data

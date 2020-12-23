@@ -10,8 +10,8 @@ activities['start_date_local'] = pd.to_datetime(activities['start_date_local'])
 activities['monday'] = activities['start_date_local'] -  pd.to_timedelta(arg=activities['start_date_local'].dt.weekday, unit='D')
 activities['monday'] = activities['monday'].dt.strftime('%m-%d-%Y')
 
-# Convert active seconds to active hours
-activities['moving_time'] = activities['moving_time']/360
+# Convert active hundredths of seconds to active hours
+activities['moving_time'] = activities['moving_time']/3600
 
 # Modify groups:
 activities['type'] = activities['type'].replace({
