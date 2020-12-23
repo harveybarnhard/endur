@@ -10,7 +10,10 @@ activities['start_date_local'] = pd.to_datetime(activities['start_date_local'])
 activities['monday'] = activities['start_date_local'] -  pd.to_timedelta(arg=activities['start_date_local'].dt.weekday, unit='D')
 activities['monday'] = activities['monday'].dt.strftime('%m-%d-%Y')
 
-# Modify groups: 1) Ride 2) Run 3) Virtual Ride 4) Weights 5) Hike 6) Swim 6) Other
+# Convert active seconds to active hours
+activities['moving_time'] = activities['moving_time']/360
+
+# Modify groups:
 activities['type'] = activities['type'].replace({
     'Elliptical':'Other',
     'Workout':'Other',
