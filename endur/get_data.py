@@ -2,8 +2,6 @@ import requests
 import json
 import os
 
-# https://medium.com/swlh/using-python-to-connect-to-stravas-api-and-analyse-your-activities-dummies-guide-5f49727aac86
-
 # Copied code goes here:
 copied_code = ''
 # Make Strava auth API call with your
