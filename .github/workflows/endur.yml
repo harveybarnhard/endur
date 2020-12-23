@@ -37,9 +37,10 @@ jobs:
         git add ./data
         git commit -m "Auto-updating Strava data and tokens"
     - name: Push encrypted tokens back to repository
-      uses: ad-m/github-push-action@main
+      uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
         force: true
     # - name: Pull data
     #   run: |
