@@ -33,7 +33,7 @@ if strava_tokens['expires_at'] < time.time():
 page = 1
 url = "https://www.strava.com/api/v3/activities"
 access_token = strava_tokens['access_token']
-
+print(strava_tokens)
 # Create the dataframe ready for the API call to store your activity data
 activities = pd.DataFrame(
     columns = [
