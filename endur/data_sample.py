@@ -1,14 +1,32 @@
 import pandas as pd
-from datetime import datetime
+import datetime
+from math import floor
 
 # Load data and subset to relevant columns
 activities = pd.read_csv('./data/strava_activities.csv')
-activities = activities[['id', 'start_date_local', 'type', 'distance', 'moving_time', 'total_elevation_gain']]
+activities = activities[['start_date_local', 'type', 'distance', 'moving_time', 'total_elevation_gain']]
 
 # Create year and week variable with weeks starting on Monday
 activities['start_date_local'] = pd.to_datetime(activities['start_date_local'])
 activities['monday'] = activities['start_date_local'] -  pd.to_timedelta(arg=activities['start_date_local'].dt.weekday, unit='D')
+
+# Fill in panel, at least one activity every week.
+# Do this by creating a fake "Other" activity every week since the start date,
+# and appending this dataframe onto the original one
+start_date = min(activities.monday.dt.date)
+end_date   = max(activities.monday.dt.date)
+dates      = pd.date_range(start=start_date, end=end_date, freq="W-MON")
+df = pd.DataFrame({
+    'start_date_local' : dates,
+    'type' : ["Other"]*dates.size,
+    'distance' : [0]*dates.size,
+    'moving_time' : [0]*dates.size,
+    'total_elevation_gain' : [0]*dates.size,
+    'monday' : dates
+})
+df['monday'] = df['monday'].dt.strftime('%m-%d-%Y')
 activities['monday'] = activities['monday'].dt.strftime('%m-%d-%Y')
+activities = activities.append(df).reset_index()
 
 # Convert active hundredths of seconds to active hours
 activities['moving_time'] = activities['moving_time']/3600
