@@ -14,7 +14,7 @@ activities['monday'] = activities['start_date_local'] -  pd.to_timedelta(arg=act
 # Do this by creating a fake "Other" activity every week since the start date,
 # and appending this dataframe onto the original one
 start_date = min(activities.monday.dt.date)
-end_date   = max(activities.monday.dt.date)
+end_date   = max(activities.monday.dt.date) + datetime.timedelta(days=7)
 dates      = pd.date_range(start=start_date, end=end_date, freq="W-MON")
 df = pd.DataFrame({
     'start_date_local' : dates,
