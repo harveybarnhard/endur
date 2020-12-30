@@ -53,7 +53,7 @@ jobs:
         git config --local user.name "harveybarnhard"
         git add ./data
         git commit -m "Auto-updating Strava data and tokens"
-   - name: Create time badge
+    - name: Create time badge
       run: |
         datenow=$(date "+%s")
         sed -i "s|date\/\(.*\)|date\/$datenow\?color=FC4C02\&label=Last%20Updated|" ./README.md
