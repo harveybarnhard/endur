@@ -1,6 +1,7 @@
 # endur
 Using Strava data to create personalized reports.
 
+![Pull and clean data](https://github.com/harveybarnhard/endur/workflows/Pull%20and%20clean%20data/badge.svg)
 ![Last Updated](https://img.shields.io/date/1609368207?color=FC4C02&label=Last%20Updated)
 
 # Replication Steps
