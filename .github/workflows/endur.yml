@@ -48,15 +48,16 @@ jobs:
         rm ./data/strava_tokens.json
       env:
         STRAVA_TOKENS_PHRASE: ${{ secrets.STRAVA_TOKENS_PHRASE }}
+    - name: Create time badge
+      run: |
+        datenow=$(date "+%s")
+        sed -i "s|date\/\(.*\)|date\/$datenow\?color=FC4C02\&label=Last%20Updated)|" ./README.md
     - name: Commit any changes to data files, including encrypted tokens
       run: |
         git config --local user.name "harveybarnhard"
         git add ./data
+        git add ./README.md
         git commit -m "Auto-updating Strava data and tokens"
-    - name: Create time badge
-      run: |
-        datenow=$(date "+%s")
-        sed -i "s|date\/\(.*\)|date\/$datenow\?color=FC4C02\&label=Last%20Updated|" ./README.md
     - name: Push encrypted tokens back to repository
       uses: ad-m/github-push-action@master
       with:
