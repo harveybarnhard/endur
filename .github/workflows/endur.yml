@@ -53,13 +53,13 @@ jobs:
         git config --local user.name "harveybarnhard"
         git add ./data
         git commit -m "Auto-updating Strava data and tokens"
+   - name: Create time badge
+      run: |
+        datenow=$(date "+%s")
+        sed -i "s|date\/\(.*\)|date\/$datenow\?color=FC4C02\&label=Last%20Updated|" ./README.md
     - name: Push encrypted tokens back to repository
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
         force: true
-   - name: Create time badge
-      run: |
-        datenow=$(date "+%s")
-        sed -i "s|date\/\(.*\)|date\/$datenow\?color=FC4C02\&label=Last%20Updated|" ./README.md
