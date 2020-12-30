@@ -1,3 +1,5 @@
 #!/bin/sh
 datenow=$(date "+%s")
-sed -i "s|date\/\(.*\)|date\/$datenow\?color=FC4C02\&label=Last%20Updated\)|" ../../README.md
+before="date\/"
+after="\?color"
+sed -i "s|$before\(.*\)$after|$before$datenow$after|" test.txt

@@ -1,4 +1,4 @@
-name: Pull data and subset
+name: Pull and clean data
 
 on:
   push:
@@ -51,7 +51,9 @@ jobs:
     - name: Create time badge
       run: |
         datenow=$(date "+%s")
-        sed -i "s|date\/\(.*\)|date\/$datenow\?color=FC4C02\&label=Last%20Updated)|" ./README.md
+        before="date\/"
+        after="\?color"
+        sed -i "s|$before\(.*\)$after|$before$datenow$after|" ./README.md
     - name: Commit any changes to data files, including encrypted tokens
       run: |
         git config --local user.name "harveybarnhard"
