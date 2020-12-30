@@ -1,7 +1,7 @@
 # endur
 Using Strava data to create personalized reports.
 
-![Last Updated](https://img.shields.io/date/1609360322?color=FC4C02&label=Last%20Updated)
+![Last Updated](https://img.shields.io/date/1609368207?color=FC4C02&label=Last%20Updated)
 
 # Replication Steps
 Here are the steps I took to get this up-and-running. If other people start using this I'll find a more streamlined
