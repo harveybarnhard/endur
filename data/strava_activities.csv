@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4546107049,Afternoon Walk,2020-12-31T14:29:13Z,Walk,3418.5,3182,3615,125.4,"[43.798318, -72.394925]"
 4544675483,Long Recovery Day,2020-12-31T07:55:59Z,VirtualRide,80756.2,7511,7553,122.0,"[-11.65726, 166.984452]"
 4541266109,Fartlek with a Side of Vert,2020-12-30T20:47:12Z,Run,12412.7,3021,3176,204.3,"[44.26225, -72.05356]"
 4536522471,Easy 85min,2020-12-29T16:03:35Z,VirtualRide,35717.8,5224,5224,922.0,"[47.220161, 11.415583]"
