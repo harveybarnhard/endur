@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4550671983,Afternoon Try-not-to-slip-on-ice Activity,2021-01-01T13:25:36Z,Walk,5777.3,5294,6392,143.2,"[43.63299, -72.516654]"
 4549101505,Wow a Weight Room,2021-01-01T09:47:12Z,WeightTraining,245.1,40,902,2.5,"[43.714894, -72.309571]"
 4548935720,Starting the Year,2021-01-01T08:29:20Z,Run,12911.4,3273,3636,160.1,"[43.715022, -72.309392]"
 4546107049,Afternoon Walk,2020-12-31T14:29:13Z,Walk,3418.5,3182,3615,125.4,"[43.798318, -72.394925]"
