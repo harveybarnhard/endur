@@ -32,6 +32,12 @@ activities = activities.append(df).reset_index()
 # Convert active hundredths of seconds to active hours
 activities['moving_time'] = activities['moving_time']/3600
 
+# Convert distance from meters to miles
+activities['distance'] = activities['distance']*0.000621371
+
+# Convert total elevation gain from meters to feet
+activities['distance'] = activities['distance']*3.28084
+
 # Modify groups:
 activities['type'] = activities['type'].replace({
     'Elliptical':'Other',
@@ -43,8 +49,8 @@ activities['type'] = activities['type'].replace({
 
 # Collapse by week and activity type
 #   1. distance: meters
-#   2. moving_time: seconds
-#   3. total_elevation_gain: meters
+#   2. moving_time: hours
+#   3. total_elevation_gain: feet
 activities = activities.groupby(['monday', 'type'], as_index=False).agg({
     'distance':'sum',
     'moving_time':'sum',
