@@ -2,7 +2,7 @@
 Using Strava data to create personalized reports.
 
 ![Pull and clean data](https://github.com/harveybarnhard/endur/workflows/Pull%20and%20clean%20data/badge.svg)
-![Last Updated](https://img.shields.io/date/1609567952?color=FC4C02&label=Last%20Updated)
+![Last Updated](https://img.shields.io/date/1609601340?color=FC4C02&label=Last%20Updated)
 
 # Replication Steps
 Here are the steps I took to get this up-and-running. If other people start using this I'll find a more streamlined
