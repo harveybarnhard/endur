@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4600274766,Week #6 With Scabbed Achilles,2021-01-10T12:55:49Z,Run,8177.1,2024,2125,23.9,"[42.384627, -71.121407]"
 4594401695,Saturday Subtempo,2021-01-09T14:20:31Z,Run,13085.6,3007,3473,28.6,"[42.384549, -71.121299]"
 4586724711,80min Recovery,2021-01-08T07:32:13Z,VirtualRide,50485.9,4839,4839,77.0,"[-11.641566, 166.997842]"
 4583323316,Really Soaking in the Vermont Hills,2021-01-07T12:24:50Z,Run,19399.9,4980,5384,384.5,"[44.262288, -72.053563]"
