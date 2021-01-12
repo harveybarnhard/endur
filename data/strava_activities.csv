@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4610194773,Lunch Run,2021-01-12T12:31:54Z,Run,14168.6,3620,4404,69.9,"[42.384533, -71.120998]"
 4606227365,3x15min Crisscross,2021-01-11T17:18:14Z,VirtualRide,49863.8,5725,5725,999.0,"[47.259815, 11.41]"
 4604532948,Lunch Shakeout,2021-01-11T12:09:06Z,Run,4877.1,1279,1388,15.9,"[42.384606, -71.121245]"
 4600274766,Week #6 With Scabbed Achilles,2021-01-10T12:55:49Z,Run,8177.1,2024,2125,23.9,"[42.384627, -71.121407]"
