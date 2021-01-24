@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4675815313,Menotomy Rocks Park,2021-01-24T12:21:40Z,Run,16323.5,4245,4713,95.8,"[42.384394, -71.12147]"
 4669604679,Back to It,2021-01-23T12:15:59Z,Run,15521.4,3960,4436,71.9,"[42.384561, -71.120875]"
 4664715036,Work Sesh,2021-01-22T17:31:33Z,VirtualRide,30281.3,3761,4414,523.0,"[53.995056, -1.557759]"
 4663334125,Lunch Break Run,2021-01-22T11:59:54Z,Run,8458.3,2166,2534,49.0,"[42.384629, -71.120978]"
