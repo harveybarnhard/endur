@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4741111020,Hour Recovery,2021-02-05T17:59:04Z,VirtualRide,35854.8,3744,3951,162.0,"[51.493698, -0.114946]"
 4734451677,5x1k @VO2 + 4x30sec @fast,2021-02-04T11:44:03Z,Run,18292.6,4474,5089,31.2,"[42.384663, -71.120858]"
 4730477664,Just Spinning the Legs,2021-02-03T17:35:05Z,VirtualRide,42128.9,5291,5400,738.0,"[53.990566, -1.55013]"
 4723238600,"Ice, but less chunky today",2021-02-02T11:58:14Z,Run,13065.0,3412,3506,12.6,"[39.87522, -86.143611]"
