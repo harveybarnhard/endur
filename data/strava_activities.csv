@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4756307930,Too Many Lentils,2021-02-08T12:28:03Z,Run,11636.5,3115,3612,21.9,"[42.384569, -71.121308]"
 4753211854,30min Recovery,2021-02-07T18:49:52Z,VirtualRide,17657.5,1811,1811,27.0,"[-11.639627, 166.983733]"
 4746337351,Alaskan Bull Worm II,2021-02-06T12:50:40Z,Run,25811.8,6560,7150,43.0,"[42.384576, -71.121043]"
 4741111020,Hour Recovery,2021-02-05T17:59:04Z,VirtualRide,35854.8,3744,3951,162.0,"[51.493698, -0.114946]"
