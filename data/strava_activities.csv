@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4788966979,Classic Easy Evening Zwift,2021-02-14T17:45:25Z,VirtualRide,35889.7,3791,4206,164.0,"[51.498043, -0.11089]"
 4787845540,So Many Dogs,2021-02-14T11:58:41Z,Run,10216.7,2648,2850,30.5,"[42.38116, -71.119994]"
 4782974261,Easy 50min,2021-02-13T17:23:40Z,VirtualRide,30222.5,3068,3331,45.0,"[-11.651555, 166.991522]"
 4781906605,Bettina Returns!,2021-02-13T12:13:45Z,Run,7221.8,2252,2529,36.1,"[42.384615, -71.121015]"
