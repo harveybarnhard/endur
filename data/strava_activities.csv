@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4797961400,Feel-Good Miles,2021-02-16T12:43:38Z,Run,16896.4,4049,4591,25.0,"[42.384541, -71.121442]"
 4793562390,Evening Zwift,2021-02-15T16:59:54Z,VirtualRide,26732.8,2576,3170,41.0,"[-11.658393, 166.983368]"
 4792668152,w/ and w/o Bettina,2021-02-15T13:00:52Z,Run,14598.2,3941,4212,48.1,"[42.384581, -71.120996]"
 4788966979,Classic Easy Evening Zwift,2021-02-14T17:45:25Z,VirtualRide,35889.7,3791,4206,164.0,"[51.498043, -0.11089]"
