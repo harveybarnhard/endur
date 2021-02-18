@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4809297233,Frolicking w/ Bettina,2021-02-18T16:41:21Z,Run,5256.2,1654,1802,24.9,"[42.384572, -71.121271]"
 4804397548,Sunset Run,2021-02-17T17:02:59Z,Run,12079.7,3123,3674,29.2,"[42.384504, -71.121604]"
 4797961400,Feel-Good Miles,2021-02-16T12:43:38Z,Run,16896.4,4049,4591,25.0,"[42.384541, -71.121442]"
 4793562390,Evening Zwift,2021-02-15T16:59:54Z,VirtualRide,26732.8,2576,3170,41.0,"[-11.658393, 166.983368]"
