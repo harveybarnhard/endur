@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4848989707,Successful Recovery,2021-02-25T12:12:38Z,Run,11111.9,3036,3258,26.8,"[42.384552, -71.120749]"
 4843199074,"Puddles, Not Ice",2021-02-24T11:55:42Z,Run,15154.1,3870,4555,123.2,"[42.384605, -71.120974]"
 4838779385,Evening Zwift,2021-02-23T17:59:32Z,VirtualRide,40362.3,3699,3699,347.0,"[-11.637571, 166.969228]"
 4837978632,Stomach Training,2021-02-23T15:01:29Z,Run,8875.7,2185,2447,36.7,"[42.384627, -71.120779]"
