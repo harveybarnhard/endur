@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4880491766,Another Recovery Day,2021-03-02T18:34:56Z,VirtualRide,16991.0,1879,1879,137.0,"[-11.64478, 166.973455]"
 4874241710,Galeforce,2021-03-01T17:19:46Z,Run,10246.3,2770,3102,43.5,"[42.384719, -71.121422]"
 4874240457,Afternoon Walk,2021-02-28T13:14:47Z,Walk,4984.9,3717,4713,8.9,"[42.384678, -71.120957]"
 4867572165,Lunch Run,2021-02-28T12:03:35Z,Run,7136.4,1830,1960,25.6,"[42.384589, -71.120947]"
