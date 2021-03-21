@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4986700934,Jog to River,2021-03-21T10:21:06Z,Run,1740.0,557,683,0.0,"[42.370383, -71.12208]"
 4980289508,Alaskan Bull Worm III,2021-03-20T12:25:53Z,Run,28762.7,7165,8412,49.2,"[42.38461, -71.1209]"
 4974728597,Afternoon Run,2021-03-19T16:56:12Z,Run,8291.3,2539,2754,35.5,"[42.384536, -71.121305]"
 4968606481,Easy Day,2021-03-18T13:20:40Z,Run,7766.3,2061,2393,17.0,"[42.38458, -71.120935]"
