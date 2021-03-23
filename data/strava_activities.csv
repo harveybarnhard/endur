@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+4999131370,Spring = Elbow + Sock Tanlines,2021-03-23T17:35:15Z,Run,11988.7,2991,3568,25.4,"[42.384608, -71.121005]"
 4991538296,Slathered in Sunscreen + 4x200m,2021-03-22T12:15:03Z,Run,16048.4,4221,5186,84.1,"[42.384589, -71.120993]"
 4988227055,Fro Spikeball,2021-03-21T17:55:13Z,Run,3032.3,853,964,14.6,"[42.384654, -71.120925]"
 4988226775,To Spikeball,2021-03-21T16:00:47Z,Run,3035.2,789,903,8.4,"[42.369007, -71.100381]"
