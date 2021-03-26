@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5015904584,Afternoon Run,2021-03-26T17:52:04Z,Run,11792.1,3075,3631,42.4,"[42.384672, -71.120784]"
 5010889227,"Clouds of gnats, in this economy!?",2021-03-25T17:57:21Z,Run,11758.0,3085,3766,28.3,"[42.384604, -71.120843]"
 5005122737,Easy Day,2021-03-24T17:55:45Z,Run,8421.1,2246,2410,33.1,"[42.384568, -71.121245]"
 4999131370,Spring = Elbow + Sock Tanlines,2021-03-23T17:35:15Z,Run,11988.7,2991,3568,25.4,"[42.384608, -71.121005]"
