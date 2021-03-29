@@ -1,5 +1,4 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
-5028629468,Bettina,2021-03-28T16:39:28Z,VirtualRide,30278.7,4821,4821,522.0,"[53.995158, -1.557441]"
 5027441390,Lunch Run,2021-03-28T12:36:09Z,Run,5980.6,1588,1912,13.5,"[42.384574, -71.120997]"
 5021080097,Warming up for Spikeball,2021-03-27T12:14:15Z,Run,14679.2,3650,4344,84.0,"[42.377541, -71.120374]"
 5020017917,Farmers Market To and Fro,2021-03-27T10:03:28Z,Run,3511.9,1141,6126,54.0,"[42.384688, -71.120909]"
