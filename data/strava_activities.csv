@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5044771575,Lunch Break,2021-03-31T12:24:39Z,Run,2514.6,673,862,17.0,"[42.384604, -71.121164]"
 5040757239,Tuesday Part II: w/o Bettina,2021-03-30T18:53:27Z,Run,7356.6,1965,2306,17.8,"[42.384659, -71.121046]"
 5040578871,Tuesday Part I: w/ Bettina,2021-03-30T18:05:26Z,Run,5698.3,1746,2110,15.5,"[42.384393, -71.121337]"
 5034195103,Busy Day,2021-03-29T18:03:51Z,Run,4527.7,1242,1457,15.5,"[42.3846, -71.12106]"
