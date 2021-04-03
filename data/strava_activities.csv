@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5064257976,Some AT Action,2021-04-03T16:35:02Z,Hike,6757.4,5488,5982,244.7,"[43.720151, -72.340438]"
+5063262341,Mud Szn w/ Bettina,2021-04-03T12:52:27Z,Run,9985.3,3103,3191,179.4,"[43.719738, -72.339842]"
 5058163578,Evening Run,2021-04-02T18:30:39Z,Run,4218.2,1137,1359,6.6,"[42.384607, -71.12095]"
 5051121141,I was Rick-Rolled on a run this April Fools,2021-04-01T12:32:42Z,Run,17960.0,4589,5449,30.5,"[42.384588, -71.120693]"
 5044771575,Lunch Break,2021-03-31T12:24:39Z,Run,2514.6,673,862,17.0,"[42.384604, -71.121164]"
