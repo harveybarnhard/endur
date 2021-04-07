@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5087178795,Afternoon Run,2021-04-07T15:57:48Z,Run,13094.5,3258,4084,31.5,"[42.381089, -71.120018]"
 5080811693,Post Down Week,2021-04-06T13:10:10Z,Run,17154.5,4445,4962,29.5,"[42.384595, -71.120959]"
 5074802961,Smith Pond,2021-04-05T09:39:50Z,Hike,10733.4,9205,10465,357.6,"[43.595048, -72.156406]"
 5067444004,Little Morning Hike,2021-04-04T07:35:15Z,Hike,4067.6,3100,3787,151.9,"[43.720246, -72.340345]"
