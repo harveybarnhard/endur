@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5093377944,12wk Winter plan (advanced) Week 7 Endurance,2021-04-08T18:03:07Z,VirtualRide,16251.9,2784,2784,279.0,"[40.78935, -73.964161]"
+5093396080,Afternoon Run,2021-04-08T17:50:31Z,Run,12723.7,3269,3760,31.5,"[42.38452, -71.121334]"
 5087178795,Afternoon Run,2021-04-07T15:57:48Z,Run,13094.5,3258,4084,31.5,"[42.381089, -71.120018]"
 5080811693,Post Down Week,2021-04-06T13:10:10Z,Run,17154.5,4445,4962,29.5,"[42.384595, -71.120959]"
 5074802961,Smith Pond,2021-04-05T09:39:50Z,Hike,10733.4,9205,10465,357.6,"[43.595048, -72.156406]"
