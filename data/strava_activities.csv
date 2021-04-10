@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5104872398,"""Look at that guy! What is he going to do when it's 80 out?""",2021-04-10T18:22:44Z,Run,6081.4,1885,2142,7.1,"[42.384489, -71.1212]"
+5101405681,Back to Morning Runs,2021-04-10T06:58:38Z,Run,12657.6,3286,3956,55.1,"[42.384591, -71.121024]"
 5098644872,Fresh Friday,2021-04-09T17:27:34Z,Run,12675.5,3345,3968,40.3,"[42.384399, -71.121497]"
 5093396080,Evening Run,2021-04-08T17:50:31Z,Run,12723.7,3269,3760,31.5,"[42.38452, -71.121334]"
 5087178795,Afternoon Run,2021-04-07T15:57:48Z,Run,13094.5,3258,4084,31.5,"[42.381089, -71.120018]"
