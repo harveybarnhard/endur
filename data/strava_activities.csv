@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5133812042,Drizzly w/ Bettina,2021-04-15T17:45:55Z,Run,6605.6,2083,2388,16.2,"[42.384398, -71.121212]"
 5122481176,Evening Run,2021-04-13T18:14:30Z,Run,8054.8,2084,2298,24.7,"[42.384542, -71.121181]"
 5116456581,Getting Outside,2021-04-12T18:26:02Z,Run,2519.7,728,741,2.6,"[42.38462, -71.120979]"
 5107891194,Easy Morning,2021-04-11T07:37:53Z,Run,7542.6,2137,2233,37.7,"[42.384672, -71.120612]"
