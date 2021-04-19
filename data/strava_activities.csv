@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5157345483,Evening Run,2021-04-19T18:11:33Z,Run,7716.3,1989,2341,17.0,"[42.384596, -71.120965]"
 5151761585,Afternoon Run,2021-04-18T16:12:49Z,Run,4368.6,1151,2628,11.1,"[42.384645, -71.120834]"
 5151760855,With Gabe!,2021-04-18T14:55:37Z,Run,10188.3,2823,3256,14.4,"[42.368951, -71.100243]"
 5138924984,Bettina and I Enjoy the Wonderful Weather,2021-04-16T17:24:38Z,Run,12931.2,3963,4504,24.6,"[42.384295, -71.121194]"
