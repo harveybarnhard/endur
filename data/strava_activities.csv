@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5269720532,Lunch Run,2021-05-09T12:22:48Z,Run,14086.2,3498,4085,84.7,"[42.384646, -71.120887]"
 5263481259,Lunch Run,2021-05-08T12:24:44Z,Run,15516.6,3900,4356,47.0,"[42.384584, -71.120923]"
 5258952729,Hahvey Bahnhahd runs through Hahvahd Yahd,2021-05-07T18:45:19Z,Run,4762.2,1481,1664,12.0,"[42.384466, -71.12107]"
 5254056639,Evening Run,2021-05-06T18:54:05Z,Run,8066.0,2019,2078,25.8,"[42.384531, -71.121331]"
