@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5352792304,Evening Run,2021-05-24T18:19:08Z,Run,8744.5,2231,2497,25.8,"[42.384374, -71.121503]"
 5344557959,Back at It w/ Classic Route,2021-05-23T06:53:04Z,Ride,51272.7,6327,6503,387.0,"[42.384404, -71.121596]"
 5341230393,Away from Family,2021-05-22T13:09:05Z,Ride,5053.5,793,1091,14.6,"[42.384685, -71.120728]"
 5339179129,To Family,2021-05-22T09:44:42Z,Ride,4835.4,707,875,11.4,"[42.36711, -71.076142]"
