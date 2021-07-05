@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5576799030,Evening Stroll,2021-07-04T20:33:22Z,Walk,5190.1,3792,3933,7.4,"[42.384535, -71.12121]"
 5576494473,Jon's Short Mix,2021-07-04T18:19:00Z,VirtualRide,15370.8,1811,1811,187.0,"[-10.758679, 165.842475]"
 5570755644,"At Last, a Zwift Session",2021-07-03T18:33:55Z,VirtualRide,14297.3,1815,1859,183.0,"[-10.757919, 165.834085]"
 5560757582,Fells Action,2021-07-01T18:15:26Z,Run,9521.0,3777,4719,203.7,"[42.453477, -71.107001]"
