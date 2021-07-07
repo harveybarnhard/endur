@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5586790663,After the Storm,2021-07-06T18:47:18Z,Run,5661.7,1720,2040,12.6,"[42.384536, -71.12116]"
 5581124878,Bread Pickup,2021-07-05T16:15:39Z,Walk,2470.7,1977,2051,7.7,"[42.384731, -71.121127]"
 5579620199,Ankle is Back,2021-07-05T11:55:12Z,Run,8861.1,2223,2555,26.2,"[42.384691, -71.120967]"
 5578500429,Morning Stroll,2021-07-05T07:33:46Z,Walk,4819.7,4061,4501,13.5,"[42.384106, -71.120928]"
