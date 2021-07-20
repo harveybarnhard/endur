@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5655081920,Nice Evening,2021-07-19T19:09:07Z,Run,12551.6,3163,3677,26.7,"[42.384715, -71.120259]"
 5649989336,Easy 30min,2021-07-18T18:02:52Z,VirtualRide,16172.4,1789,2011,90.0,"[48.865814, 2.320926]"
 5642783751,Sweaty One,2021-07-17T11:14:34Z,Run,17982.4,4554,5914,35.9,"[42.384783, -71.119645]"
 5638724986,Short Evening Run,2021-07-16T18:58:29Z,Run,4648.9,1171,1441,6.8,"[42.384649, -71.120668]"
