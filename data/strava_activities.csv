@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5671490582,Fresh Fphthursday,2021-07-22T18:16:44Z,Run,16362.7,4072,5180,56.8,"[42.384839, -71.119721]"
 5666228816,Classic Running While Jobs are Running,2021-07-21T19:32:29Z,Run,6923.4,1768,2039,28.1,"[42.384621, -71.120667]"
 5660559836,Smoky,2021-07-20T18:50:36Z,Walk,2589.5,1744,1744,2.7,"[42.384555, -71.12095]"
 5657680412,Route Indecision,2021-07-20T08:04:01Z,Run,17577.2,4396,5565,48.6,"[42.384677, -71.120693]"
