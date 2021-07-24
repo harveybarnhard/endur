@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5679214276,Easy w/ Bettina,2021-07-24T08:36:46Z,Run,10172.1,3174,3872,19.9,"[42.3845, -71.119189]"
 5676240028,Evening Run,2021-07-23T18:36:16Z,Run,6063.6,1502,1785,22.0,"[42.384616, -71.120901]"
 5671490582,Fresh Fphthursday,2021-07-22T18:16:44Z,Run,16362.7,4072,5180,56.8,"[42.384839, -71.119721]"
 5666228816,Classic Running While Jobs are Running,2021-07-21T19:32:29Z,Run,6923.4,1768,2039,28.1,"[42.384621, -71.120667]"
