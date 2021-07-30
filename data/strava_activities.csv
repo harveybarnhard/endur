@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5711825374,Phresh Phriday,2021-07-30T11:43:59Z,Run,15687.8,3994,4744,51.7,"[42.384746, -71.120468]"
 5708467632,Evening Run,2021-07-29T18:31:49Z,Run,6564.8,1634,1950,32.6,"[42.3846, -71.120749]"
 5703151185,After Work + Blue Skies,2021-07-28T17:41:57Z,Run,13645.5,3321,3803,29.3,"[42.384617, -71.120847]"
 5702950351,To USPS,2021-07-28T17:23:19Z,Walk,1186.9,847,847,0.0,"[42.373427, -71.12312]"
