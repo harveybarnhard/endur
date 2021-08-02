@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5727799126,Farmer's Walk + ID Pickup,2021-08-02T12:41:12Z,Walk,3127.8,2115,5436,2.3,"[42.384639, -71.120994]"
+5725935454,Stolen Valor,2021-08-02T07:03:47Z,Run,13783.9,3560,4110,37.8,"[42.384714, -71.120295]"
 5721320997,Registered for Chicago Half,2021-08-01T07:08:55Z,Run,26762.0,6749,7876,54.7,"[42.384629, -71.11965]"
 5716066370,Esplanadeering w/ Bettina,2021-07-31T08:52:01Z,Run,12927.3,3822,4259,23.0,"[42.384804, -71.114384]"
 5711825374,Phresh Phriday,2021-07-30T11:43:59Z,Run,15687.8,3994,4744,51.7,"[42.384746, -71.120468]"
