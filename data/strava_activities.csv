@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5749199575,I can taste vacation,2021-08-06T12:42:56Z,Run,10562.2,2691,3200,26.9,"[42.384722, -71.120466]"
 5734189502,Afternoon Walk,2021-08-03T14:45:20Z,Walk,3136.6,1838,6186,8.5,"[42.384481, -71.121148]"
 5731261579,Unplanned 4x800,2021-08-03T06:42:46Z,Run,11954.9,2892,3579,27.6,"[42.384658, -71.120943]"
 5727799126,Farmer's Walk + ID Pickup,2021-08-02T12:41:12Z,Walk,3127.8,2115,5436,2.3,"[42.384639, -71.120994]"
