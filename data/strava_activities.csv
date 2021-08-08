@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5755904622,Forgot that it gets dark at night,2021-08-07T19:37:21Z,Run,11381.2,3498,3711,105.5,"[41.929638, -70.008171]"
 5752746220,"Walk to Dinner and Back, Long Way",2021-08-06T18:25:06Z,Walk,8046.7,5880,5880,0,
 5749199575,I can taste vacation,2021-08-06T12:42:56Z,Run,10562.2,2691,3200,26.9,"[42.384722, -71.120466]"
 5734189502,Afternoon Walk,2021-08-03T14:45:20Z,Walk,3136.6,1838,6186,8.5,"[42.384481, -71.121148]"
