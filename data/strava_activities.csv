@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5763551672,Abbreviated Workout,2021-08-09T07:36:44Z,Run,13378.4,3355,4094,143.1,"[41.929731, -70.008517]"
 5760388697,Smoothie Ride,2021-08-08T11:48:27Z,Ride,32287.3,4624,8014,375.0,"[41.929735, -70.008314]"
 5758373969,Vacation,2021-08-08T07:10:46Z,Run,16576.9,4158,4922,163.6,"[41.929712, -70.008468]"
 5755904622,Forgot that it gets dark at night,2021-08-07T19:37:21Z,Run,11381.2,3498,3711,105.5,"[41.929638, -70.008171]"
