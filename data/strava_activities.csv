@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5934993022,Rainy Walk,2021-09-09T17:47:18Z,Walk,3586.4,2710,2710,2.5,"[42.366035, -71.107722]"
 5931918955,The Nice Kind of Humid,2021-09-09T07:53:05Z,Run,17323.5,4401,5053,24.5,"[42.365987, -71.107656]"
 5929203556,Evening Walk,2021-09-08T18:11:06Z,Walk,2321.9,1832,1832,2.3,"[42.366137, -71.107839]"
 5926086644,Morning Run,2021-09-08T06:37:05Z,Run,17319.3,4401,4797,34.3,"[42.366548, -71.108464]"
