@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5953245878,Drizzly Run w/ Chase,2021-09-13T06:58:08Z,Run,14223.4,3711,5060,24.1,"[42.365781, -71.107474]"
 5951011691,Afternoon Walk,2021-09-12T16:10:54Z,Walk,6240.2,4321,4321,3.1,"[42.365873, -71.107678]"
 5949576720,Recovery Day,2021-09-12T11:36:54Z,Run,6530.4,1736,1854,7.2,"[42.365833, -71.107448]"
 5945500237,Pre-Dinner Walk,2021-09-11T17:20:57Z,Walk,3714.6,2288,2288,6.9,"[42.366145, -71.107866]"
