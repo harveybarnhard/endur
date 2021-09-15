@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5966748681,Better than Better than Nothing,2021-09-15T17:49:29Z,Run,6111.3,1614,1830,10.5,"[42.36586, -71.107505]"
 5960872662,Afternoon Walk,2021-09-14T13:35:53Z,Walk,5611.4,3913,8473,19.6,"[42.366162, -71.107864]"
 5958377276,Short Run,2021-09-14T07:38:54Z,Run,3776.3,997,1167,7.7,"[42.365899, -71.107667]"
 5953245878,Drizzly Run w/ Chase,2021-09-13T06:58:08Z,Run,14223.4,3711,5060,24.1,"[42.365781, -71.107474]"
