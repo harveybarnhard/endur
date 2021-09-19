@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+5988299994,Afternoon Run,2021-09-19T17:10:17Z,Run,19906.6,4870,5781,41.5,"[42.366572, -71.108521]"
 5982292942,Afternoon Walk,2021-09-18T16:59:04Z,Walk,6033.8,4332,4479,5.9,"[42.365999, -71.10769]"
 5981317245,Regatta Watching,2021-09-18T12:30:01Z,Run,12301.0,3018,3397,19.2,"[42.366504, -71.108358]"
 5976734142,The Gang Teaches Harvey How to Mountain Bike,2021-09-17T17:17:42Z,Ride,14772.5,4312,4625,121.7,"[42.229365, -70.882056]"
