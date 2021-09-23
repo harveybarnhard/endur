@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+6003865664,Evening Run,2021-09-22T18:41:17Z,Run,3703.9,951,1151,8.3,"[42.365848, -71.107576]"
 5998341560,Snug Fit,2021-09-21T18:09:26Z,Run,2921.0,698,831,7.0,"[42.365983, -71.10759]"
 5993060296,With Dhruv!,2021-09-20T17:50:00Z,Run,13654.8,3770,5059,20.1,"[42.365916, -71.10769]"
 5988299994,Wildly Pleasant Evening,2021-09-19T17:10:17Z,Run,19906.6,4870,5781,41.5,"[42.366572, -71.108521]"
