@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+6031740505,Afternoon Stroll,2021-09-27T17:26:36Z,Walk,3967.7,2918,2918,10.2,"[42.366186, -71.107897]"
 6022864414,Cooldown of Sorts,2021-09-26T08:56:12Z,Run,1372.8,467,467,2.2,"[41.791681, -87.583455]"
 6022863991,Chicago Half Marathon (1:20:23),2021-09-26T07:00:05Z,Run,21243.5,4824,4824,48.8,"[41.779477, -87.579697]"
 6022860917,Warmup Shuffle,2021-09-26T06:12:03Z,Run,1967.1,736,783,0.0,"[41.780817, -87.584006]"
