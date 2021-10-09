@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+6084222351,Evening Run,2021-10-08T18:07:25Z,Run,6140.9,1558,1811,10.9,"[42.365803, -71.107465]"
 6076751614,Pretty Morning,2021-10-07T06:44:03Z,Run,13323.1,3344,4136,14.9,"[42.365751, -71.107289]"
 6071854369,7-8am is NOT City Running Time,2021-10-06T06:32:23Z,Run,19002.7,4756,5757,35.2,"[42.366242, -71.108061]"
 6060031032,Break,2021-10-03T17:39:05Z,Run,10460.7,2673,2801,12.8,"[42.365789, -71.107526]"
