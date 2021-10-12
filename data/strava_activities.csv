@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+6103409691,Lunch Break,2021-10-12T13:02:56Z,Run,10288.8,2623,2894,12.7,"[42.366031, -71.107631]"
 6099493534,Spotted: Dog in Sidecar Wearing Goggles,2021-10-11T17:33:18Z,Run,6324.1,1589,3833,10.3,"[42.365892, -71.107556]"
 6098933091,Afternoon Run,2021-10-10T17:23:46Z,Run,6233.0,1607,1919,10.9,"[42.365362, -71.106808]"
 6084222351,Evening Run,2021-10-08T18:07:25Z,Run,6140.9,1558,1811,10.9,"[42.365803, -71.107465]"
