@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+7259062164,Morning Stroll,2022-06-05T08:28:43Z,Walk,2668.9,1958,1958,31.2,"[40.807309, -73.96632]"
 7255899707,Part III: Midtown to Dinner,2022-06-04T17:21:42Z,Ride,4150.0,1141,1272,18.2,"[40.72879822924733, -73.98164609447122]"
 7255899229,Part II: Brooklyn to Central Park through Queens,2022-06-04T14:55:59Z,Ride,14599.3,3727,7023,82.8,"[40.765347350388765, -73.97233975119889]"
 7255565554,Part I: Columbia to Brooklyn,2022-06-04T10:31:06Z,Ride,18984.8,4599,14103,75.3,"[40.69580739364028, -73.99012899957597]"
