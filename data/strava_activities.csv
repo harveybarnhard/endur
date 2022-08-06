@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+7592860532,Dogsitting Kiwi,2022-08-06T10:26:16Z,Hike,2669.7,2833,3596,95.7,"[43.711529, -72.262101]"
 7586627658,Learning How to Run Again,2022-08-05T08:01:56Z,Run,6998.8,2219,2499,11.7,"[42.36620435491204, -71.108040176332]"
 7584243445,Day 35: Brick Run,2022-08-04T19:46:04Z,Run,2414.0,919,919,0.0,[]
 7584099957,Day 35: Norwich to Cambridge,2022-08-04T06:14:41Z,Ride,222034.0,35964,46630,2251.0,"[42.366105783730745, -71.10771051608026]"
