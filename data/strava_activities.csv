@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+8166330957,Weights,2022-11-25T08:11:31Z,WeightTraining,1153.2,1335,1335,0,[]
+8166329950,Treadmill Warmup (+ 2000 miles on the year),2022-11-25T07:48:48Z,Run,4685.7,1199,1199,0,[]
 8162308974,Turkey Trotting,2022-11-24T08:54:31Z,Run,9674.3,2735,3758,79.3,"[43.71491854079068, -72.3092639632523]"
 8159034408,Lift w/ Bettina 💪,2022-11-23T13:36:31Z,WeightTraining,0.0,3676,3676,0,[]
 8155385019,Run with Chase,2022-11-22T17:08:10Z,Run,11948.3,3310,4551,24.3,"[42.366014923900366, -71.10772116109729]"
