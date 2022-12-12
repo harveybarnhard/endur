@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+8240942062,RMV to Berklee,2022-12-12T13:36:41Z,Walk,3948.0,2987,4201,33.0,"[42.345996, -71.087064]"
+8239481042,Sleeping Beauty -4,2022-12-12T07:14:00Z,Ride,23961.1,2700,2700,0,[]
 8237125716,Glassy -2,2022-12-11T11:45:34Z,Ride,48990.3,5400,5400,0,[]
 8236604846,Sunday? More like Cloudday,2022-12-11T10:40:02Z,Run,6129.6,1908,1965,9.0,"[42.36607812345028, -71.10785686410964]"
 8232678991,Beacon -3,2022-12-10T11:48:23Z,Ride,50268.3,5400,5400,0,[]
