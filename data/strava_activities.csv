@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+8290384206,Christmas on the Monon,2022-12-25T11:56:24Z,Run,12497.8,3535,3601,41.0,"[39.8750764131546, -86.14356656558812]"
 8286790034,First Crossfit Class,2022-12-24T09:59:46Z,Crossfit,0.0,3646,3646,0,[]
 8286870707,To and From Gym,2022-12-24T09:50:55Z,Run,1126.5,325,325,0,[]
 8283504931,Second Coldest Run,2022-12-23T15:50:21Z,Run,7293.3,2022,3987,38.0,"[39.87506216391921, -86.143595315516]"
