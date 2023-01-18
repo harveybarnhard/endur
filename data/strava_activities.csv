@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+8413369420,Beech,2023-01-18T12:07:44Z,Ride,43962.0,4860,4860,0,[]
 8409432227,Some Hills w/ Chase,2023-01-17T17:32:12Z,Run,14190.0,4140,4910,142.0,"[42.365979636088014, -71.10768453218043]"
 8404091499,Volunteer -1,2023-01-16T18:58:48Z,Ride,21175.1,2400,2400,0,[]
 8398997571,Glassy -2,2023-01-15T17:59:51Z,Ride,25063.6,2743,2743,0,[]
