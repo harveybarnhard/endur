@@ -57,6 +57,7 @@ jobs:
     - name: Commit any changes to data files, including encrypted tokens
       run: |
         git config --local user.name "harveybarnhard"
+        git config --local user.email "${{ secrets.USER_EMAIL }}"
         git add ./data
         git add ./README.md
         git commit -m "Auto-updating Strava data and tokens"
