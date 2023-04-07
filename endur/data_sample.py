@@ -27,7 +27,7 @@ df = pd.DataFrame({
 })
 df['monday'] = df['monday'].dt.strftime('%m-%d-%Y')
 activities['monday'] = activities['monday'].dt.strftime('%m-%d-%Y')
-activities = activities.append(df).reset_index()
+activities = activities.concat(df).reset_index()
 
 # Convert active hundredths of seconds to active hours
 activities['moving_time'] = activities['moving_time']/3600
