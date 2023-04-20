@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+8927626729,Evening Weight Training,2023-04-20T18:29:54Z,WeightTraining,0.0,1261,1261,0,[]
+8927529993,Evening Run,2023-04-20T18:02:27Z,Run,4103.1,1068,1292,16.0,"[42.37681341357529, -71.11918014474213]"
+8925055886,Morning Ride,2023-04-20T10:22:57Z,Ride,1156.8,187,244,2.0,"[42.364333933219314, -71.11827280372381]"
 8922240400,West Vidette -1,2023-04-19T19:53:52Z,Ride,16403.8,1800,1800,0,[]
 8915736876,Elliptical? More like ellipsicle ,2023-04-18T17:47:51Z,Elliptical,0.0,3664,3664,0,[]
 8915498645,Lifting Next to Macro Prof 😤📈,2023-04-18T17:25:20Z,WeightTraining,0.0,1289,1289,0,[]
