@@ -59,7 +59,8 @@ activities = activities.groupby(['monday', 'type'], as_index=False).agg({
     'moving_time':'sum',
     'total_elevation_gain':'sum',
 })
-
+print('collapse by week and activity type')
+print(activities)
 # Reshape wide on activity type
 activities = activities.pivot_table(
     index='monday',
@@ -67,7 +68,8 @@ activities = activities.pivot_table(
     values=['distance', 'moving_time', 'total_elevation_gain'],
     fill_value = 0
 ).reset_index()
-
+print('reshaped wide')
+print(activities)
 # Collapse multi-index of header columns into one row
 
 # distance  |  distance        ->    Hike_distance  |  Other_distance
@@ -76,11 +78,13 @@ activities = activities.pivot_table(
 new_cols = [('{1}_{0}'.format(*tup)) for tup in activities.columns]
 activities.columns = new_cols
 activities = activities.rename({'_monday': 'monday'}, axis='columns')
-
+print('after collapsing')
+print(activities)
 # Sort on Monday
 activities['monday'] = pd.to_datetime(activities['monday'])
 activities = activities.sort_values(by='monday')
 activities['monday'] = activities['monday'].dt.strftime('%m-%d-%Y')
-
+print('last check')
+print(activities)
 # Write data
 activities.to_csv('./data/strava_activities_sub.csv', index=False)
