@@ -48,7 +48,7 @@ activities['type'] = activities['type'].replace({
     'Crossfit':'Other',
     'NordicSki':'Other',
     'AlpineSki':'Other',
-    'Rowing':'Other
+    'Rowing':'Other'
 })
 
 # Collapse by week and activity type
