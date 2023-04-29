@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+8980321267,Hemenweights,2023-04-29T17:12:55Z,WeightTraining,0.0,1159,1159,0,[]
+8980248195,Erg: 4x2500m,2023-04-29T16:15:03Z,Rowing,0.0,3235,3235,0,[]
 8973560535,Erg Intervals + Weights,2023-04-28T13:47:21Z,Rowing,0.0,3765,3765,0,[]
 8968826131,To and From MIT,2023-04-27T15:39:43Z,Ride,5988.6,1108,5771,15.0,"[42.373205004259944, -71.11854680813849]"
 8968219504,Erg + Some Weights,2023-04-27T14:11:59Z,Rowing,0.0,2442,2442,0,[]
