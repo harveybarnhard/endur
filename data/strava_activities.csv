@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+8986140085,Hemenweights,2023-04-30T14:14:40Z,WeightTraining,0.0,1013,1013,0,[]
+8986044392,Erg: 3x20min,2023-04-30T13:01:54Z,Rowing,0.0,4177,4177,0,[]
 8980321267,Hemenweights,2023-04-29T17:12:55Z,WeightTraining,0.0,1159,1159,0,[]
 8980248195,Erg: 4x2500m,2023-04-29T16:15:03Z,Rowing,0.0,3235,3235,0,[]
 8973560535,Erg Intervals + Weights,2023-04-28T13:47:21Z,Rowing,0.0,3765,3765,0,[]
