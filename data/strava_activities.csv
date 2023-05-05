@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+9017363051,Successful Run!,2023-05-05T17:07:12Z,Run,1611.7,381,381,0,[]
+9017331397,Erg: 4x500,2023-05-05T16:26:43Z,Rowing,0.0,2247,2247,0,[]
 9011754851,Hemenweights,2023-05-04T16:50:26Z,WeightTraining,0.0,605,605,0,[]
 9011711819,Erg: 15k Continuous,2023-05-04T15:48:17Z,Rowing,0.0,3661,3661,0,[]
 8998196103,Hemenweights,2023-05-02T13:58:36Z,WeightTraining,0.0,1579,1579,0,[]
