@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+9059640192,Erg: 2x5k,2023-05-12T15:43:48Z,Rowing,0.0,2957,2957,0,[]
+9057521373,Humidity Training,2023-05-12T08:08:27Z,Run,11392.3,3029,3588,25.0,"[39.87476469017565, -86.14360956475139]"
 9054298126,Cooldown,2023-05-11T16:54:23Z,Run,323.8,92,96,0.0,[]
 9054270229,Erg: Outdoor Edition,2023-05-11T16:14:42Z,Rowing,0.0,2035,2035,0,[]
 9054140202,Warmup Double,2023-05-11T16:05:54Z,Run,489.1,137,137,0.0,[]
