@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+9150414243,Testing the Waters,2023-05-27T07:27:11Z,Ride,75030.8,9326,9850,591.0,"[42.366332514211535, -71.10824117437005]"
 9146309576,Afternoon Ride,2023-05-26T17:35:57Z,Ride,2041.3,357,401,12.0,"[42.366143334656954, -71.10783171840012]"
 9146283474,Afternoon Weight Training,2023-05-26T17:14:55Z,WeightTraining,0.0,977,977,0,[]
 9146215839,Afternoon Row,2023-05-26T17:05:16Z,Rowing,0.0,482,482,0,[]
