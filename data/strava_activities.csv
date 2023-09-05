@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+9787564280,Morning Run w/ Bettina,2023-09-05T07:08:34Z,Run,7408.7,2269,2552,13.0,"[42.36717564985156, -71.1082349717617]"
 9775537345,So sore from moving,2023-09-03T09:06:40Z,Run,8940.5,2258,2486,25.0,"[42.367184115573764, -71.10813656821847]"
 9764480087,Lunch Weight Training,2023-09-01T11:25:32Z,WeightTraining,0.0,24472,24472,0,[]
 9761706345,Morning Weight Training,2023-09-01T07:36:41Z,WeightTraining,0.0,4600,4600,0,[]
