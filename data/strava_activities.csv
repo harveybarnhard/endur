@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+10270402734,Land of Roundabouts,2023-11-23T12:51:43Z,Ride,56055.6,6188,6390,302.0,"[39.876238983124495, -86.14359489642084]"
 10258223384,Wood Summit,2023-11-21T11:57:01Z,Ride,41150.7,4500,4500,0,[]
 10253464502,Afternoon Ride,2023-11-20T16:14:54Z,Ride,2341.6,394,423,11.0,"[42.36732551828027, -71.10847134143114]"
 10253257502,Hemenweights,2023-11-20T15:16:50Z,WeightTraining,0.0,1440,1440,0,[]
