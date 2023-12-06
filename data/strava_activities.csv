@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+10335424222,Afternoon Ride,2023-12-05T17:34:52Z,Ride,3555.6,699,11937,24.0,"[42.36650970764458, -71.10582550987601]"
 10329490521,Bess,2023-12-04T17:35:58Z,Ride,31976.2,3600,3600,0,[]
 10328861451,Afternoon Ride,2023-12-04T15:59:24Z,Ride,2327.8,381,420,10.0,"[42.36725913360715, -71.10829699784517]"
 10328737468,Afternoon Weight Training,2023-12-04T15:12:52Z,WeightTraining,0.0,1551,1551,0,[]
