@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+10610118567,Afternoon Run,2024-01-22T16:41:09Z,Run,8839.4,2385,2651,19.0,"[42.367827175185084, -71.10216052271426]"
 10604224912,Back from Sickness,2024-01-21T16:12:11Z,Run,4248.3,1101,1293,15.0,"[42.36723583191633, -71.10820840112865]"
 10577247871,Denver Hotel Tread,2024-01-17T09:47:10Z,Run,13918.4,3605,3800,0,[]
 10576824788,Morning Weight Training,2024-01-17T09:19:46Z,WeightTraining,0.0,1332,1332,0,[]
