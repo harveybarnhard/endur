@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+12887965498,Evening Ride,2024-11-12T18:09:52Z,Ride,1735.8,376,376,0.0,[]
 12883063293,Recovered,2024-11-12T06:39:17Z,Run,14719.8,3831,4348,52.0,"[42.367176, -71.108137]"
 12878995688,Little Buhrick,2024-11-11T16:33:42Z,Run,3605.3,1134,1311,11.0,"[42.367294, -71.108477]"
 12878822504,Autumnally Autumnal,2024-11-11T14:03:35Z,Ride,46975.8,6929,7704,543.0,"[42.36723, -71.108277]"
