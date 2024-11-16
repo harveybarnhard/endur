@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+12915955971,Fresh Pond w/ Bettina,2024-11-16T12:05:13Z,Run,11051.9,3318,3483,59.0,"[42.373387, -71.120876]"
 12909641386,Coy,2024-11-15T17:28:22Z,Ride,30256.1,3299,3299,0,[]
 12906207642,Touching Speed Again,2024-11-15T07:32:38Z,Run,13175.2,3559,4139,39.0,"[42.367166, -71.108114]"
 12902778607,Homers Nose -1,2024-11-14T17:38:29Z,Ride,32436.6,3600,3600,0,[]
