@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+12987499841,No Tempo Loop Today,2024-11-26T07:35:50Z,Run,23162.8,5811,6568,42.0,"[42.367136, -71.108094]"
 12982968338,Lunch Ride,2024-11-25T12:40:25Z,Ride,3861.9,763,14758,22.0,"[42.367313, -71.108413]"
 12979551122,Two Day Week,2024-11-25T07:02:46Z,Run,15118.8,4089,4372,50.0,"[42.367304, -71.108607]"
 12974567077,Feel Good Long Runs are So Back,2024-11-24T09:36:02Z,Run,32234.4,7429,8722,284.0,"[42.367096, -71.107959]"
