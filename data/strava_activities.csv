@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13005979551,Afternoon Walk,2024-11-28T15:55:41Z,Walk,3492.6,2884,3117,25.0,"[40.726208, -73.991664]"
 13005094777,Afternoon Walk,2024-11-28T13:50:30Z,Walk,6471.8,5110,6088,73.0,"[40.713945, -73.990875]"
 13002264828,Rainy Prospect Park,2024-11-28T07:40:27Z,Run,22774.7,5708,7069,166.0,"[40.720316, -73.999901]"
 12996833780,East River Track,2024-11-27T12:08:46Z,Run,14314.5,4618,5739,36.0,"[40.713993, -73.99031]"
