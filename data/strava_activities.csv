@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13066801891,EZ + Light Strides,2024-12-07T11:22:49Z,Run,8988.7,2281,2471,27.0,"[42.367151, -71.108084]"
 13061741293,Dubloon,2024-12-06T17:25:26Z,Run,7417.4,1964,2461,29.0,"[42.367105, -71.107974]"
 13058979052,"It’s not a cookie, it’s a performance pastry",2024-12-06T08:04:14Z,Run,10475.3,3131,3392,52.0,"[42.367256, -71.108266]"
 13055613821,Recovery w/ Chase,2024-12-05T17:55:52Z,Run,12385.3,3504,3788,38.0,"[42.367203, -71.108166]"
