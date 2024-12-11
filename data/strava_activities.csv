@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13092873635,An Actual Fartlek,2024-12-11T07:13:19Z,Run,16131.0,3741,3973,35.0,"[42.367155, -71.108218]"
 13085755020,Watertown w/ Adamson,2024-12-10T06:57:43Z,Run,19400.2,5228,5608,61.0,"[42.367451, -71.108672]"
 13082438446,Penley,2024-12-09T18:00:34Z,Ride,33550.7,3600,3600,0,[]
 13081447050,Afternoon Ride,2024-12-09T13:15:16Z,Ride,3847.1,731,9346,21.0,"[42.367303, -71.108405]"
