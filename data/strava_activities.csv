@@ -1,4 +1,8 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13171340269,Home for the Holidays,2024-12-22T16:40:29Z,Run,18995.7,4760,5006,127.0,"[39.875201, -86.143588]"
+13168251827,Morning Weight Training,2024-12-22T08:25:14Z,WeightTraining,0.0,518,518,0,[]
+13168164736,45 min Power Zone Endurance Ride with Denis Morton,2024-12-22T07:36:21Z,Ride,26786.0,2700,2700,0,[]
+13167746168,Hotel Treadmill,2024-12-22T07:14:02Z,Run,2188.7,552,552,0,[]
 13164257278,Road Trip: Part III,2024-12-21T16:23:52Z,Run,6458.0,1563,2017,16.0,"[41.035692, -78.399714]"
 13163365949,Road Trip: Part II,2024-12-21T12:39:17Z,Run,6802.3,1681,2825,37.0,"[41.238709, -75.84591]"
 13162195288,Road Trip: Part I,2024-12-21T09:33:27Z,Run,3313.6,858,2557,32.0,"[41.379496, -73.47786]"
