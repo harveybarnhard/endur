@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13265686091,Ultimate Tenerife Ride,2025-01-04T10:28:29Z,Ride,71335.8,14004,21218,1426.0,"[28.414165, -16.548106]"
 13254714414,Camino de Candelaria,2025-01-03T10:24:10Z,Hike,9955.4,9716,10406,830.0,"[28.357843, -16.502184]"
 13247349659,Afur - Playa del Tamadite - Taganana,2025-01-02T09:54:57Z,Hike,14624.2,15465,20256,1043.0,"[28.555361, -16.248168]"
 13241097543,Afternoon Run,2025-01-01T17:56:22Z,Walk,2931.4,2613,7115,166.0,"[28.391602, -16.524521]"
