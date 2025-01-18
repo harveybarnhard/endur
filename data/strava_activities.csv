@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13388162922,"The Triple Loop, Remastered",2025-01-18T07:41:19Z,Run,32270.3,7175,7266,270.0,"[40.780528, -73.952052]"
 13381001812,Lunch Break,2025-01-17T12:44:53Z,Run,9536.8,2436,2564,84.0,"[40.782999, -73.950771]"
 13378330995,Recovery,2025-01-17T06:54:47Z,Run,7991.3,2542,2793,57.0,"[40.780357, -73.951637]"
 13374357183,Bridle Path Dub,2025-01-16T16:36:22Z,Run,10231.8,2606,2847,88.0,"[40.780317, -73.951671]"
