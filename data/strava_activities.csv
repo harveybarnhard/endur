@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13400857322,Aurora,2025-01-19T16:01:03Z,Ride,7969.0,904,904,0,[]
+13397718082,Rev up those “perfect texture for running” memes,2025-01-19T08:20:12Z,Run,14627.8,4033,4074,36.0,"[42.36779, -71.102189]"
 13388162922,"The Triple Loop, Remastered",2025-01-18T07:41:19Z,Run,32270.3,7175,7266,270.0,"[40.780528, -73.952052]"
 13381001812,Lunch Break,2025-01-17T12:44:53Z,Run,9536.8,2436,2564,84.0,"[40.782999, -73.950771]"
 13378330995,Recovery,2025-01-17T06:54:47Z,Run,7991.3,2542,2793,57.0,"[40.780357, -73.951637]"
