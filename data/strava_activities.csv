@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13406901332,Lunch Run,2025-01-20T12:49:50Z,Run,473.0,150,193,3.0,[]
+13406791443,Drenched,2025-01-20T10:50:43Z,Run,24622.0,6013,6588,0,[]
+13405847152,Morning Run,2025-01-20T10:42:00Z,Run,499.7,164,213,6.0,[]
 13400857322,Aurora,2025-01-19T16:01:03Z,Ride,7969.0,904,904,0,[]
 13397718082,Rev up those “perfect texture for running” memes,2025-01-19T08:20:12Z,Run,14627.8,4033,4074,36.0,"[42.36779, -71.102189]"
 13388162922,"The Triple Loop, Remastered",2025-01-18T07:41:19Z,Run,32270.3,7175,7266,270.0,"[40.780528, -73.952052]"
