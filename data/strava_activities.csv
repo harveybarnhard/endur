@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13439836333,Frosty Morning,2025-01-24T07:38:52Z,Run,16577.2,4482,4867,40.0,"[39.874595, -86.143596]"
 13435429329,Flurries,2025-01-23T16:35:14Z,Run,9849.9,2605,2983,22.0,"[39.874733, -86.143542]"
 13431670497,Monon Recovery,2025-01-23T07:22:54Z,Run,19947.3,5325,6035,49.0,"[39.874914, -86.143636]"
 13427272319,Indy-dub-(itably) Chunky,2025-01-22T16:53:03Z,Run,16743.0,4000,4421,168.0,"[39.875188, -86.143573]"
