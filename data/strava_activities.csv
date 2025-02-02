@@ -1,4 +1,8 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13522230585,Afternoon Run,2025-02-02T13:00:33Z,Run,531.6,159,425,1.0,[]
+13522122261,Lunch Weight Training,2025-02-02T12:43:20Z,WeightTraining,0.0,627,627,0,[]
+13522022156,Treadmill Workout,2025-02-02T11:08:54Z,Run,24473.6,5405,5533,0,[]
+13521072287,Morning Run,2025-02-02T10:58:05Z,Run,504.8,142,192,7.0,[]
 13511151572,Morning Run,2025-02-01T10:41:37Z,Run,476.7,134,169,0.0,[]
 13511052253,Treadmill,2025-02-01T09:17:49Z,Run,18131.1,4501,4501,0,[]
 13510098440,Morning Run,2025-02-01T09:02:21Z,Run,485.6,146,179,4.0,[]
