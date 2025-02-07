@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13563897510,Morning Run,2025-02-07T08:03:31Z,Run,515.2,133,161,2.0,[]
+13563844126,Treading Softly,2025-02-07T06:32:31Z,Run,19380.1,5270,5299,0,[]
+13563167082,Morning Run,2025-02-07T06:26:57Z,Run,486.4,151,174,4.0,[]
 13560043779,Evening Run,2025-02-06T18:16:55Z,Run,479.3,127,150,2.0,[]
 13560011913,Z2 Dub,2025-02-06T17:33:51Z,Run,10799.5,2416,2416,0,[]
 13559720070,Afternoon Run,2025-02-06T17:26:56Z,Run,443.4,148,179,4.0,[]
