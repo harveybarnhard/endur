@@ -1,4 +1,8 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13584801592,Lunch Run,2025-02-09T12:49:57Z,Run,493.7,136,175,2.0,[]
+13584754816,Lunch Weight Training,2025-02-09T12:32:38Z,WeightTraining,0.0,857,857,0,[]
+13584754175,Recovery Day Treadmill,2025-02-09T11:46:02Z,Run,10061.7,2705,2705,0,[]
+13584183428,Lunch Run,2025-02-09T11:40:15Z,Run,484.3,156,190,5.0,[]
 13574794944,Snow Tonight -> Cancelled 5k -> Unplanned Long Run,2025-02-08T09:03:36Z,Run,38861.8,9629,11008,299.0,"[42.367219, -71.10825]"
 13563897510,Morning Run,2025-02-07T08:03:31Z,Run,515.2,133,161,2.0,[]
 13563844126,Treading Softly,2025-02-07T06:32:31Z,Run,19380.1,5270,5299,0,[]
