@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13599439619,Morning Run,2025-02-11T09:10:10Z,Run,460.4,132,144,3.0,[]
+13599397848,Long EZ Tread,2025-02-11T07:25:08Z,Run,24175.6,6008,6008,0,[]
+13598575291,Morning Run,2025-02-11T07:18:28Z,Run,493.8,150,209,6.0,[]
 13594407181,Errands Dub,2025-02-10T17:03:21Z,Run,7736.3,2126,2773,22.0,"[42.367254, -71.108204]"
 13590090654,Morning Run,2025-02-10T08:05:56Z,Run,492.9,137,166,1.0,[]
 13590063984,Locked In,2025-02-10T06:18:34Z,Run,21978.6,6001,6279,0,[]
