@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13621444151,Puddles to Ice,2025-02-13T17:49:16Z,Run,21460.2,5571,6184,70.0,"[42.367301, -71.108421]"
 13618883821,Lunch break,2025-02-13T13:08:20Z,Run,1916.2,534,539,9.0,"[42.367269, -71.108223]"
 13608648262,Threshold Day,2025-02-12T07:37:58Z,Run,25849.3,5932,7264,49.0,"[42.367221, -71.108181]"
 13599439619,Morning Run,2025-02-11T09:10:10Z,Run,460.4,132,144,3.0,[]
