@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13637003791,Lunch Walk,2025-02-15T12:04:18Z,Walk,6660.4,5218,10598,69.0,"[40.780333, -73.951632]"
+13633987474,Triple Loopin’,2025-02-15T07:39:45Z,Run,32643.4,7310,7353,294.0,"[40.780399, -73.951825]"
 13624700730,Morning Run,2025-02-14T07:57:02Z,Run,489.5,127,153,4.0,[]
 13624669161,EZ Treading,2025-02-14T06:34:32Z,Run,17787.2,4808,4808,0,[]
 13624055700,Morning Run,2025-02-14T06:29:29Z,Run,495.2,138,146,4.0,[]
