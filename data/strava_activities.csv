@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13660536002,Morning Run,2025-02-18T09:33:47Z,Run,509.8,140,154,10.0,[]
+13660473496,EZ Treadmill,2025-02-18T07:43:18Z,Run,21976.2,6001,6241,0,[]
+13659583943,Morning Run,2025-02-18T07:34:02Z,Run,463.8,145,152,7.0,[]
 13655890214,Evening Run,2025-02-17T18:57:37Z,Run,524.3,144,198,4.0,[]
 13655795400,Evening Weight Training,2025-02-17T18:35:18Z,WeightTraining,0.0,607,607,0,[]
 13655728994,Treadmill Dub,2025-02-17T17:54:28Z,Run,9675.8,2285,2374,0,[]
