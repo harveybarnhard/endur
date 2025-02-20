@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13674177588,Evening Run,2025-02-19T18:52:58Z,Run,493.4,115,165,1.0,[]
+13674142796,Workout Wednesday: PM Session,2025-02-19T18:02:58Z,Run,10086.7,2402,2619,0,[]
 13673829913,Afternoon Run,2025-02-19T17:56:29Z,Run,419.4,148,204,3.0,[]
 13669175831,Morning Run,2025-02-19T08:09:09Z,Run,488.4,145,160,3.0,[]
 13669093607,Workout Wednesday,2025-02-19T06:51:41Z,Run,17765.1,3955,4169,0,[]
