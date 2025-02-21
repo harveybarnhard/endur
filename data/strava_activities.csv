@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13682959102,Evening Run,2025-02-20T19:15:13Z,Run,500.4,125,149,1.0,[]
+13682929027,Shockingly Smooth,2025-02-20T18:10:29Z,Run,15525.7,3302,3676,0,[]
 13682534892,Evening Run,2025-02-20T18:05:09Z,Run,484.8,145,151,5.0,[]
 13680615407,Afternoon Run,2025-02-20T13:35:00Z,Run,492.9,123,168,3.0,[]
 13680563543,Afternoon Weight Training,2025-02-20T13:22:01Z,WeightTraining,0.0,596,596,0,[]
