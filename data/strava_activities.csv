@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13686533120,Morning Run,2025-02-21T08:09:03Z,Run,494.1,127,154,3.0,[]
+13686478458,EZ Tread,2025-02-21T06:59:56Z,Run,14246.7,3902,3902,0,[]
+13685935815,Morning Run,2025-02-21T06:52:44Z,Run,462.3,148,182,5.0,[]
 13682959102,Evening Run,2025-02-20T19:15:13Z,Run,500.4,125,149,1.0,[]
 13682929027,Shockingly Smooth,2025-02-20T18:10:29Z,Run,15525.7,3302,3676,0,[]
 13682534892,Evening Run,2025-02-20T18:05:09Z,Run,484.8,145,151,5.0,[]
