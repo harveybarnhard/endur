@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13698461162,Lunch Break,2025-02-22T13:23:38Z,Run,9242.7,2449,2630,28.0,"[42.367169, -71.108161]"
 13690622067,Back Outside,2025-02-21T17:39:49Z,Run,6879.2,1822,1862,25.0,"[42.367246, -71.108239]"
 13686533120,Morning Run,2025-02-21T08:09:03Z,Run,494.1,127,154,3.0,[]
 13686478458,EZ Tread,2025-02-21T06:59:56Z,Run,14246.7,3902,3902,0,[]
