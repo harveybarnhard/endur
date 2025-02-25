@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13722888510,Sliding AND Splashing w/ Adamson,2025-02-25T06:35:58Z,Run,24646.6,6635,7711,75.0,"[42.367072, -71.108118]"
 13713716990,Monday EZ,2025-02-24T07:10:11Z,Run,21619.2,5777,6167,50.0,"[42.367385, -71.108619]"
 13707330634,Firehouse Loop,2025-02-23T09:15:15Z,Run,32756.5,7406,7942,295.0,"[42.335337, -71.153504]"
 13698461162,Lunch Break,2025-02-22T13:23:38Z,Run,9242.7,2449,2630,28.0,"[42.367169, -71.108161]"
