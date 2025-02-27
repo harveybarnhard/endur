@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13741759768,Morning Run,2025-02-27T09:18:30Z,Run,478.3,134,170,2.0,[]
+13741724901,Recovery Mill,2025-02-27T07:57:33Z,Run,16553.7,4500,4716,0,[]
+13741120082,Morning Run,2025-02-27T07:51:32Z,Run,488.4,144,183,5.0,[]
 13737039466,Double w/ Dhruv,2025-02-26T17:08:06Z,Run,13055.5,3681,4278,49.0,"[42.367179, -71.10812]"
 13733041899,Split Shorts Doping,2025-02-26T08:01:26Z,Run,28985.7,6628,7372,65.0,"[42.367217, -71.108258]"
 13722888510,Sliding AND Splashing w/ Adamson,2025-02-25T06:35:58Z,Run,24646.6,6635,7711,75.0,"[42.367072, -71.108118]"
