@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13746103165,Dub,2025-02-27T18:03:07Z,Run,9032.9,2449,2560,31.0,"[42.367206, -71.108191]"
 13741759768,Morning Run,2025-02-27T09:18:30Z,Run,478.3,134,170,2.0,[]
 13741724901,Recovery Mill,2025-02-27T07:57:33Z,Run,16553.7,4500,4716,0,[]
 13741120082,Morning Run,2025-02-27T07:51:32Z,Run,488.4,144,183,5.0,[]
