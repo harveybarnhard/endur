@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13805191307,Respecting the Tempo Loop,2025-03-06T07:41:00Z,Run,10802.7,3117,3640,32.0,"[42.367297, -71.108459]"
 13800754136,PM Steady Miles,2025-03-05T17:49:08Z,Run,8989.3,2019,2330,27.0,"[42.367214, -71.108204]"
 13796409873,Love Me a Rainy Tempo Loop,2025-03-05T07:56:24Z,Run,26087.9,6086,6820,60.0,"[42.367201, -71.108134]"
 13786431672,Tuesday EZ,2025-03-04T07:21:12Z,Run,17731.8,4805,5350,49.0,"[42.367244, -71.108257]"
