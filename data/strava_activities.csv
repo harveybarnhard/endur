@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13838679270,Back,2025-03-09T18:28:06Z,Run,10943.7,3124,3701,41.0,"[42.367289, -71.108346]"
 13834239692,Some Occam Pond Loops,2025-03-09T08:54:34Z,Run,12764.6,3148,3410,152.0,"[43.714869, -72.309336]"
 13822939195,Morning Run,2025-03-08T07:57:51Z,Run,494.0,125,151,4.0,[]
 13822898770,Pre Bus Mill,2025-03-08T07:12:53Z,Run,8493.3,2404,2599,0,[]
