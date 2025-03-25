@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+13986482960,Squeezing in Double Digits,2025-03-25T15:26:22Z,Run,16148.5,4386,4830,41.0,"[42.367237, -71.108216]"
 13977249400,Rainy Double,2025-03-24T17:06:09Z,Run,12486.9,3503,4029,40.0,"[42.367228, -71.108264]"
 13972462500,AM Run,2025-03-24T07:35:09Z,Run,15334.2,4135,4330,46.0,"[42.367233, -71.108244]"
 13966516371,Fresh Pond Sunday,2025-03-23T11:24:50Z,Run,16151.5,4348,6034,100.0,"[42.367316, -71.108436]"
