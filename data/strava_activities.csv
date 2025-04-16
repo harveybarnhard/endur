@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14198373151,Tuning Up,2025-04-16T17:15:51Z,Run,15670.2,3865,4107,99.0,"[42.367327, -71.108275]"
 14185812333,One Week,2025-04-15T11:34:34Z,Run,11423.7,3092,3296,39.0,"[42.367409, -71.108678]"
 14179394402,The Promise of American Higher Education,2025-04-14T17:45:31Z,Run,17101.6,4688,5698,35.0,"[42.367209, -71.108233]"
 14170253506,Trying to Overdress,2025-04-13T18:17:28Z,Run,9030.3,2459,2566,21.0,"[42.36723, -71.108208]"
