@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14281811865,Morning Run,2025-04-25T09:19:35Z,Run,456.0,124,168,0.0,[]
+14281778242,Morning Weight Training,2025-04-25T09:03:30Z,WeightTraining,0.0,905,905,0,[]
+14281654790,Spring Rain,2025-04-25T07:51:29Z,Run,14209.0,3768,4131,46.0,"[42.365273, -71.10315]"
 14274700162,Lunch Break,2025-04-24T12:32:34Z,Run,14704.9,3976,4454,44.0,"[42.36715, -71.108091]"
 14264289601,Like Nothing Ever Happened,2025-04-23T11:48:15Z,Run,14247.4,3526,4156,29.0,"[42.367138, -71.108105]"
 14251170759,Better than a Shuffle,2025-04-22T07:22:45Z,Run,7183.4,2204,2338,19.0,"[42.367191, -71.108182]"
