@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14334287192,Lunch Break,2025-04-30T11:49:59Z,Run,7229.2,1869,2112,26.0,"[42.367193, -71.108176]"
 14321800095,Morning Run,2025-04-29T08:32:48Z,Run,277.6,78,78,0.0,[]
 14321538202,Morning Weight Training,2025-04-29T08:08:54Z,WeightTraining,0.0,1353,1353,0,[]
 14321314478,Just Two Dudes Admiring Flowers,2025-04-29T06:38:24Z,Run,16325.7,4484,5277,65.0,"[42.365443, -71.103457]"
