@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14417898737,Big Lunch Break,2025-05-08T11:40:05Z,Run,20425.2,5393,6091,36.0,"[42.367195, -71.108263]"
 14410276307,Legs Still Work,2025-05-07T18:22:17Z,Run,8960.6,1925,2196,23.0,"[42.367114, -71.108023]"
 14405510742,Morning Weight Training,2025-05-07T09:49:14Z,WeightTraining,0.0,1363,1363,0,[]
 14405306923,Track Day,2025-05-07T07:23:42Z,Run,25240.1,6506,8509,48.0,"[42.365609, -71.103791]"
