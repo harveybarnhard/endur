@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14493413676,Afternoon Run,2025-05-15T17:56:02Z,Run,14671.9,3711,4086,120.0,"[40.780392, -73.951814]"
+14488265612,The Other Direction,2025-05-15T07:55:12Z,Run,13992.0,3793,4193,119.0,"[40.780345, -73.951738]"
 14483329390,Embrace the Soak,2025-05-14T18:19:46Z,Run,11274.8,2596,2902,149.0,"[40.780267, -73.951351]"
 14478162331,Morning Weight Training,2025-05-14T09:38:47Z,WeightTraining,0.0,1545,1545,0,[]
 14478162447,Track Day,2025-05-14T07:54:57Z,Run,18912.5,4778,6153,31.0,"[42.365432, -71.103496]"
