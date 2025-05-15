@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14483329390,Embrace the Soak,2025-05-14T18:19:46Z,Run,11274.8,2596,2902,149.0,"[40.780267, -73.951351]"
 14478162331,Morning Weight Training,2025-05-14T09:38:47Z,WeightTraining,0.0,1545,1545,0,[]
 14478162447,Track Day,2025-05-14T07:54:57Z,Run,18912.5,4778,6153,31.0,"[42.365432, -71.103496]"
 14466739493,The Dutch Fixed Effect,2025-05-13T07:38:32Z,Run,20935.4,5676,6347,43.0,"[42.367446, -71.10866]"
