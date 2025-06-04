@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14689356048,Evening Walk,2025-06-03T18:52:01Z,Walk,9329.9,6744,6805,97.0,"[40.780293, -73.951588]"
 14682321787,EZ w/ Bettina,2025-06-03T07:24:15Z,Run,10246.7,3170,3451,89.0,"[40.780271, -73.951683]"
 14678320673,Evening Walk,2025-06-02T20:12:22Z,Walk,2625.8,2075,2681,30.0,"[40.780004, -73.953045]"
 14677263759,There will be coffee,2025-06-02T17:49:45Z,Run,11343.2,2985,3456,97.0,"[40.780375, -73.951704]"
