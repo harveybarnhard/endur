@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14781258048,Treadmill bc AQI,2025-06-12T17:47:45Z,Run,4911.0,1311,1311,0,[]
 14771571847,Pre’cers w/ Chase,2025-06-11T18:13:14Z,Run,14971.5,4143,6050,44.0,"[42.367131, -71.108043]"
 14767698706,Lunch Break,2025-06-11T12:11:04Z,Run,7192.6,1911,2113,21.0,"[42.367764, -71.102245]"
 14754540500,Fresher Air,2025-06-10T07:42:41Z,Run,14994.1,3950,4306,41.0,"[42.367171, -71.108078]"
