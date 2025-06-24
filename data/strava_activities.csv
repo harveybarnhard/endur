@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14900170428,just two sad pacers fans,2025-06-24T06:58:05Z,Run,16240.7,4347,4675,38.0,"[42.36721, -71.108196]"
 14889940361,Heat Dome,2025-06-23T07:02:14Z,Run,20311.6,5392,5698,35.0,"[42.367017, -71.107835]"
 14885808398,"not that hot, tbh",2025-06-22T18:51:43Z,Run,8052.3,2138,2206,25.0,"[42.367473, -71.108714]"
 14882999897,Lunch Run,2025-06-22T12:20:10Z,Run,1723.5,458,553,0.0,"[42.369878, -71.11881]"
