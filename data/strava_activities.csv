@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14931934993,Drenched,2025-06-27T07:46:27Z,Run,17718.0,4719,5152,39.0,"[39.87546, -86.143626]"
 14926448292,Indy Dub,2025-06-26T17:39:54Z,Run,5676.7,1441,1491,12.0,"[39.874873, -86.143627]"
 14921548321,Catching Up w/ Ewan,2025-06-26T06:47:22Z,Run,15984.1,4529,5196,93.0,"[42.367291, -71.108557]"
 14916992642,Temperature Loop w/ Chase,2025-06-25T17:50:18Z,Run,19387.9,5178,6816,56.0,"[42.367071, -71.107968]"
