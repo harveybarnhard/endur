@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14967362057,Grocery dub,2025-06-30T18:38:48Z,Run,7011.6,1793,1980,19.0,"[42.367743, -71.102255]"
 14962082582,Morning Weight Training,2025-06-30T08:29:57Z,WeightTraining,0.0,1124,1124,0,[]
 14962082815,EZ with Adamson,2025-06-30T06:42:56Z,Run,19185.5,4937,6272,45.0,"[42.365485, -71.103548]"
 14957850928,Evening Run,2025-06-29T19:45:27Z,Run,411.5,97,97,0.0,[]
