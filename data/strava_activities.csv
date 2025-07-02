@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+14983112181,EZ w/ Chase,2025-07-02T06:57:29Z,Run,13697.5,3759,4069,32.0,"[42.367135, -71.108053]"
 14977715637,Bike Pickup,2025-07-01T17:09:25Z,Run,6030.5,1646,2643,28.0,"[42.363348, -71.102004]"
 14972921276,Morning Weight Training,2025-07-01T09:02:20Z,WeightTraining,0.0,985,985,0,[]
 14972950514,Dew Point Evangelist,2025-07-01T07:21:14Z,Run,18317.3,4962,5952,44.0,"[42.365344, -71.103323]"
