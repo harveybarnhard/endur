@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+15110248962,Shake,2025-07-14T08:18:08Z,Run,4075.4,1372,1498,11.0,"[40.780384, -73.951613]"
 15106049436,Evening Walk,2025-07-13T18:45:57Z,Walk,2411.4,1762,3711,19.0,"[40.779809, -73.950533]"
 15103169327,Sleep Debt? More Like Sleep Leverage,2025-07-13T11:50:50Z,Run,13697.1,3873,5100,109.0,"[40.780282, -73.951788]"
 15094405738,Cut the Middle Man,2025-07-12T17:40:38Z,Run,25829.2,5764,6886,238.0,"[40.780482, -73.952009]"
