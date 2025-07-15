@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+15121660123,Checking a Box,2025-07-15T08:31:37Z,Run,6854.4,1736,2000,50.0,"[40.780372, -73.951722]"
 15116977193,Night Run,2025-07-14T21:37:17Z,Run,175.4,54,54,5.0,[]
 15110248962,Shake,2025-07-14T08:18:08Z,Run,4075.4,1372,1498,11.0,"[40.780384, -73.951613]"
 15106049436,Evening Walk,2025-07-13T18:45:57Z,Walk,2411.4,1762,3711,19.0,"[40.779809, -73.950533]"
