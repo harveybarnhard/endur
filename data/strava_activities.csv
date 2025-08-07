@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+15376520664,Something > Nothing,2025-08-07T09:03:18Z,Run,3400.4,942,942,107.0,"[43.722493, -72.344103]"
 15365357596,Happy and Bragg Hills,2025-08-06T09:56:26Z,Run,6464.7,1604,1664,153.0,"[43.722479, -72.344104]"
 15357971891,Afternoon Swim,2025-08-05T17:42:34Z,Swim,165.1,528,867,0.0,[]
 15357570760,Afternoon Hike,2025-08-05T15:35:11Z,Hike,3927.6,4151,4542,18.0,"[43.331463, -72.080509]"
