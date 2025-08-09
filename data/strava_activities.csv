@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+15392717581,Gravel,2025-08-08T19:07:01Z,Run,3235.6,809,809,124.0,"[43.72217, -72.343973]"
 15390829465,Afternoon Walk,2025-08-08T13:58:29Z,Walk,1583.7,1314,1428,50.0,"[43.720297, -72.340306]"
 15376520664,Something > Nothing,2025-08-07T09:03:18Z,Run,3400.4,942,942,107.0,"[43.722493, -72.344103]"
 15365357596,Happy and Bragg Hills,2025-08-06T09:56:26Z,Run,6464.7,1604,1664,153.0,"[43.722479, -72.344104]"
