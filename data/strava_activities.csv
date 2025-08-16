@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+15472288158,Never Let a Good Sunset Go to Waste,2025-08-15T18:30:14Z,Run,13890.7,3499,3764,31.0,"[42.367383, -71.108572]"
 15467181311,EZ AM,2025-08-15T08:27:16Z,Run,4164.1,1103,1126,13.0,"[42.367028, -71.107852]"
 15458419763,Lunch Break,2025-08-14T12:08:12Z,Run,12212.5,3190,3366,35.0,"[42.367205, -71.108121]"
 15450327026,First Podcast Run in Weeks,2025-08-13T18:24:40Z,Run,10172.1,2556,2777,37.0,"[42.367485, -71.102402]"
