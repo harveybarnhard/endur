@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+15483342095,Can’t Catch a Break,2025-08-16T18:23:36Z,WeightTraining,0.0,1192,1192,0,[]
+15483218787,Can’t Catch a Break,2025-08-16T17:41:29Z,Run,6593.1,1504,2283,16.0,"[42.365116, -71.102926]"
+15478972811,“Public f****** Sidewalk on a Saturday Morning?”,2025-08-16T08:38:10Z,Run,21123.3,4948,5417,43.0,"[42.367659, -71.109068]"
 15472288158,Never Let a Good Sunset Go to Waste,2025-08-15T18:30:14Z,Run,13890.7,3499,3764,31.0,"[42.367383, -71.108572]"
 15467181311,EZ AM,2025-08-15T08:27:16Z,Run,4164.1,1103,1126,13.0,"[42.367028, -71.107852]"
 15458419763,Lunch Break,2025-08-14T12:08:12Z,Run,12212.5,3190,3366,35.0,"[42.367205, -71.108121]"
