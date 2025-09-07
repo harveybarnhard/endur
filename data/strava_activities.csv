@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+15730904928,"No Rain, No Gain",2025-09-07T08:58:07Z,Run,36350.9,8496,9531,127.0,"[42.362376, -71.107613]"
 15722073989,Evening Run,2025-09-06T18:03:49Z,Run,372.4,255,299,1.0,[]
 15721053584,Afternoon Walk,2025-09-06T13:31:10Z,Walk,1335.1,1190,4990,9.0,[]
 15717281253,Fresh Pond w/ Bettina,2025-09-06T08:19:13Z,Run,16706.3,4836,5439,55.0,"[42.362621, -71.107341]"
