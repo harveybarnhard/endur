@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+15780936537,Little Something,2025-09-11T19:29:31Z,Run,3392.0,949,1035,25.0,"[42.362404, -71.107537]"
 15775456012,AM Recovery,2025-09-11T09:13:22Z,Run,9125.7,2577,2628,36.0,"[42.362459, -71.107529]"
 15770193803,BRTC Fresh Pond Workout,2025-09-10T18:04:40Z,Run,30815.9,7658,9408,70.0,"[42.362377, -71.107586]"
 15768265464,Morning Ride,2025-09-10T08:53:28Z,Ride,10104.8,2054,26417,42.0,"[42.362755, -71.107876]"
