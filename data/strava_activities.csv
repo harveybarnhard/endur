@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+15848712255,Evening Miles,2025-09-17T18:55:19Z,Run,16615.0,4515,5017,59.0,"[42.362468, -71.107528]"
 15844091933,Morning Ride,2025-09-17T09:23:55Z,Ride,5129.1,974,9769,16.0,"[42.362722, -71.107861]"
 15842218242,EZ AM,2025-09-17T08:13:07Z,Run,9685.8,2670,2905,37.0,"[42.362404, -71.107549]"
 15837293259,Tuesday is for Tempo Loops,2025-09-16T18:06:32Z,Run,25981.1,6225,7983,47.0,"[42.362542, -71.10741]"
