@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+15893802645,Ending the Week,2025-09-21T19:15:59Z,Run,8666.3,2304,2339,35.0,"[42.362455, -71.107564]"
 15888745054,Getting Crisp,2025-09-21T08:30:15Z,Run,19479.3,5186,5317,80.0,"[42.362376, -71.10764]"
 15877978228,Give me Some Rain and Gloom Already,2025-09-20T08:56:11Z,Run,34095.2,8514,9827,87.0,"[42.362235, -71.107801]"
 15870156912,Afternoon Ride,2025-09-19T13:54:50Z,Ride,5289.8,1182,21034,20.0,"[42.362862, -71.107936]"
