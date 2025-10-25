@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16255617779,Classic Saturday 4pm Long Run Workout,2025-10-25T16:01:05Z,Run,24475.1,5862,6164,54.0,"[42.362772, -71.107147]"
 16246029011,Seasonally Affected Disc-Order,2025-10-24T18:33:14Z,Run,11913.0,3130,3180,49.0,"[42.362368, -71.107598]"
 16245344032,Morning Ride,2025-10-24T09:57:29Z,Ride,5099.5,970,27819,20.0,"[42.362749, -71.107862]"
 16241394962,EZ AM,2025-10-24T08:26:50Z,Run,5692.2,1545,1592,41.0,"[42.362439, -71.10757]"
