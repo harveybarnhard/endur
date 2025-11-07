@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16387895334,Proof Break Double,2025-11-07T16:57:55Z,Run,8461.9,2185,2335,27.0,"[42.361241, -71.114032]"
+16387103999,Lunch Ride,2025-11-07T12:55:19Z,Ride,5113.0,997,8674,34.0,"[42.362726, -71.107894]"
+16384191482,Getting Chilly,2025-11-07T08:03:49Z,Run,16485.7,4289,4775,50.0,"[42.362219, -71.107786]"
 16374319331,Morning Run,2025-11-06T09:38:12Z,Run,449.7,119,128,2.0,[]
 16374289120,Morning Weight Training,2025-11-06T09:15:39Z,WeightTraining,0.0,1202,1202,0,[]
 16374101438,Actually Lifted,2025-11-06T07:58:43Z,Run,15301.5,4040,4447,61.0,"[42.365541, -71.103624]"
