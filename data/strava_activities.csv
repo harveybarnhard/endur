@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16414337908,Rainy Monday w/ Bettina,2025-11-10T08:06:50Z,Run,8152.4,2485,4382,27.0,"[42.362459, -71.107519]"
 16406792757,BRTC Long Run,2025-11-09T08:52:23Z,Run,27614.5,7250,7819,82.0,"[42.361436, -71.114104]"
 16395936092,Firehouse,2025-11-08T09:21:53Z,Run,30629.9,7287,8420,257.0,"[42.362738, -71.10716]"
 16387895334,Proof Break Double,2025-11-07T16:57:55Z,Run,8461.9,2185,2335,27.0,"[42.361241, -71.114032]"
