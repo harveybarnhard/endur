@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16430939145,"Tempo Loop, Winter Edition",2025-11-11T17:58:19Z,Run,15036.7,4120,6609,92.0,"[42.361156, -71.114188]"
+16430939192,Afternoon Ride,2025-11-11T14:42:24Z,Ride,4210.1,936,10597,32.0,"[42.3628, -71.108027]"
 16424714845,AM Shake w/ Bettina,2025-11-11T08:32:23Z,Run,4916.0,1514,1547,37.0,"[42.362446, -71.10747]"
 16414337908,Rainy Monday w/ Bettina,2025-11-10T08:06:50Z,Run,8152.4,2485,4382,27.0,"[42.362459, -71.107519]"
 16406792757,BRTC Long Run,2025-11-09T08:52:23Z,Run,27614.5,7250,7819,82.0,"[42.361436, -71.114104]"
