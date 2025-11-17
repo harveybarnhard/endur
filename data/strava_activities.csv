@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16484147060,Fresh Legs Monday,2025-11-17T06:25:26Z,Run,16120.6,4259,4595,57.0,"[42.362475, -71.107518]"
 16477021339,Autumnal Sunday,2025-11-16T08:42:42Z,Run,20219.9,5237,6524,69.0,"[42.362276, -71.107726]"
 16470012503,Classic Fartlek,2025-11-15T17:35:42Z,Run,16253.5,3632,4111,45.0,"[42.362391, -71.107594]"
 16467271901,Lunch Walk,2025-11-15T11:14:39Z,Walk,1472.3,1121,2176,4.0,[]
