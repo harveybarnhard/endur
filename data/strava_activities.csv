@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16515490757,Reverse Blood Doping,2025-11-20T08:43:17Z,Run,16197.2,4359,4588,51.0,"[42.362255, -71.107541]"
 16510641997,Cooldown,2025-11-19T20:01:24Z,Run,4010.3,1054,1488,19.0,"[42.362382, -71.107641]"
 16510641992,The Great Indoors,2025-11-19T19:07:04Z,Run,9899.3,2719,2719,0,[]
 16510642015,Warmup + 1200m tempo,2025-11-19T17:59:56Z,Run,7755.4,2008,3830,25.0,"[42.367605, -71.127027]"
