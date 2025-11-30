@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16611848890,Triple Loop: Alternating K’s,2025-11-30T08:52:07Z,Run,30763.2,6993,7863,296.0,"[40.780364, -73.951651]"
 16605727964,Afternoon Walk,2025-11-29T13:44:58Z,Walk,10204.5,8942,17178,79.0,"[40.764055, -73.974373]"
 16601049421,Bridle Path w/ Bettina,2025-11-29T08:50:31Z,Run,11309.3,3338,3490,114.0,"[40.780329, -73.951659]"
 16596230232,Afternoon Run,2025-11-28T14:42:20Z,Walk,5688.4,5192,16945,48.0,"[40.763206, -73.96876]"
