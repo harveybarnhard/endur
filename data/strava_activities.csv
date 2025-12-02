@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16623600671,Well Fueled Dub,2025-12-01T18:02:11Z,Run,8924.2,2538,2848,46.0,"[42.362396, -71.107596]"
 16622974552,Lunch Ride,2025-12-01T12:45:01Z,Ride,5100.2,1022,16903,34.0,"[42.362748, -71.107895]"
 16619067589,Monday EZ,2025-12-01T08:13:29Z,Run,16216.8,4399,4561,58.0,"[42.362409, -71.107569]"
 16611848890,Triple Loop: Alternating K’s,2025-11-30T08:52:07Z,Run,30763.2,6993,7863,296.0,"[40.780364, -73.951651]"
