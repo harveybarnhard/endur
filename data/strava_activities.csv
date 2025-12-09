@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16693764225,EZ AM,2025-12-09T07:05:59Z,Run,12982.8,3683,4664,95.0,"[40.780394, -73.951467]"
 16684326020,Birthday Recovery,2025-12-08T07:39:31Z,Run,9724.8,2931,3108,91.0,"[40.779901, -73.95044]"
 16680380652,Evening Walk,2025-12-07T18:48:58Z,Walk,4703.3,3541,3692,31.0,"[40.780465, -73.95163]"
 16678035606,Manhattan IS an Island!,2025-12-07T08:19:48Z,Run,53950.7,13125,16004,254.0,"[40.779564, -73.949615]"
