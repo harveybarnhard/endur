@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16785448740,Morning Walk,2025-12-19T08:11:22Z,Walk,3393.6,2523,3367,12.0,"[42.363756, -71.101735]"
 16776641797,Morning Run,2025-12-18T08:14:46Z,Run,9810.8,2990,3242,44.0,"[42.360361, -71.109824]"
 16771419784,Afternoon Walk,2025-12-17T16:18:47Z,Walk,845.1,490,636,2.0,[]
 16768865878,Picking Up Groceries,2025-12-17T10:45:10Z,Run,13375.4,3383,3694,58.0,"[42.361266, -71.114]"
