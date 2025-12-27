@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16856956638,Afternoon Weight Training,2025-12-27T17:10:39Z,WeightTraining,0.0,2135,2135,0,[]
+16856373189,The Warmer Locales,2025-12-27T14:55:03Z,Run,15071.2,4533,5191,35.0,"[64.147963, -21.93737]"
+16854803830,Lunch Walk,2025-12-27T12:02:51Z,Walk,3665.5,3044,8466,37.0,"[64.147942, -21.937422]"
 16844371511,Planet Fitness Treadmill,2025-12-26T07:24:34Z,Run,7293.3,1804,1804,0,[]
 16845172130,To and From Gym,2025-12-26T07:11:00Z,Run,965.6,324,324,0,[]
 16840866866,Evening Walk,2025-12-25T18:45:23Z,Walk,2134.6,1736,1842,23.0,"[42.349668, -71.082651]"
