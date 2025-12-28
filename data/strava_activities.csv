@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16865023324,Lunch Walk,2025-12-28T12:06:43Z,Walk,2050.6,2341,8153,44.0,"[64.147864, -21.937109]"
 16861331645,Twisted Ankle,2025-12-28T09:02:03Z,Run,648.8,223,479,4.2,"[64.144934, -21.944576]"
 16856956638,Sauna,2025-12-27T17:10:39Z,Workout,0.0,2135,2135,0,[]
 16856373189,The Warmer Locales,2025-12-27T14:55:03Z,Run,15071.2,4533,5191,35.0,"[64.147963, -21.93737]"
