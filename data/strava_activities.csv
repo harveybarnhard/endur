@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+16932359741,Morning Walk,2026-01-04T10:51:37Z,Walk,433.4,351,5761,2.0,[]
+16930709747,Morning Ride,2026-01-04T08:36:29Z,Ride,0.0,2526,2526,0,[]
 16927307001,Evening Walk,2026-01-03T19:33:46Z,Walk,2412.2,1924,8530,37.0,"[60.172172, 24.942558]"
 16927305539,Afternoon Walk,2026-01-03T16:43:13Z,Walk,369.8,306,328,3.0,[]
 16923794220,Afternoon Weight Training,2026-01-03T15:55:16Z,WeightTraining,0.0,873,873,0,[]
