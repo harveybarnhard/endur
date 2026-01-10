@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17002501492,Moose's Tooth +2,2026-01-10T09:11:03Z,Ride,68987.3,7230,7230,0,[]
 16994976641,Klothos,2026-01-09T17:57:38Z,Ride,40961.0,4500,4500,0,[]
 16995696208,Shuffle to gym,2026-01-09T08:04:00Z,Run,804.7,287,287,0,[]
 16989595674,Morning Weight Training,2026-01-09T07:42:36Z,WeightTraining,0.0,2473,2473,0,[]
