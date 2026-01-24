@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17163164289,Lunch Weight Training,2026-01-24T11:35:58Z,WeightTraining,0.0,795,795,0,[]
+17162842271,Treadmill Miles,2026-01-24T10:02:54Z,Run,14689.2,3976,4713,0,[]
+17163319473,Missing Mileage,2026-01-24T08:03:00Z,Run,2414.0,675,675,0,[]
 17155397319,Manly,2026-01-23T19:40:29Z,Ride,11410.5,1201,1201,0,[]
 17149959180,My Humanity,2026-01-23T07:23:05Z,Run,16384.3,4241,5343,59.0,"[42.36229, -71.107683]"
 17144882451,Telluride,2026-01-22T18:32:45Z,Ride,26908.3,2700,2700,0,[]
