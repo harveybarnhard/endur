@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17233310212,Manly,2026-01-30T20:42:05Z,Ride,19700.9,2400,2400,0,[]
 17223521822,Dans,2026-01-29T20:43:43Z,Ride,33273.7,3960,3960,0,[]
 17217101388,Bald,2026-01-29T08:41:33Z,Ride,17178.5,1800,1800,0,[]
 17212385032,Missing Miles,2026-01-28T20:55:45Z,Run,1931.2,540,540,0,[]
