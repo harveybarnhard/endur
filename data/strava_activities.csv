@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17251956442,BRTC Long,2026-02-01T08:56:24Z,Run,26811.9,7293,8347,117.0,"[42.362458, -71.107527]"
 17244707105,Collins,2026-01-31T20:34:55Z,Ride,22844.9,2400,2400,0,[]
 17239740613,Loops w/ Ernie,2026-01-31T08:53:23Z,Run,23508.0,5987,6510,62.0,"[42.362298, -71.107662]"
 17233310212,Manly,2026-01-30T20:42:05Z,Ride,19700.9,2400,2400,0,[]
