@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17411768140,MORE Harlem Hill,2026-02-15T17:36:56Z,Run,25252.7,6786,8675,275.0,"[40.780324, -73.951695]"
 17406129694,More Harlem Hill,2026-02-15T07:48:07Z,Run,11528.4,2841,3622,136.0,"[40.780331, -73.951727]"
 17400636039,Afternoon Walk,2026-02-14T16:00:47Z,Walk,9659.8,7667,13789,77.0,"[40.734119, -73.989552]"
 17399067517,Afternoon Walk,2026-02-14T14:00:11Z,Walk,2803.3,2204,3683,16.0,"[40.690475, -73.989888]"
