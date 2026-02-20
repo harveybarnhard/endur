@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17456257594,Evening Miles,2026-02-19T17:53:30Z,Run,17854.0,4953,5596,94.0,"[40.780381, -73.951748]"
 17445095259,Bad AQI Day,2026-02-18T18:31:44Z,Run,3407.7,1055,1068,83.0,"[40.780325, -73.95145]"
 17431530901,Fairweather Running,2026-02-17T12:48:21Z,Run,16457.4,4693,6309,151.0,"[40.780281, -73.951632]"
 17422149924,Afternoon Walk,2026-02-16T17:49:21Z,Walk,3306.5,2605,2693,35.0,"[40.78086, -73.951831]"
