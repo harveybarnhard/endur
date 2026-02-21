@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17477464995,EZ around the neighborhood,2026-02-21T16:02:25Z,Run,11406.0,3176,6770,32.0,[]
 17466610691,Lazy Mountain -2,2026-02-20T18:45:42Z,Ride,22710.7,2760,2760,0,[]
 17461520097,Rainy Recovery,2026-02-20T07:46:06Z,Run,18098.8,5341,5891,129.0,"[40.780352, -73.951653]"
 17456257594,Evening Miles,2026-02-19T17:53:30Z,Run,17854.0,4953,5596,94.0,"[40.780381, -73.951748]"
