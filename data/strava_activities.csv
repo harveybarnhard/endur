@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17501493920,Lazy Mountain -1,2026-02-23T22:22:25Z,Ride,14356.8,1800,1800,0,[]
+17501282744,Lazy Mountain -1,2026-02-23T21:07:48Z,Ride,29162.9,3600,3600,0,[]
 17489785430,Gentoo,2026-02-22T19:31:25Z,Ride,12664.3,1379,1379,0,[]
 17487786662,Rev up that Hot Cocoa,2026-02-22T13:11:33Z,Run,18515.6,4221,5045,58.0,"[42.362501, -71.107496]"
 17477464995,EZ around the neighborhood,2026-02-21T16:02:25Z,Run,11406.0,3176,6770,32.0,[]
