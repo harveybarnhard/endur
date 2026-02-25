@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17519067663,Lizard,2026-02-25T09:50:11Z,Ride,16060.3,1800,1800,0,[]
 17512891082,"Not the Tempo Loop, Actually",2026-02-24T18:24:33Z,Run,19427.8,5715,6264,49.0,"[42.362376, -71.107646]"
 17511220778,Stickney,2026-02-24T15:03:33Z,Ride,31176.5,3600,3600,0,[]
 17501493920,Lazy Mountain -1,2026-02-23T22:22:25Z,Ride,14356.8,1800,1800,0,[]
