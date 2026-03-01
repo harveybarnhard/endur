@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17567365623,BRTC then BTNA,2026-03-01T08:49:38Z,Run,26317.4,7642,9115,78.0,"[42.363391, -71.100565]"
 17557673442,White -5,2026-02-28T15:52:04Z,Ride,19749.3,1952,1952,0,[]
 17555537840,Rite of Spring,2026-02-28T08:29:58Z,Run,38754.1,9641,13285,311.0,"[42.362383, -71.107615]"
 17547588907,Lazy Mountain -1,2026-02-27T19:52:07Z,Ride,29002.5,3600,3600,0,[]
