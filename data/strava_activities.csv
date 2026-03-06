@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17628111402,EZ Loops,2026-03-06T13:31:03Z,Run,13402.2,3702,4294,35.0,"[42.362449, -71.107549]"
 17620318916,Recess -5,2026-03-05T20:49:31Z,Ride,15155.1,1800,1800,0,[]
 17619308178,Ice Cream Run,2026-03-05T17:49:11Z,Run,10731.7,3190,3583,67.0,"[42.362351, -71.107651]"
 17618728152,Afternoon Run,2026-03-05T14:17:54Z,Run,590.1,185,198,5.0,[]
