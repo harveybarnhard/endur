@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17753268471,Some Splashing,2026-03-17T06:46:43Z,Run,20107.6,5391,5681,109.0,"[42.362308, -71.107742]"
 17745468143,Spring Break,2026-03-16T13:07:21Z,Run,19456.0,5244,6395,98.0,"[42.362655, -71.107283]"
 17735090358,Long Cooldown,2026-03-15T12:19:14Z,Run,9704.4,2765,4502,43.0,"[41.634251, -70.923306]"
 17735090394,New Bedford Half Marathon,2026-03-15T11:00:32Z,Run,21186.5,4298,4298,110.0,"[41.635666, -70.92704]"
