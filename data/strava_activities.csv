@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+17876851082,Friday EZ,2026-03-27T08:17:26Z,Run,13549.8,3863,4386,55.0,"[42.362494, -71.107493]"
 17870993863,Ice Cream Pickup,2026-03-26T17:24:58Z,Run,17875.0,4399,5074,72.0,"[42.362431, -71.107545]"
 17865408049,Fairweather Running,2026-03-26T08:40:47Z,Run,9365.5,2588,3265,41.0,"[42.362327, -71.107649]"
 17858925262,Mid Rig,2026-03-25T17:44:37Z,Ride,17240.8,1800,1800,0,[]
