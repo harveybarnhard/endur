@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+18210631307,Morning Weight Training,2026-04-22T06:57:58Z,WeightTraining,0.0,2734,2734,0,[]
 18209855023,Loop Recovery,2026-04-22T05:40:25Z,Run,11175.7,3348,4147,40.0,"[42.365566, -71.103701]"
 18197011971,Marathon Recovery,2026-04-21T08:04:22Z,Run,6943.6,2093,2125,47.0,"[42.362422, -71.107581]"
 18187913409,Afternoon Ride,2026-04-20T14:10:12Z,EBikeRide,2642.9,479,542,10.0,"[42.361877, -71.108061]"
