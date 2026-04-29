@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+18300040682,Evening Walk,2026-04-28T18:53:02Z,Walk,1900.4,1482,1623,5.0,[]
 18292239942,Springtime,2026-04-28T08:33:43Z,Run,15568.3,4039,4185,48.0,"[42.362402, -71.107612]"
 18285135095,Coffee Acquisition,2026-04-27T17:52:41Z,Run,14168.6,3657,4760,47.0,"[42.362064, -71.107981]"
 18267769899,BRTC LR,2026-04-26T08:50:35Z,Run,23882.9,6640,8178,168.0,"[42.362047, -71.107945]"
