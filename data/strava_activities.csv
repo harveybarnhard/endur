@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+18431315550,Evening Weight Training,2026-05-08T19:02:25Z,WeightTraining,0.0,1766,1766,0,[]
 18431046054,Two totally unrelated facts:,2026-05-08T18:34:01Z,Run,6918.1,1497,1596,26.0,"[42.365265, -71.103211]"
 18425253528,Daleforce Winds,2026-05-08T07:45:37Z,Run,16737.6,4026,5446,51.0,"[42.362229, -71.107544]"
 18418130164,Afternoon Walk,2026-05-07T17:06:43Z,Walk,3168.3,2558,2922,12.0,"[42.362539, -71.107503]"
