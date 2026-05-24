@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+18636117791,Drizzly Tempo,2026-05-24T08:55:25Z,Run,18652.6,4446,5359,53.0,"[42.362636, -71.107108]"
 18627832890,No nice sunset this evening,2026-05-23T19:15:00Z,Run,8694.5,2396,2424,37.0,"[42.362325, -71.107757]"
 18614662892,Emerging From the Proof Mines,2026-05-22T18:34:41Z,Run,16864.5,4568,5977,75.0,"[42.362336, -71.107671]"
 18602786122,Evening Run,2026-05-21T20:59:47Z,Run,916.1,260,265,4.0,[]
