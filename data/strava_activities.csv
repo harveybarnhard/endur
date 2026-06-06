@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+18802834058,Lots of People Wearing Blue and Orange,2026-06-05T19:15:10Z,Run,5140.0,1347,1493,20.0,"[40.780452, -73.951759]"
 18783083204,Soft Surfaces,2026-06-04T07:41:22Z,Run,7880.2,2423,3000,73.0,"[40.780321, -73.951688]"
 18777369275,Evening Walk,2026-06-03T18:25:14Z,Walk,2047.7,1745,6574,11.0,"[40.735306, -73.990266]"
 18769725835,I’m Something of an Artist Myself,2026-06-03T07:35:30Z,Run,16467.7,4522,5663,106.0,"[40.780734, -73.952492]"
