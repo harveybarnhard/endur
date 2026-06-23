@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19030289658,Morning Ride,2026-06-22T07:41:58Z,Ride,2571.8,492,578,25.0,"[41.89679, -87.638613]"
 19011708023,Long Weekend,2026-06-21T08:24:55Z,Run,14511.1,4480,5449,37.8,"[41.939337, -87.644306]"
 19001563573,Afternoon Walk,2026-06-20T14:31:38Z,Walk,2299.3,1798,2036,21.0,"[41.891513, -87.618066]"
 19001274487,Pilsen and Such,2026-06-20T12:42:20Z,Ride,11850.1,3005,6519,82.0,"[41.881199, -87.616761]"
