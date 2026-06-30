@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19122705732,Stoplights,2026-06-30T07:02:04Z,Run,10630.9,2725,3650,58.0,"[40.745399, -73.981333]"
 19117837105,Morning Walk,2026-06-29T08:16:12Z,Walk,1592.0,1027,47853,11.0,[]
 19109168854,Lower Loop,2026-06-29T06:58:17Z,Run,8723.5,2258,2649,64.0,"[40.745596, -73.9817]"
 19104701377,Evening Walk,2026-06-28T19:27:11Z,Walk,1563.3,1071,2486,7.0,"[40.745531, -73.981583]"
