@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19144207805,Evening Walk,2026-07-01T19:41:09Z,Walk,1098.7,752,853,4.0,"[40.745433, -73.981566]"
+19144029910,Morning Walk,2026-07-01T08:09:45Z,Walk,741.7,378,378,1.0,[]
 19131735028,Morning Walk,2026-06-30T08:36:33Z,Walk,700.7,473,473,0.0,[]
 19122705732,Stoplights,2026-06-30T07:02:04Z,Run,10630.9,2725,3650,58.0,"[40.745399, -73.981333]"
 19117837105,Morning Walk,2026-06-29T08:16:12Z,Walk,1592.0,1027,47853,11.0,[]
