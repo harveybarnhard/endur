@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19242260604,Not only Bettina; but also Owen!,2026-07-09T07:21:06Z,Run,13109.9,3658,4379,80.0,"[40.74535, -73.981402]"
 19236542397,Evening Walk,2026-07-08T20:42:29Z,Walk,1322.7,1070,1126,8.0,[]
 19235576295,Morning Walk,2026-07-08T08:57:58Z,Walk,1602.0,1031,37228,4.0,[]
 19227985762,>25% of Manhattan,2026-07-08T06:50:49Z,Run,15058.1,4004,5298,48.0,"[40.745412, -73.98136]"
