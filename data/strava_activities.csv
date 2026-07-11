@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19273068657,Lunch Walk,2026-07-11T12:52:49Z,Walk,413.5,334,334,12.0,[]
+19269479158,BRTC NYC Chapter,2026-07-11T08:00:26Z,Run,22378.4,5761,6617,118.0,"[40.745126, -73.980847]"
 19255015199,Little Island w/ Bettina,2026-07-10T07:15:57Z,Run,7346.8,2282,2668,26.0,"[40.741964, -73.983108]"
 19242260604,Not only Bettina; but also Owen!,2026-07-09T07:21:06Z,Run,13109.9,3658,4379,80.0,"[40.74535, -73.981402]"
 19236542397,Evening Walk,2026-07-08T20:42:29Z,Walk,1322.7,1070,1126,8.0,[]
