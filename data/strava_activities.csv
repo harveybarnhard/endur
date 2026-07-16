@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19343115560,Morning Walk,2026-07-16T09:00:01Z,Walk,775.0,453,453,1.0,[]
+19336118973,Morning Run,2026-07-16T07:36:34Z,Run,8404.6,2768,3506,47.0,"[40.745734, -73.982316]"
 19330613797,Morning Walk,2026-07-15T08:00:47Z,Walk,2014.7,979,3556,8.0,"[40.74284, -73.986923]"
 19303983868,Evening Walk,2026-07-13T19:08:32Z,Walk,684.2,585,3133,2.0,[]
 19301331906,Morning Walk,2026-07-13T08:35:19Z,Walk,1396.4,808,1106,4.0,"[40.742907, -73.986946]"
