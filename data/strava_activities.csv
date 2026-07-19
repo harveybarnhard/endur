@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19381496936,Afternoon Walk,2026-07-19T13:46:23Z,Walk,3480.1,2784,6822,49.0,"[40.746193, -73.982098]"
+19379248952,WSH w/ Bettina,2026-07-19T10:38:42Z,Run,18023.0,5306,5981,72.0,"[40.778901, -73.982399]"
 19369728856,Evening Weight Training,2026-07-18T20:33:19Z,WeightTraining,0.0,439,439,0,[]
 19369612904,Evening Run,2026-07-18T20:23:21Z,Run,1638.1,555,555,0,[]
 19368265972,Afternoon Walk,2026-07-18T14:34:04Z,Walk,2035.3,1396,9042,11.0,"[40.749488, -73.989382]"
