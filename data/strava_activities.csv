@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19369728856,Evening Weight Training,2026-07-18T20:33:19Z,WeightTraining,0.0,439,439,0,[]
+19369612904,Evening Run,2026-07-18T20:23:21Z,Run,1638.1,555,555,0,[]
 19368265972,Afternoon Walk,2026-07-18T14:34:04Z,Walk,2035.3,1396,9042,11.0,"[40.749488, -73.989382]"
 19366822909,Afternoon Walk,2026-07-18T14:01:54Z,Walk,830.0,616,637,9.0,"[40.745456, -73.981995]"
 19365068196,Morning Walk,2026-07-18T10:25:38Z,Walk,2654.8,1750,2741,11.0,"[40.779146, -73.953778]"
