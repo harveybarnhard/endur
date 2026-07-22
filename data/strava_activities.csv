@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19411648156,Morning Walk,2026-07-21T08:53:05Z,Walk,1414.7,976,42307,2.0,[]
 19402175126,Piers,2026-07-21T06:42:45Z,Run,17392.9,4475,5289,75.0,"[40.745694, -73.981889]"
 19396560165,Morning Walk,2026-07-20T08:30:07Z,Walk,2838.7,2254,45664,5.0,"[40.745457, -73.981499]"
 19387464561,Cooler Temps,2026-07-20T06:25:09Z,Run,16686.2,4343,5138,78.0,"[40.745591, -73.981768]"
