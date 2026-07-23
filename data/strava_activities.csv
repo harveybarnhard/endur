@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19425382109,Morning Walk,2026-07-22T08:48:31Z,Walk,786.2,510,581,2.0,[]
 19416344115,8th Avenue,2026-07-22T06:27:27Z,Run,13533.6,3598,4255,71.0,"[40.745615, -73.981928]"
 19411648156,Morning Walk,2026-07-21T08:53:05Z,Walk,1414.7,976,42307,2.0,[]
 19402175126,Piers,2026-07-21T06:42:45Z,Run,17392.9,4475,5289,75.0,"[40.745694, -73.981889]"
