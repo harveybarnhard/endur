@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19439365624,Evening Walk,2026-07-23T19:21:35Z,Walk,1560.3,1112,3195,6.4,"[40.742941, -73.987384]"
+19438698572,Morning Walk,2026-07-23T08:44:56Z,Walk,800.2,441,441,1.0,[]
 19431063038,Midtown and Bridle Path,2026-07-23T06:43:39Z,Run,14532.4,4275,5386,114.0,"[40.745372, -73.981362]"
 19425382109,Morning Walk,2026-07-22T08:48:31Z,Walk,786.2,510,581,2.0,[]
 19416344115,8th Avenue,2026-07-22T06:27:27Z,Run,13533.6,3598,4255,71.0,"[40.745615, -73.981928]"
