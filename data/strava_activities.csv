@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19547644722,Afternoon Walk,2026-07-31T17:42:25Z,Walk,728.5,440,440,6.0,[]
+19541336458,Chelsea Things,2026-07-31T06:36:23Z,Run,12921.9,3378,3943,53.0,"[40.74554, -73.981594]"
 19536651348,Evening Walk,2026-07-30T20:13:54Z,Walk,1426.5,1290,3365,7.0,[]
 19477048325,Some Form of Long Run,2026-07-26T07:03:06Z,Run,33997.8,10772,26193,311.0,"[40.782986, -73.966479]"
 19464811360,Afternoon Walk,2026-07-25T17:54:41Z,Walk,484.2,306,306,5.0,[]
