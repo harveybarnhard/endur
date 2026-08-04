@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19596794252,"Me and 10,000 Medical Professionals",2026-08-04T07:54:03Z,Run,6809.0,1751,2172,49.0,"[40.745333, -73.981274]"
 19589910242,Evening Walk,2026-08-03T18:07:30Z,Walk,3325.0,2786,5380,31.0,"[40.742673, -73.98442]"
 19581974005,Downpour w/ Bettina,2026-08-03T07:15:59Z,Run,9823.2,3089,3490,39.0,"[40.745552, -73.981574]"
 19575972120,Afternoon Walk,2026-08-02T17:51:09Z,Walk,1102.0,703,737,4.0,[]
