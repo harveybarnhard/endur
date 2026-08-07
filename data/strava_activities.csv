@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19640204218,Humid Lower Loop,2026-08-07T06:52:21Z,Run,18231.1,5224,5886,135.0,"[40.745569, -73.981988]"
 19626383932,Humid Piers,2026-08-06T07:42:57Z,Run,8067.8,2675,2936,29.0,"[40.745481, -73.981515]"
 19611913253,Just Clocking in to the Heatmap Factory,2026-08-05T07:17:56Z,Run,15070.3,3919,4603,59.0,"[40.745415, -73.981346]"
 19596794252,"Me and 10,000 Medical Professionals",2026-08-04T07:54:03Z,Run,6809.0,1751,2172,49.0,"[40.745333, -73.981274]"
