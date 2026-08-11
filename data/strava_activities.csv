@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19695173675,Even More West Village,2026-08-11T07:04:03Z,Run,15361.0,4007,4704,40.0,"[40.745573, -73.982203]"
 19680374585,More West Village,2026-08-10T06:49:19Z,Run,15937.8,4209,5000,60.0,"[40.745278, -73.981225]"
 19674425298,Afternoon Walk,2026-08-09T16:57:28Z,Walk,6045.5,4012,4533,82.0,"[40.746184, -73.982244]"
 19671372111,Lunch Walk,2026-08-09T12:39:53Z,Walk,719.0,496,496,4.0,[]
