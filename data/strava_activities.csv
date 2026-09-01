@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+19988171427,Morning Walk,2026-09-01T09:26:22Z,Walk,8187.2,6498,12544,33.0,"[48.140323, 11.573208]"
 19978833463,Temporarily Back to Running,2026-08-31T13:01:05Z,Run,4479.5,1083,1172,27.0,"[40.778527, -73.982143]"
 19950088757,Trot Before the Knot,2026-08-29T09:37:58Z,Run,5771.7,2421,2451,64.0,"[42.355496, -71.069974]"
 19936665285,Rallying,2026-08-28T09:46:10Z,Run,5345.5,1774,2286,24.0,"[42.353251, -71.077146]"
