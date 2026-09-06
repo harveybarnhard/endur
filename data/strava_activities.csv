@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+20057287870,Day 4: Innichen to Cortina,2026-09-06T09:08:26Z,Ride,36774.0,5766,6516,397.0,"[46.539009, 12.133742]"
 20047970899,Day 3: Vipiteno (Sterzing) to San Candido (Innichen),2026-09-05T09:22:02Z,Ride,94028.5,17619,25197,1162.0,"[46.736846, 12.285164]"
 20036402159,Day 2: Achensee to Sterzing/Vipiteno,2026-09-04T09:33:54Z,Ride,114043.0,22470,33753,1327.0,"[46.898103, 11.4331]"
 20021299036,Day 1: Ammerland to Achensee,2026-09-03T10:16:59Z,Ride,94598.2,15865,24057,781.0,"[47.441521, 11.701457]"
