@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+20107173839,Evening Walk,2026-09-09T18:19:34Z,Walk,897.8,782,2565,5.0,[]
+20104871490,Morning Walk,2026-09-09T10:07:27Z,Walk,10865.2,10439,22596,108.0,"[45.430468, 12.322867]"
 20094021636,Evening Walk,2026-09-08T19:22:37Z,Walk,758.3,661,11219,7.0,[]
 20090777981,Afternoon Walk,2026-09-08T16:50:56Z,Walk,2393.0,2174,3614,18.0,"[45.42948, 12.325837]"
 20088013611,Afternoon Walk,2026-09-08T14:55:43Z,Walk,1080.9,843,843,8.0,"[45.430467, 12.322907]"
