@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+20169808227,Monday,2026-09-14T07:20:35Z,Run,9667.4,3032,3109,84.0,"[40.778731, -73.982477]"
 20159739035,Puddly Central Park,2026-09-13T09:11:43Z,Run,12749.0,4390,4495,109.0,"[40.778615, -73.982219]"
 20140777128,Lunch Walk,2026-09-12T11:23:45Z,Walk,1400.2,1273,1288,8.0,[]
 20139387868,Last Day,2026-09-12T08:29:03Z,Run,9079.4,3035,3874,49.0,"[41.908589, 12.475967]"
