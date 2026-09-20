@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+20257173633,Getting Serious,2026-09-20T10:12:56Z,Run,16623.8,4160,4963,162.0,"[40.77771, -73.981873]"
 20241833079,Long Run,2026-09-19T08:36:53Z,Run,22450.1,5459,6279,214.0,"[40.778057, -73.982265]"
 20229233243,Lunch Walk,2026-09-18T11:45:14Z,Walk,851.0,504,552,14.0,[]
 20226265078,EZ w/ Owen and Bettina,2026-09-18T07:25:01Z,Run,6790.0,2108,2165,60.0,"[40.776245, -73.975778]"
