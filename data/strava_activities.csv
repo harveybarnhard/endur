@@ -1,4 +1,5 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain,end_latlng
+20329843965,Evening Weight Training,2026-09-25T18:55:07Z,WeightTraining,0.0,787,787,0,[]
 20323323904,Finally Marathon Training,2026-09-25T06:24:51Z,Run,28219.3,6999,7952,235.0,"[40.77904, -73.982249]"
 20309835524,Partial Loop,2026-09-24T07:28:05Z,Run,9661.3,2968,3186,82.0,"[40.779211, -73.982732]"
 20304363241,Bandit Run Club,2026-09-23T19:46:40Z,Run,5015.4,1326,1420,38.0,"[40.779059, -73.982556]"
