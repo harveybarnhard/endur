@@ -44,7 +44,6 @@ activities = pd.DataFrame(
             "moving_time",
             "elapsed_time",
             "total_elevation_gain",
-            "end_latlng",
     ]
 )
 while True:
@@ -65,7 +64,6 @@ while True:
         activities.loc[x + (page-1)*200,'moving_time'] = r[x]['moving_time']
         activities.loc[x + (page-1)*200,'elapsed_time'] = r[x]['elapsed_time']
         activities.loc[x + (page-1)*200,'total_elevation_gain'] = r[x]['total_elevation_gain']
-        activities.loc[x + (page-1)*200,'end_latlng'] = r[x]['end_latlng']
 # increment page
     page += 1
 
