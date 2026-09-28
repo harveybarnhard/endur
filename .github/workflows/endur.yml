@@ -13,6 +13,16 @@ on:
       - main
   schedule:
     - cron: '0 11,23 * * *'
+  workflow_dispatch:
+    inputs:
+      rebuild:
+        description: 'Recompute Manhattan coverage from scratch (re-fetches every activity)'
+        type: boolean
+        default: false
+
+concurrency:
+  group: endur
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -67,3 +77,51 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
         force: true
+
+  manhattan:
+    # Street coverage for harveybarnhard.com/manhattan. Runs after `build` has
+    # pushed refreshed tokens; never refreshes them itself, never blocks `build`.
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 90
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.ref }}
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: pip
+        cache-dependency-path: endur/manhattan/requirements.txt
+    - name: Install dependencies
+      run: pip install -r endur/manhattan/requirements.txt
+    - name: Decrypt tokens (outside the repo)
+      run: |
+        gpg --quiet --batch --yes --decrypt --passphrase="$STRAVA_TOKENS_PHRASE" \
+          --output "$RUNNER_TEMP/strava_tokens.json" ./data/strava_tokens.json.gpg
+      env:
+        STRAVA_TOKENS_PHRASE: ${{ secrets.STRAVA_TOKENS_PHRASE }}
+    - name: Update coverage
+      run: python endur/manhattan/update.py ${{ inputs.rebuild && '--rebuild' || '' }}
+      env:
+        STRAVA_TOKENS: ${{ runner.temp }}/strava_tokens.json
+    - name: Plan next runs
+      run: |
+        if [ ! -f data/manhattan/planner.json ] || ! git diff --quiet -- data/manhattan/coverage.json; then
+          python endur/manhattan/planner.py
+        fi
+    - name: Commit coverage
+      if: always()
+      run: |
+        rm -f "$RUNNER_TEMP/strava_tokens.json"
+        git config --local user.name "harveybarnhard"
+        git config --local user.email "${{ secrets.USER_EMAIL }}"
+        git add data/manhattan
+        git diff --cached --quiet && exit 0
+        git commit -m "Update Manhattan street coverage"
+        git pull --rebase
+        git push
