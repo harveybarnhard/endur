@@ -5,6 +5,7 @@
 #
 #   local.sh login         sign in to Strava once (saved to ~/.config/endur-manhattan)
 #   local.sh sync          the real pipeline: fetch new activities from Strava, update coverage
+#                          (recordings already saved are reused, not downloaded again)
 #   local.sh sync --fresh  the same, starting over from nothing (re-downloads everything)
 #   local.sh               rebuild offline from the recordings saved by sync (no Strava calls)
 set -euo pipefail
@@ -26,13 +27,14 @@ login)
     ;;
 sync)
     OUT="$CACHE/api"
-    if [ "${2:-}" = "--fresh" ]; then rm -rf "$OUT"; fi
+    REFETCH=""
+    if [ "${2:-}" = "--fresh" ]; then rm -rf "$OUT"; REFETCH=--refetch; fi
     # keep a copy of the recordings fetched earlier through the chat connector, for comparison
     if [ -d "$CACHE/streams" ] && [ ! -e "$CACHE/streams-connector" ]; then
         cp -r "$CACHE/streams" "$CACHE/streams-connector"
         cp "$CACHE/dev_polylines.json" "$CACHE/dev_polylines-connector.json"
     fi
-    $PY -u endur/manhattan/update.py --auth --out "$OUT" --save-streams --backfill
+    $PY -u endur/manhattan/update.py --auth --out "$OUT" --save-streams --backfill $REFETCH
     preview "$OUT"
     ;;
 "")
@@ -41,7 +43,7 @@ sync)
     preview "$OUT"
     ;;
 *)
-    sed -n '6,9p' "$0" | sed 's/^# *//'
+    sed -n '6,10p' "$0" | sed 's/^# *//'
     exit 1
     ;;
 esac

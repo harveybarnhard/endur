@@ -8,7 +8,7 @@
 
 Reads the Strava access token from $STRAVA_TOKENS (a decrypted strava_tokens.json;
 this job never refreshes it), or with --auth from a local sign-in (strava_auth.py).
-GPS streams are held in memory only unless --save-streams keeps them in ~/.cache.
+GPS streams are held in memory only unless --save-streams keeps (and reuses) them in ~/.cache.
 Writes data/manhattan/{state,coverage,runs}.json; none of them contain GPS points.
 """
 import argparse
@@ -268,7 +268,7 @@ def save_stream(a, latlng, t):
     write_json(path, sorted(index.values(), key=lambda e: e["start"]))
 
 
-def api_source(net, state, cap, api, keep=False):
+def api_source(net, state, cap, api, keep=False, refetch=False):
     # list everything since START each time (a few requests), so activities uploaded late
     # are still found; already-processed ones are skipped
     after = dt.datetime.fromisoformat(START).replace(tzinfo=dt.UTC).timestamp() - 86400
@@ -279,11 +279,16 @@ def api_source(net, state, cap, api, keep=False):
     elif not todo:
         print("  no new Manhattan activities")
     for a in todo:
-        latlng, t = api.track(a["id"])
+        saved = os.path.join(CACHE, "streams", f"{a['id']}.json")
+        if keep and not refetch and os.path.exists(saved):  # recordings don't change once uploaded
+            st = load_json(saved, {})
+            latlng, t = st["location"], st["time"]
+        else:
+            latlng, t = api.track(a["id"])
+            if latlng and keep:
+                save_stream(a, latlng, t)
         if not latlng:
             continue
-        if keep:
-            save_stream(a, latlng, t)
         yield {"id": str(a["id"]), "start": a["start_date_local"], "name": a["name"],
                "type": a.get("sport_type", a.get("type")), "dist": a["distance"]}, latlng, t
 
@@ -297,7 +302,8 @@ def main():
                     help="use a local Strava sign-in (default %(const)s), refreshing it as needed")
     ap.add_argument("--out", metavar="DIR", help="write outputs to DIR instead of data/manhattan")
     ap.add_argument("--save-streams", action="store_true",
-                    help="keep downloaded recordings in ~/.cache for --local rebuilds")
+                    help="keep downloaded recordings in ~/.cache (for --local rebuilds) and reuse them")
+    ap.add_argument("--refetch", action="store_true", help="with --save-streams: download recordings again")
     args = ap.parse_args()
 
     geo = load_geo()
@@ -322,7 +328,7 @@ def main():
         else:
             api = Strava(load_token())
         source = api_source(net, state, cap=None if (args.backfill or args.rebuild or fresh) else CRON_CAP,
-                            api=api, keep=args.save_streams)
+                            api=api, keep=args.save_streams, refetch=args.refetch)
     n, gained, stopped = 0, 0.0, None
     try:
         for act, latlng, t in source:

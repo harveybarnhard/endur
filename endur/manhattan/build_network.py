@@ -44,6 +44,10 @@ HW_REMOVED = {
     "disused",
 }
 HW_NEEDS_FOOT = {"trunk", "trunk_link", "service", "bridleway"}
+# railway=* values that mean actual track or platforms. The High Line's footways carry
+# railway=adjacent / abandoned, a note about the old line, and must stay.
+RAIL = {"rail", "subway", "light_rail", "tram", "monorail", "narrow_gauge", "funicular",
+        "miniature", "preserved", "platform", "station"}
 PARKLIKE = {
     "leisure": ["park", "garden", "nature_reserve"],
     "natural": ["wetland", "wood", "scrub", "heath", "grassland", "fell", "tundra"],
@@ -108,7 +112,7 @@ def counted(tags, in_route, in_park):
     if (tags.get("motorroad") == "yes" or tags.get("indoor") == "yes"
             or tags.get("tunnel") in ("yes", "building_passage")
             or tags.get("golf_cart") in ("yes", "designated", "private")
-            or "railway" in tags or "waterway" in tags or tags.get("route") == "ferry"):
+            or tags.get("railway") in RAIL or "waterway" in tags or tags.get("route") == "ferry"):
         return False, "misc"
     foot = tags.get("foot")
     # Deviation from Wandrer: NYC mappers put use_sidepath on ordinary streets
@@ -204,7 +208,7 @@ out geom;""")
 
     # --- filter ---
     reasons = collections.Counter()
-    kept = []
+    kept, outside = [], []
     for w in ways:
         t = w.get("tags", {})
         in_park = False
@@ -212,7 +216,20 @@ out geom;""")
             line = LineString([nodes[n] for n in w["nodes"] if n in nodes])
             in_park = any(park_polys[i].intersects(line) for i in park_tree.query(line))
         keep, why = counted(t, w["id"] in route_ways, in_park)
+        if not keep and why == "footway outside park" and t.get("name"):
+            outside.append(w)
+            continue
         reasons[("keep " if keep else "drop ") + why] += 1
+        if keep:
+            kept.append(w)
+    # Deviation from Wandrer: named footways outside parks (the Brooklyn Bridge Promenade's
+    # ramp, esplanades, pedestrian bridges) are real routes, so they count too, unless they
+    # share a counted street's name, which marks a sidewalk mapped without footway=sidewalk.
+    street_names = {short_name(w["tags"]["name"]) for w in kept
+                    if w["tags"].get("highway") not in PATH_HW and w["tags"].get("name")}
+    for w in outside:
+        keep = short_name(w["tags"]["name"]) not in street_names
+        reasons["keep named footway" if keep else "drop footway named like a street"] += 1
         if keep:
             kept.append(w)
     for k, v in sorted(reasons.items(), key=lambda kv: -kv[1])[:30]:
