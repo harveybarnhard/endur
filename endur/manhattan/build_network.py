@@ -159,6 +159,40 @@ def short_name(name):
     return name
 
 
+class Alongside:
+    """How much of a line runs beside (within `within` m, roughly parallel to) any of `lines`."""
+
+    def __init__(self, lines, within=15.0, angle=20.0, step=10.0):
+        from scipy.spatial import cKDTree
+        self.within, self.angle, self.step = within, math.radians(angle), step
+        mids, bears = [], []
+        for xy in lines:
+            for p, b, _ in self._pieces(xy):
+                mids.append(p)
+                bears.append(b)
+        self.tree, self.bear = cKDTree(mids), bears
+
+    def _pieces(self, xy):
+        for (x0, y0), (x1, y1) in zip(xy, xy[1:]):
+            L = math.hypot(x1 - x0, y1 - y0)
+            k = max(1, round(L / self.step))
+            b = math.atan2(y1 - y0, x1 - x0) % math.pi
+            for i in range(k):
+                f = (i + 0.5) / k
+                yield (x0 + (x1 - x0) * f, y0 + (y1 - y0) * f), b, L / k
+
+    def fraction(self, xy):
+        total = beside = 0.0
+        for p, b, L in self._pieces(xy):
+            total += L
+            for q in self.tree.query_ball_point(p, self.within):
+                d = abs(b - self.bear[q])
+                if min(d, math.pi - d) < self.angle:
+                    beside += L
+                    break
+        return beside / total if total else 1.0
+
+
 def main():
     proj = Projection()
     print("Downloading OSM data")
@@ -223,13 +257,14 @@ out geom;""")
         if keep:
             kept.append(w)
     # Deviation from Wandrer: named footways outside parks (the Brooklyn Bridge Promenade's
-    # ramp, esplanades, pedestrian bridges) are real routes, so they count too, unless they
-    # share a counted street's name, which marks a sidewalk mapped without footway=sidewalk.
-    street_names = {short_name(w["tags"]["name"]) for w in kept
-                    if w["tags"].get("highway") not in PATH_HW and w["tags"].get("name")}
+    # ramp, esplanades, pedestrian bridges) are real routes, so they count too, unless most
+    # of one runs right beside a counted street: that's a sidewalk or median walk.
+    street_xy = [[proj.fwd(*nodes[n]) for n in w["nodes"] if n in nodes] for w in kept
+                 if w["tags"].get("highway") not in PATH_HW]
+    beside = Alongside(street_xy)
     for w in outside:
-        keep = short_name(w["tags"]["name"]) not in street_names
-        reasons["keep named footway" if keep else "drop footway named like a street"] += 1
+        keep = beside.fraction([proj.fwd(*nodes[n]) for n in w["nodes"] if n in nodes]) < 0.5
+        reasons["keep named footway" if keep else "drop named footway beside a street"] += 1
         if keep:
             kept.append(w)
     for k, v in sorted(reasons.items(), key=lambda kv: -kv[1])[:30]:
