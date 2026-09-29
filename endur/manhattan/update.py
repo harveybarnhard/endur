@@ -4,10 +4,12 @@
     python endur/manhattan/update.py --backfill      # no cap (first run / catch-up)
     python endur/manhattan/update.py --rebuild       # reset state, reprocess everything
     python endur/manhattan/update.py --local OUTDIR  # local: cached full recordings (see local.sh)
+    python endur/manhattan/update.py --auth --out DIR --save-streams  # local: the real thing (local.sh sync)
 
 Reads the Strava access token from $STRAVA_TOKENS (a decrypted strava_tokens.json;
-this job never refreshes it). GPS streams are held in memory only. Writes
-data/manhattan/{state,coverage,runs}.json; none of them contain GPS points.
+this job never refreshes it), or with --auth from a local sign-in (strava_auth.py).
+GPS streams are held in memory only unless --save-streams keeps them in ~/.cache.
+Writes data/manhattan/{state,coverage,runs}.json; none of them contain GPS points.
 """
 import argparse
 import datetime as dt
@@ -24,6 +26,7 @@ from scipy.spatial import cKDTree
 sys.path.insert(0, os.path.dirname(__file__))
 from geo import DATA, Projection, load_geo  # noqa: E402
 from match import Matcher, PARAMS, is_complete, total, union  # noqa: E402
+import strava_auth  # noqa: E402
 
 FOOT = {"Run", "TrailRun", "Walk", "Hike"}
 API = "https://www.strava.com/api/v3"
@@ -202,31 +205,52 @@ def local_source(net, missing):
                    "dist": a["dist"]}, latlng, t
 
 
-def api_source(net, state, cap):
-    api = Strava(load_token())
-    after = dt.datetime.fromisoformat(START).replace(tzinfo=dt.UTC).timestamp() - 86400
-    if state["last_start"]:
-        last = dt.datetime.fromisoformat(state["last_start"].replace("Z", "+00:00")).timestamp()
-        after = max(after, last - 7 * 86400)
+def list_manhattan(api, net, after, skip=()):
+    """Foot activities since START that run on Manhattan streets, oldest first."""
     listed = api.activities(after)
     print(f"  listed {len(listed)} activities since {dt.datetime.fromtimestamp(after, dt.UTC):%Y-%m-%d}")
     todo = []
     for a in listed:
-        aid = str(a["id"])
         poly = (a.get("map") or {}).get("summary_polyline")
-        if (aid in state["processed"] or a.get("sport_type", a.get("type")) not in FOOT
+        if (str(a["id"]) in skip or a.get("sport_type", a.get("type")) not in FOOT
                 or a["start_date_local"] < START or a.get("manual") or a.get("trainer") or not poly):
             continue
         if net.touches(polyline.decode(poly)):
             todo.append(a)
-    todo.sort(key=lambda a: a["start_date_local"])
+    return sorted(todo, key=lambda a: a["start_date_local"])
+
+
+def save_stream(a, latlng, t):
+    """Keep a downloaded recording (and its index entry) in the local cache for `--local` rebuilds."""
+    aid = str(a["id"])
+    os.makedirs(os.path.join(CACHE, "streams"), exist_ok=True)
+    write_json(os.path.join(CACHE, "streams", aid + ".json"), {"location": latlng, "time": t})
+    path = os.path.join(CACHE, "dev_polylines.json")
+    index = {e["id"]: e for e in load_json(path, [])}
+    index[aid] = {"id": aid, "start": a["start_date_local"].rstrip("Z"), "name": a["name"],
+                  "type": a.get("sport_type", a.get("type")), "dist": a["distance"],
+                  "poly": a["map"]["summary_polyline"]}
+    write_json(path, sorted(index.values(), key=lambda e: e["start"]))
+
+
+def api_source(net, state, cap, token, keep=False):
+    api = Strava(token)
+    after = dt.datetime.fromisoformat(START).replace(tzinfo=dt.UTC).timestamp() - 86400
+    if state["last_start"]:
+        last = dt.datetime.fromisoformat(state["last_start"].replace("Z", "+00:00")).timestamp()
+        after = max(after, last - 7 * 86400)
+    todo = list_manhattan(api, net, after, skip=state["processed"])
     if cap and len(todo) > cap:
         print(f"  {len(todo)} new Manhattan activities; processing the first {cap}")
         todo = todo[:cap]
+    elif not todo:
+        print("  no new Manhattan activities")
     for a in todo:
         latlng, t = api.track(a["id"])
         if not latlng:
             continue
+        if keep:
+            save_stream(a, latlng, t)
         yield {"id": str(a["id"]), "start": a["start_date_local"], "name": a["name"],
                "type": a.get("sport_type", a.get("type")), "dist": a["distance"]}, latlng, t
 
@@ -236,11 +260,16 @@ def main():
     ap.add_argument("--backfill", action="store_true")
     ap.add_argument("--rebuild", action="store_true")
     ap.add_argument("--local", metavar="OUTDIR", help="use cached recordings; write outputs to OUTDIR")
+    ap.add_argument("--auth", nargs="?", const=strava_auth.CREDS, metavar="FILE",
+                    help="use a local Strava sign-in (default %(const)s), refreshing it as needed")
+    ap.add_argument("--out", metavar="DIR", help="write outputs to DIR instead of data/manhattan")
+    ap.add_argument("--save-streams", action="store_true",
+                    help="keep downloaded recordings in ~/.cache for --local rebuilds")
     args = ap.parse_args()
 
     geo = load_geo()
     net = Network(geo)
-    outdir = args.local or DATA
+    outdir = args.local or args.out or DATA
     state = load_json(os.path.join(outdir, "state.json"), None)
     runs = load_json(os.path.join(outdir, "runs.json"), [])
     if (args.rebuild or args.local or not state or state.get("v") != geo["v"]
@@ -251,8 +280,12 @@ def main():
     fresh = not state["processed"]
 
     missing = []
-    source = local_source(net, missing) if args.local else api_source(
-        net, state, cap=None if (args.backfill or args.rebuild or fresh) else CRON_CAP)
+    if args.local:
+        source = local_source(net, missing)
+    else:
+        token = strava_auth.access_token(args.auth) if args.auth else load_token()
+        source = api_source(net, state, cap=None if (args.backfill or args.rebuild or fresh) else CRON_CAP,
+                            token=token, keep=args.save_streams)
     n, gained = 0, 0.0
     for act, latlng, t in source:
         g = apply(net, state, runs, act, latlng, t)

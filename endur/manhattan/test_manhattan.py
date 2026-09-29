@@ -107,3 +107,53 @@ def test_streets_compete_only_with_streets_and_carriageways_share_credit():
     got = M.match(np.column_stack([rng.normal(196, 2, len(ys)), -ys]), t=t)
     assert total(got.get(2, [])) > 250 and total(got.get(3, [])) > 250
     assert 4 not in got
+
+
+def test_list_manhattan_keeps_foot_activities_on_manhattan_streets():
+    import polyline
+    import update
+
+    on, off = polyline.encode([(40.75, -73.98)]), polyline.encode([(40.69, -73.94)])
+
+    class Net:
+        def touches(self, latlng):
+            return latlng[0][0] > 40.7
+
+    def act(i, start, kind="Run", poly=on, **kw):
+        return {"id": i, "start_date_local": start + "T07:00:00Z", "sport_type": kind,
+                "map": {"summary_polyline": poly}, **kw}
+
+    listed = [act(1, "2025-03-02"), act(2, "2025-03-01", "Walk"), act(3, "2024-10-30"),
+              act(4, "2025-03-03", "Ride"), act(5, "2025-03-04", poly=off),
+              act(6, "2025-03-05", manual=True), act(7, "2025-03-06", poly=None), act(8, "2025-03-07")]
+
+    class Api:
+        def activities(self, after):
+            return listed
+
+    got = update.list_manhattan(Api(), Net(), after=0, skip={"8": 0})
+    assert [a["id"] for a in got] == [2, 1]  # oldest first; no rides, pre-START, Brooklyn, manual, no-GPS or done
+
+
+def test_access_token_refreshes_and_saves_a_rotated_refresh_token(tmp_path, monkeypatch):
+    import json
+    import time
+    import strava_auth
+
+    path = str(tmp_path / "strava.json")
+    strava_auth.save(path, {"client_id": "1", "client_secret": "s", "refresh_token": "old",
+                            "access_token": "stale", "expires_at": time.time() + 60})
+    sent = []
+
+    class Resp:
+        status_code = 200
+
+        def json(self):
+            return {"access_token": "fresh", "refresh_token": "new", "expires_at": time.time() + 21600}
+
+    monkeypatch.setattr(strava_auth.requests, "post", lambda url, data, timeout: sent.append(data) or Resp())
+    assert strava_auth.access_token(path) == "fresh"
+    assert sent[0]["grant_type"] == "refresh_token" and sent[0]["refresh_token"] == "old"
+    saved = json.load(open(path))
+    assert saved["refresh_token"] == "new" and oct(os.stat(path).st_mode & 0o777) == "0o600"
+    assert strava_auth.access_token(path) == "fresh" and len(sent) == 1  # still valid: no second call
