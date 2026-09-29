@@ -173,3 +173,62 @@ def test_touches_sees_sparse_summary_lines_along_a_street():
     # a short walk whose summary line is two points mid-block, 100 m from either corner
     assert net.touches(latlng([(3, -100), (3, -300)]))
     assert not net.touches(latlng([(100, -100), (100, -300)]))  # a block away
+
+
+def test_touches_ignores_a_far_gps_jump():
+    import update
+
+    P = Projection()
+    geo = {"proj": {"lat0": P.lat0, "lon0": P.lon0, "rot": P.rot},
+           "seg_xy": [[(0, 0), (0, -400)]], "segs": {"cls": [1], "n": [0]}}
+    net = update.Network(geo)
+    walk = [P.inv(x, y)[::-1] for x, y in [(3, -20), (3, -200), (3, -380)]]
+    boston = (42.36, -71.06)  # a stale first fix from the day before
+    assert net.touches([boston] + walk)
+    assert not net.touches([boston, (42.37, -71.05)])
+
+
+class FakeResponse:
+    def __init__(self, status, usage="10,100", limit="200,2000", body=None):
+        self.status_code, self.body = status, body or {}
+        self.headers = {"X-ReadRateLimit-Usage": usage, "X-ReadRateLimit-Limit": limit}
+
+    def json(self):
+        return self.body
+
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise RuntimeError(self.status_code)
+
+
+def strava_with(responses, **kw):
+    import update
+
+    api = update.Strava("tok", **kw)
+    seen = []
+    api.s.get = lambda url, params, timeout: seen.append(dict(api.s.headers)) or responses.pop(0)
+    return api, seen
+
+
+def test_strava_refreshes_once_on_401(monkeypatch):
+    import update
+
+    monkeypatch.setattr(update.time, "sleep", lambda s: (_ for _ in ()).throw(AssertionError("slept")))
+    api, seen = strava_with([FakeResponse(401), FakeResponse(200, body=[1])],
+                            refresh=lambda force: "new" if force else "tok")
+    assert api.get("/x") == [1]
+    assert seen[0]["Authorization"] == "Bearer tok" and seen[1]["Authorization"] == "Bearer new"
+
+
+def test_strava_stops_at_the_daily_limit_without_sleeping(monkeypatch):
+    import pytest
+    import update
+
+    monkeypatch.setattr(update.time, "sleep", lambda s: (_ for _ in ()).throw(AssertionError("slept")))
+    api, _ = strava_with([FakeResponse(200, usage="50,1950", body=[1])], reserve=(40, 100))
+    assert api.get("/x") == [1]  # this answer is kept ...
+    with pytest.raises(update.RateLimited):  # ... but nothing more is asked of Strava today
+        api.get("/x")
+    api, _ = strava_with([FakeResponse(429, usage="20,2000")])
+    with pytest.raises(update.RateLimited):
+        api.get("/x")

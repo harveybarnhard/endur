@@ -25,6 +25,7 @@ SCOPE = "read,activity:read_all"
 
 
 def save(path, creds):
+    path = os.path.abspath(path)
     os.makedirs(os.path.dirname(path), mode=0o700, exist_ok=True)
     tmp = path + ".tmp"
     fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
@@ -42,25 +43,32 @@ def _token_request(creds, **data):
     r = requests.post(f"{OAUTH}/token", timeout=60, data={
         "client_id": creds["client_id"], "client_secret": creds["client_secret"], **data})
     if r.status_code >= 400:
-        sys.exit(f"Strava refused the request ({r.status_code}): {r.text[:200]}")
+        refresh = data.get("grant_type") == "refresh_token"
+        hint = " Sign in again: endur/manhattan/local.sh login" if refresh else ""
+        sys.exit(f"Strava refused the request ({r.status_code}): {r.text[:200]}.{hint}")
     tok = r.json()
     creds.update(access_token=tok["access_token"], refresh_token=tok["refresh_token"],
                  expires_at=tok["expires_at"])
     return tok
 
 
-def access_token(path=CREDS):
-    """A valid access token, refreshed (and saved) when it expires within 5 minutes."""
+def access_token(path=CREDS, force=False):
+    """A valid access token, refreshed (and saved) when it expires within 5 minutes, or when
+    `force`d after Strava rejected it. Refreshes only when needed: every refresh is a chance
+    for Strava to replace the refresh token, which the GitHub Action also holds."""
     try:
         creds = load(path)
     except FileNotFoundError:
         sys.exit(f"No Strava sign-in at {path}. Run: endur/manhattan/local.sh login")
-    if creds.get("expires_at", 0) < time.time() + 300:
+    if force or creds.get("expires_at", 0) < time.time() + 300:
         old = creds["refresh_token"]
         _token_request(creds, grant_type="refresh_token", refresh_token=old)
         save(path, creds)
         if creds["refresh_token"] != old:
-            print("  Strava issued a new refresh token; saved it.", flush=True)
+            print("NOTE: Strava issued a new refresh token (saved locally). The GitHub Action holds the\n"
+                  "old one in data/strava_tokens.json.gpg, which may now stop working. If its next run\n"
+                  "fails, move the Action to this sign-in (Client ID/Secret + refresh-token secrets).",
+                  file=sys.stderr, flush=True)
     return creds["access_token"]
 
 

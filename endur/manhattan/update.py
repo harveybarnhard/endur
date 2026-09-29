@@ -35,18 +35,41 @@ CACHE = os.path.expanduser("~/.cache/endur-manhattan")
 
 
 # --- Strava access -----------------------------------------------------------
+class RateLimited(Exception):
+    """Strava's daily request limit is used up (it resets at midnight UTC)."""
+
+
 class Strava:
-    def __init__(self, token):
+    def __init__(self, token, refresh=None, reserve=(3, 3)):
+        """`refresh(force=True)` returns a new access token after a 401 (local sign-ins only).
+        `reserve` leaves that many requests per 15 minutes and per day for other jobs on the
+        same Strava app, since limits are shared by everything using it."""
         self.s = requests.Session()
         self.s.headers["Authorization"] = f"Bearer {token}"
+        self.refresh, self.reserve = refresh, reserve
+        self.out_for_today = False
 
     def get(self, path, **params):
-        for _ in range(4):
+        refreshed = False
+        for attempt in range(4):
+            if self.out_for_today:
+                raise RateLimited("Strava's daily request limit is used up; it resets at midnight UTC")
             r = self.s.get(API + path, params=params, timeout=60)
+            if r.status_code == 401 and self.refresh and not refreshed:
+                self.s.headers["Authorization"] = f"Bearer {self.refresh(force=True)}"
+                refreshed = True
+                continue
             usage = r.headers.get("X-ReadRateLimit-Usage") or r.headers.get("X-RateLimit-Usage")
             limit = r.headers.get("X-ReadRateLimit-Limit") or r.headers.get("X-RateLimit-Limit")
-            if r.status_code == 429 or (usage and limit and
-                                        int(usage.split(",")[0]) >= int(limit.split(",")[0]) - 3):
+            (u15, uday), (l15, lday) = [[int(x) for x in h.split(",")[:2]] if h else [0, 0]
+                                        for h in (usage, limit)]
+            if lday and uday >= lday - self.reserve[1]:
+                self.out_for_today = True  # this response is fine; the next request would not be
+                if r.status_code == 429:
+                    continue
+            elif r.status_code == 429 or (l15 and u15 >= l15 - self.reserve[0]):
+                if r.status_code == 429 and attempt == 3:
+                    break
                 wait = 900 - (time.time() % 900) + 5  # next 15-minute window
                 print(f"  rate limit ({usage}/{limit}); sleeping {wait:.0f}s", flush=True)
                 time.sleep(wait)
@@ -54,6 +77,8 @@ class Strava:
                     continue
             r.raise_for_status()
             return r.json()
+        if self.out_for_today:
+            raise RateLimited("Strava's daily request limit is used up; it resets at midnight UTC")
         r.raise_for_status()
 
     def activities(self, after):
@@ -95,21 +120,25 @@ class Network:
     def xy(self, latlng):
         return self.proj.fwd_many([(lon, lat) for lat, lon in latlng])
 
-    def touches(self, latlng, within=40.0, min_frac=0.05, step=20.0):
+    def touches(self, latlng, within=40.0, min_frac=0.05, min_len=300.0, step=20.0, jump=2000.0):
         """Does a (possibly simplified) track run on Manhattan streets at all?
 
         Summary polylines of short walks can be just a few points, so fill in points
-        every `step` metres along the line, and measure to the streets' ~10 m pieces
-        rather than their end points."""
+        every `step` metres along the line (but not across GPS jumps), and measure to the
+        streets' ~10 m pieces rather than their end points. A track counts if enough of it,
+        or at least `min_len` metres of it, is on Manhattan streets."""
         if not latlng:
             return False
         xy = np.asarray(self.xy(latlng), dtype=float)
-        if len(xy) > 1:
-            cum = np.r_[0.0, np.cumsum(np.hypot(*np.diff(xy, axis=0).T))]
+        parts = np.split(xy, np.flatnonzero(np.hypot(*np.diff(xy, axis=0).T) > jump) + 1)
+        filled = []
+        for p in parts:
+            cum = np.r_[0.0, np.cumsum(np.hypot(*np.diff(p, axis=0).T))]
             d = np.arange(0.0, cum[-1] + 1e-9, step)
-            xy = np.column_stack([np.interp(d, cum, xy[:, 0]), np.interp(d, cum, xy[:, 1])])
-        d, _ = self.matcher.tree.query(xy, distance_upper_bound=within)
-        return np.isfinite(d).mean() >= min_frac
+            filled.append(np.column_stack([np.interp(d, cum, p[:, 0]), np.interp(d, cum, p[:, 1])]))
+        d, _ = self.matcher.tree.query(np.vstack(filled), distance_upper_bound=within)
+        hit = np.isfinite(d)
+        return hit.mean() >= min_frac or hit.sum() * step >= min_len
 
 
 STATE_PARAMS = {**PARAMS, "start": START}  # changing any of these rebuilds coverage
@@ -239,12 +268,10 @@ def save_stream(a, latlng, t):
     write_json(path, sorted(index.values(), key=lambda e: e["start"]))
 
 
-def api_source(net, state, cap, token, keep=False):
-    api = Strava(token)
+def api_source(net, state, cap, api, keep=False):
+    # list everything since START each time (a few requests), so activities uploaded late
+    # are still found; already-processed ones are skipped
     after = dt.datetime.fromisoformat(START).replace(tzinfo=dt.UTC).timestamp() - 86400
-    if state["last_start"]:
-        last = dt.datetime.fromisoformat(state["last_start"].replace("Z", "+00:00")).timestamp()
-        after = max(after, last - 7 * 86400)
     todo = list_manhattan(api, net, after, skip=state["processed"])
     if cap and len(todo) > cap:
         print(f"  {len(todo)} new Manhattan activities; processing the first {cap}")
@@ -289,22 +316,31 @@ def main():
     if args.local:
         source = local_source(net, missing)
     else:
-        token = strava_auth.access_token(args.auth) if args.auth else load_token()
+        if args.auth:  # local sign-in: refresh on expiry, and leave headroom for the Action
+            api = Strava(strava_auth.access_token(args.auth), reserve=(40, 100),
+                         refresh=lambda force: strava_auth.access_token(args.auth, force=force))
+        else:
+            api = Strava(load_token())
         source = api_source(net, state, cap=None if (args.backfill or args.rebuild or fresh) else CRON_CAP,
-                            token=token, keep=args.save_streams)
-    n, gained = 0, 0.0
-    for act, latlng, t in source:
-        g = apply(net, state, runs, act, latlng, t)
-        gained += g
-        n += 1
-        print(f"  {act['start'][:10]} {act['type']:<5} +{g / 1609.344:5.2f} mi  {act['name'][:40]}")
-        if n % 25 == 0:  # checkpoint: a long backfill that times out keeps its progress
-            outputs(net, state, runs, outdir)
+                            api=api, keep=args.save_streams)
+    n, gained, stopped = 0, 0.0, None
+    try:
+        for act, latlng, t in source:
+            g = apply(net, state, runs, act, latlng, t)
+            gained += g
+            n += 1
+            print(f"  {act['start'][:10]} {act['type']:<5} +{g / 1609.344:5.2f} mi  {act['name'][:40]}")
+            if n % 25 == 0:  # checkpoint: a long backfill that times out keeps its progress
+                outputs(net, state, runs, outdir)
+    except RateLimited as e:  # keep what was done; the next run carries on
+        stopped = f"WARNING: stopped early: {e}. Progress is saved; run again later to continue."
     cov = outputs(net, state, runs, outdir)
     pct = 100 * cov["covered_m"] / cov["total_m"]
     summary = (f"Processed {n} activities (+{gained / 1609.344:.1f} new mi). "
                f"Coverage {pct:.2f}% ({cov['covered_m'] / 1609.344:.1f} of {cov['total_m'] / 1609.344:.1f} mi), "
                f"{sum(1 for d in cov['done'] if d >= 0)} of {len(cov['done'])} segments complete.")
+    if stopped:
+        summary += "\n" + stopped
     print(summary)
     if missing:
         print(f"WARNING: {len(missing)} Manhattan activities since {START} have no cached recording and were "

@@ -32,7 +32,7 @@ sync)
         cp -r "$CACHE/streams" "$CACHE/streams-connector"
         cp "$CACHE/dev_polylines.json" "$CACHE/dev_polylines-connector.json"
     fi
-    $PY -u endur/manhattan/update.py --auth --out "$OUT" --save-streams
+    $PY -u endur/manhattan/update.py --auth --out "$OUT" --save-streams --backfill
     preview "$OUT"
     ;;
 "")
