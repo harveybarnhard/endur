@@ -21,7 +21,6 @@ import time
 import numpy as np
 import polyline
 import requests
-from scipy.spatial import cKDTree
 
 sys.path.insert(0, os.path.dirname(__file__))
 from geo import DATA, Projection, load_geo  # noqa: E402
@@ -92,17 +91,24 @@ class Network:
         self.proj = Projection(**{k: geo["proj"][k] for k in ("lat0", "lon0", "rot")})
         self.matcher = Matcher(geo["seg_xy"], cls=geo["segs"]["cls"], name=geo["segs"]["n"])
         self.length = self.matcher.length
-        pts = np.vstack([np.asarray(s, dtype=float) for s in geo["seg_xy"]])
-        self.tree = cKDTree(pts)
 
     def xy(self, latlng):
         return self.proj.fwd_many([(lon, lat) for lat, lon in latlng])
 
-    def touches(self, latlng, within=40.0, min_frac=0.05):
-        """Does a (possibly simplified) track run on Manhattan streets at all?"""
+    def touches(self, latlng, within=40.0, min_frac=0.05, step=20.0):
+        """Does a (possibly simplified) track run on Manhattan streets at all?
+
+        Summary polylines of short walks can be just a few points, so fill in points
+        every `step` metres along the line, and measure to the streets' ~10 m pieces
+        rather than their end points."""
         if not latlng:
             return False
-        d, _ = self.tree.query(self.xy(latlng), distance_upper_bound=within)
+        xy = np.asarray(self.xy(latlng), dtype=float)
+        if len(xy) > 1:
+            cum = np.r_[0.0, np.cumsum(np.hypot(*np.diff(xy, axis=0).T))]
+            d = np.arange(0.0, cum[-1] + 1e-9, step)
+            xy = np.column_stack([np.interp(d, cum, xy[:, 0]), np.interp(d, cum, xy[:, 1])])
+        d, _ = self.matcher.tree.query(xy, distance_upper_bound=within)
         return np.isfinite(d).mean() >= min_frac
 
 

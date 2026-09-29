@@ -157,3 +157,19 @@ def test_access_token_refreshes_and_saves_a_rotated_refresh_token(tmp_path, monk
     saved = json.load(open(path))
     assert saved["refresh_token"] == "new" and oct(os.stat(path).st_mode & 0o777) == "0o600"
     assert strava_auth.access_token(path) == "fresh" and len(sent) == 1  # still valid: no second call
+
+
+def test_touches_sees_sparse_summary_lines_along_a_street():
+    import update
+
+    P = Projection()
+    geo = {"proj": {"lat0": P.lat0, "lon0": P.lon0, "rot": P.rot},
+           "seg_xy": [[(0, 0), (0, -400)]], "segs": {"cls": [1], "n": [0]}}
+    net = update.Network(geo)
+
+    def latlng(pts):
+        return [P.inv(x, y)[::-1] for x, y in pts]
+
+    # a short walk whose summary line is two points mid-block, 100 m from either corner
+    assert net.touches(latlng([(3, -100), (3, -300)]))
+    assert not net.touches(latlng([(100, -100), (100, -300)]))  # a block away
