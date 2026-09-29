@@ -3,7 +3,7 @@
     python endur/manhattan/update.py                 # cron: new activities only (capped)
     python endur/manhattan/update.py --backfill      # no cap (first run / catch-up)
     python endur/manhattan/update.py --rebuild       # reset state, reprocess everything
-    python endur/manhattan/update.py --dev OUTDIR    # local: use ~/.cache streams/polylines
+    python endur/manhattan/update.py --local OUTDIR  # local: cached full recordings (see local.sh)
 
 Reads the Strava access token from $STRAVA_TOKENS (a decrypted strava_tokens.json;
 this job never refreshes it). GPS streams are held in memory only. Writes
@@ -28,6 +28,7 @@ from match import Matcher, PARAMS, is_complete, total, union  # noqa: E402
 FOOT = {"Run", "TrailRun", "Walk", "Hike"}
 API = "https://www.strava.com/api/v3"
 CRON_CAP = 60
+START = "2024-11-01"  # project start (local date); earlier activities don't count
 CACHE = os.path.expanduser("~/.cache/endur-manhattan")
 
 
@@ -102,8 +103,11 @@ class Network:
         return np.isfinite(d).mean() >= min_frac
 
 
+STATE_PARAMS = {**PARAMS, "start": START}  # changing any of these rebuilds coverage
+
+
 def empty_state(v):
-    return {"v": v, "params": PARAMS, "last_start": None, "processed": {}, "iv": {}, "done": {}}
+    return {"v": v, "params": STATE_PARAMS, "last_start": None, "processed": {}, "iv": {}, "done": {}}
 
 
 def load_json(path, default):
@@ -178,17 +182,21 @@ def outputs(net, state, runs, outdir):
     return cov
 
 
-def dev_source(net):
-    """Local development: cached full streams where we have them, else Strava's
-    (start/end-trimmed) summary polylines. Never used in the Action."""
+def local_source(net, missing):
+    """Local iteration: the activity index and full GPS recordings cached in ~/.cache
+    (fetched once; never committed). Same recordings the Action downloads, so results
+    match. Activities without a cached recording are listed in `missing`, not guessed at."""
     acts = load_json(os.path.join(CACHE, "dev_polylines.json"), [])
     for a in sorted(acts, key=lambda a: a["start"]):
+        if a["start"] < START or a["type"] not in FOOT:
+            continue
         path = os.path.join(CACHE, "streams", a["id"] + ".json")
-        if os.path.exists(path):
-            st = load_json(path, {})
-            latlng, t = st["location"], st["time"]
-        else:
-            latlng, t = polyline.decode(a["poly"]), None
+        if not os.path.exists(path):
+            if a.get("poly") and net.touches(polyline.decode(a["poly"])):
+                missing.append(a)
+            continue
+        st = load_json(path, {})
+        latlng, t = st["location"], st["time"]
         if net.touches(latlng):
             yield {"id": a["id"], "start": a["start"], "name": a["name"], "type": a["type"],
                    "dist": a["dist"]}, latlng, t
@@ -196,9 +204,10 @@ def dev_source(net):
 
 def api_source(net, state, cap):
     api = Strava(load_token())
-    after = 0
+    after = dt.datetime.fromisoformat(START).replace(tzinfo=dt.UTC).timestamp() - 86400
     if state["last_start"]:
-        after = dt.datetime.fromisoformat(state["last_start"].replace("Z", "+00:00")).timestamp() - 7 * 86400
+        last = dt.datetime.fromisoformat(state["last_start"].replace("Z", "+00:00")).timestamp()
+        after = max(after, last - 7 * 86400)
     listed = api.activities(after)
     print(f"  listed {len(listed)} activities since {dt.datetime.fromtimestamp(after, dt.UTC):%Y-%m-%d}")
     todo = []
@@ -206,7 +215,7 @@ def api_source(net, state, cap):
         aid = str(a["id"])
         poly = (a.get("map") or {}).get("summary_polyline")
         if (aid in state["processed"] or a.get("sport_type", a.get("type")) not in FOOT
-                or a.get("manual") or a.get("trainer") or not poly):
+                or a["start_date_local"] < START or a.get("manual") or a.get("trainer") or not poly):
             continue
         if net.touches(polyline.decode(poly)):
             todo.append(a)
@@ -226,21 +235,23 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--backfill", action="store_true")
     ap.add_argument("--rebuild", action="store_true")
-    ap.add_argument("--dev", metavar="OUTDIR")
+    ap.add_argument("--local", metavar="OUTDIR", help="use cached recordings; write outputs to OUTDIR")
     args = ap.parse_args()
 
     geo = load_geo()
     net = Network(geo)
-    outdir = args.dev or DATA
+    outdir = args.local or DATA
     state = load_json(os.path.join(outdir, "state.json"), None)
     runs = load_json(os.path.join(outdir, "runs.json"), [])
-    if args.rebuild or args.dev or not state or state.get("v") != geo["v"] or state.get("params") != PARAMS:
-        if state and not (args.rebuild or args.dev):
+    if (args.rebuild or args.local or not state or state.get("v") != geo["v"]
+            or state.get("params") != STATE_PARAMS):
+        if state and not (args.rebuild or args.local):
             print("Network or matcher parameters changed: rebuilding coverage from scratch.")
         state, runs = empty_state(geo["v"]), []
     fresh = not state["processed"]
 
-    source = dev_source(net) if args.dev else api_source(
+    missing = []
+    source = local_source(net, missing) if args.local else api_source(
         net, state, cap=None if (args.backfill or args.rebuild or fresh) else CRON_CAP)
     n, gained = 0, 0.0
     for act, latlng, t in source:
@@ -256,6 +267,10 @@ def main():
                f"Coverage {pct:.2f}% ({cov['covered_m'] / 1609.344:.1f} of {cov['total_m'] / 1609.344:.1f} mi), "
                f"{sum(1 for d in cov['done'] if d >= 0)} of {len(cov['done'])} segments complete.")
     print(summary)
+    if missing:
+        print(f"WARNING: {len(missing)} Manhattan activities since {START} have no cached recording and were "
+              f"skipped: " + ", ".join(f"{a['start'][:10]} {a['name']} ({a['id']})" for a in missing[:10])
+              + (" ..." if len(missing) > 10 else ""))
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
             f.write(f"### Manhattan coverage\n\n{summary}\n")
