@@ -43,7 +43,7 @@ sync)
     preview "$OUT"
     ;;
 *)
-    sed -n '6,10p' "$0" | sed 's/^# *//'
+    sed -n '6,10p' "$0" | sed 's/^# //'
     exit 1
     ;;
 esac
