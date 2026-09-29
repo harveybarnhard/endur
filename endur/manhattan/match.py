@@ -13,22 +13,26 @@ import numpy as np
 from scipy.spatial import cKDTree
 
 PARAMS = {
-    "R": 20.0,          # max distance from track to street centreline (m)
+    "R": 30.0,          # max distance from track to street centreline (m); Midtown GPS drifts 15-25 m
     "piece": 10.0,      # target piece length (m)
     "angle": 35.0,      # max bearing difference (deg)
+    "slack": 8.0,       # a point credits only the nearest matching way (plus any within this much further);
+                        # streets compete only with streets, paths with everything
+    "short": 20.0,      # blocks shorter than this (intersection pieces) skip the bearing check
+    "same_name": True,  # parallel carriageways of the same named street don't exclude each other
     "resample": 5.0,    # track resampling step (m)
-    "gap_fill": 20.0,   # fill uncovered gaps up to this long within a segment (m)
+    "gap_fill": 30.0,   # fill uncovered gaps up to this long within a segment (m)
     "graze": 20.0,      # drop covered runs shorter than this (m) ...
     "snap": 10.0,       # ... and extend runs this close to a segment end
     "break": 100.0,     # don't interpolate across raw-track gaps longer than this (m)
     "max_speed": 10.0,  # ... or implying more than this speed (m/s)
+    "complete_frac": 0.85,   # a segment counts as done at 85% of its length ...
+    "complete_left": 20.0,   # ... or when at most 20 m are left
 }
-COMPLETE_FRAC = 0.90    # a segment counts as done at 90% of its length ...
-COMPLETE_SLACK = 15.0   # ... or when at most 15 m are left
 
 
 def is_complete(covered, length):
-    return covered >= COMPLETE_FRAC * length or length - covered <= COMPLETE_SLACK
+    return covered >= PARAMS["complete_frac"] * length or length - covered <= PARAMS["complete_left"]
 
 
 def union(a, b):
@@ -54,7 +58,9 @@ def _along(pts, cum, d):
 
 
 class Matcher:
-    def __init__(self, seg_xy, **params):
+    def __init__(self, seg_xy, cls=None, name=None, **params):
+        """`cls` gives each segment's class (0 major road, 1 street, 2 path; default all streets);
+        `name` its street-name id (-1 unnamed), so both carriageways of one street share credit."""
         self.p = {**PARAMS, **params}
         A, B, seg, o0, o1, first = [], [], [], [], [], []
         self.length = np.zeros(len(seg_xy))
@@ -76,6 +82,11 @@ class Matcher:
         self.seg = np.asarray(seg)
         self.o0, self.o1 = np.concatenate(o0), np.concatenate(o1)
         self.first = np.asarray(first)
+        cls = np.zeros(len(seg_xy), dtype=int) if cls is None else np.asarray(cls)
+        self.path = (cls == 2)[self.seg]                             # per piece
+        self.short = (self.length < self.p["short"])[self.seg]      # per piece
+        name = np.full(len(seg_xy), -1) if name is None else np.asarray(name)
+        self.name = name[self.seg]                                   # per piece
         d = self.B - self.A
         self.plen = np.hypot(d[:, 0], d[:, 1])
         self.pbear = np.mod(np.arctan2(d[:, 1], d[:, 0]), math.pi)
@@ -138,7 +149,32 @@ class Matcher:
             dist = np.hypot(*(a + ab * u[:, None] - q).T)
             dang = np.abs(tbear[ii] - self.pbear[pp])
             dang = np.minimum(dang, math.pi - dang)
-            ok = (dist <= R) & (dang <= max_ang)
+            ok = (dist <= R) & ((dang <= max_ang) | self.short[pp])
+            # Exclusive, so parallel ways aren't double-counted: a park path 15 m from the one
+            # you ran on is a different path, and so is the far carriageway of a divided avenue.
+            # Streets compete only with streets, though: running the park-side path along
+            # Central Park West, or the bike lane beside an avenue, still covers the street.
+            # Both carriageways of one named street (Park Ave, Riverside Dr) count as one street.
+            street = ok & ~self.path[pp]
+            near_street = np.full(n, np.inf)
+            near_any = np.full(n, np.inf)
+            np.minimum.at(near_street, ii[street], dist[street])
+            np.minimum.at(near_any, ii[ok], dist[ok])
+            limit = np.where(self.path[pp], near_any[ii], near_street[ii]) + self.p["slack"]
+            if self.p["same_name"]:
+                # the nearest street's name, per point; pieces sharing it are never excluded
+                order = np.lexsort((dist, ii))
+                first = np.ones(len(order), dtype=bool)
+                first[1:] = ii[order][1:] != ii[order][:-1]
+                sorted_street = order[street[order]]
+                nn = np.full(n, -2)
+                fs = np.ones(len(sorted_street), dtype=bool)
+                fs[1:] = ii[sorted_street][1:] != ii[sorted_street][:-1]
+                nn[ii[sorted_street[fs]]] = self.name[pp[sorted_street[fs]]]
+                same = (~self.path[pp]) & (self.name[pp] >= 0) & (self.name[pp] == nn[ii])
+                ok &= (dist <= limit) | same
+            else:
+                ok &= dist <= limit
             hit[pp[ok]] = True
         return self._intervals(hit)
 

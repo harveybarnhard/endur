@@ -86,7 +86,7 @@ class Network:
     def __init__(self, geo):
         self.geo = geo
         self.proj = Projection(**{k: geo["proj"][k] for k in ("lat0", "lon0", "rot")})
-        self.matcher = Matcher(geo["seg_xy"])
+        self.matcher = Matcher(geo["seg_xy"], cls=geo["segs"]["cls"], name=geo["segs"]["n"])
         self.length = self.matcher.length
         pts = np.vstack([np.asarray(s, dtype=float) for s in geo["seg_xy"]])
         self.tree = cKDTree(pts)

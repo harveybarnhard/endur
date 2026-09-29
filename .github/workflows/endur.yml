@@ -110,10 +110,7 @@ jobs:
       env:
         STRAVA_TOKENS: ${{ runner.temp }}/strava_tokens.json
     - name: Plan next runs
-      run: |
-        if [ ! -f data/manhattan/planner.json ] || ! git diff --quiet -- data/manhattan/coverage.json; then
-          python endur/manhattan/planner.py
-        fi
+      run: python endur/manhattan/planner.py --if-stale
     - name: Commit coverage
       if: always()
       run: |

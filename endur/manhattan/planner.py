@@ -8,6 +8,8 @@ every one of them (rural-postman approximation: connect the cluster with an MST
 of shortest paths, pair up odd-degree nodes with a minimum-weight matching, walk
 an Euler trail), and ends at the station nearest the north end.
 """
+import argparse
+import hashlib
 import json
 import os
 import sys
@@ -25,7 +27,8 @@ N_ROUTES = 6
 TARGET = 13000.0       # aim for routes up to ~8 mi ...
 MIN_LEN = 5000.0       # ... and at least ~3 mi
 SEED_SPACING = 1500.0  # keep suggestions spread across the island
-SNAP = 30.0            # join network pieces whose ends are this close (m)
+SNAP = 30.0            # join a dead end to a node this close (m)
+ALGO = 2               # bump when planning logic changes, to force a re-plan
 
 
 class Graph:
@@ -56,13 +59,22 @@ class Graph:
             cols += [v, u]
             w += [L, L]
         tree = cKDTree(self.xy)
-        for u, v in tree.query_pairs(SNAP):
-            if (u, v) not in self.edge:
-                d = float(np.hypot(*(self.xy[u] - self.xy[v]))) * 1.2 + 1
-                self.edge[(u, v)] = self.edge[(v, u)] = ("snap", d)
-                rows += [u, v]
-                cols += [v, u]
-                w += [d, d]
+        # Park paths often meet the grid only through sidewalks, which aren't counted. Join each
+        # dead end to its nearest other node rather than every close pair of nodes, which would
+        # let routes cut straight through buildings and fences.
+        deg = np.bincount(self.ends.ravel(), minlength=n)
+        for u in np.flatnonzero(deg == 1):
+            u = int(u)
+            dist, idx = tree.query(self.xy[u], k=8, distance_upper_bound=SNAP)
+            for d, v in zip(dist, idx):
+                v = int(v)
+                if np.isfinite(d) and v != u and (u, v) not in self.edge:
+                    c = float(d) * 1.2 + 1
+                    self.edge[(u, v)] = self.edge[(v, u)] = ("snap", c)
+                    rows += [u, v]
+                    cols += [v, u]
+                    w += [c, c]
+                    break
         self.m = csr_matrix((w, (rows, cols)), shape=(n, n))
         self.ncomp, self.comp = connected_components(self.m, directed=False)
         self.tree = tree
@@ -175,24 +187,25 @@ def plan(geo, cov):
     done = np.array(cov["done"])
     todo = np.flatnonzero(done < 0)
     mids = np.array([np.mean(G.xy[G.ends[i]], axis=0) for i in range(len(G.ends))])
-    main = np.bincount(G.comp).argmax()
     st = geo["stations"]
     st_xy = np.array([(s["x"], s["y"]) for s in st], dtype=float)
     st_node = G.tree.query(st_xy)[1]
-    st_ok = G.comp[st_node] == main
-    # only plan within the main connected network (Governors Island has no subway)
-    todo = todo[G.comp[G.ends[todo, 0]] == main]
+    st_comp = G.comp[st_node]
+    seg_comp = G.comp[G.ends[:, 0]]
+    # plan only on networks a subway station sits on: the main grid and Roosevelt Island,
+    # not Governors Island (ferry only)
+    todo = todo[np.isin(seg_comp[todo], st_comp)]
     left = set(todo.tolist())
     tt = cKDTree(mids[todo])
     remaining_len = np.array([G.length[i] * (1 - f[i] / 100) for i in todo])
-    seeds, routes = [], []
+    seeds, routes, failed = [], [], set()
     for _ in range(N_ROUTES * 3):
         if len(routes) >= N_ROUTES or not left:
             break
         # seed: densest pocket of remaining street, away from earlier seeds
-        best, best_score = None, -1
+        best, best_j, best_score = None, None, -1
         for j in range(0, len(todo), 7):
-            if todo[j] not in left:
+            if todo[j] not in left or j in failed:
                 continue
             p = mids[todo[j]]
             if any(np.hypot(*(p - s)) < SEED_SPACING for s in seeds):
@@ -200,21 +213,22 @@ def plan(geo, cov):
             near = tt.query_ball_point(p, 600)
             score = sum(remaining_len[k] for k in near if todo[k] in left)
             if score > best_score:
-                best, best_score = p, score
+                best, best_j, best_score = p, j, score
         if best is None:
             break
-        seeds.append(best)
+        comp = seg_comp[todo[best_j]]
+        cand = np.flatnonzero(st_comp == comp)
         lo, hi, pick = 150.0, 1600.0, None
         for _ in range(7):  # binary search the cluster radius to hit the length target
             r = (lo + hi) / 2
-            req = [todo[k] for k in tt.query_ball_point(best, r) if todo[k] in left]
+            req = [todo[k] for k in tt.query_ball_point(best, r)
+                   if todo[k] in left and seg_comp[todo[k]] == comp]
             if not req:
                 lo = r
                 continue
             ys = mids[req][:, 1]
             south = mids[req][np.argmax(ys)]  # screen y grows southwards
             north = mids[req][np.argmin(ys)]
-            cand = np.flatnonzero(st_ok)
             s_i = cand[np.argmin(np.hypot(*(st_xy[cand] - south).T))]
             t_i = cand[np.argmin(np.hypot(*(st_xy[cand] - north).T))]
             res = rpp(G, req, st_node[s_i], st_node[t_i])
@@ -228,7 +242,9 @@ def plan(geo, cov):
                 pick = (req, s_i, t_i, trail, L, M)
                 lo = r
         if not pick or pick[4] < MIN_LEN:
+            failed.add(best_j)  # try elsewhere; only real routes reserve their neighbourhood
             continue
+        seeds.append(best)
         req, s_i, t_i, trail, L, M = pick
         new_m = float(sum(G.length[i] * (1 - f[i] / 100) for i in req))
         routes.append({"from": st[s_i]["name"], "from_routes": st[s_i]["routes"],
@@ -241,12 +257,28 @@ def plan(geo, cov):
 
 
 def main():
-    d = sys.argv[1] if len(sys.argv) > 1 else DATA
+    ap = argparse.ArgumentParser()
+    ap.add_argument("datadir", nargs="?", default=DATA)
+    ap.add_argument("--if-stale", action="store_true",
+                    help="skip when planner.json was built from this exact coverage and algorithm")
+    args = ap.parse_args()
+    d = args.datadir
     geo = load_geo()
     with open(os.path.join(d, "coverage.json")) as f:
         cov = json.load(f)
+    # fingerprint of what the plan depends on: the network, the coverage itself, the algorithm
+    sig = hashlib.sha1(json.dumps([geo["v"], cov["f"], cov["by"], ALGO]).encode()).hexdigest()[:12]
+    if args.if_stale:
+        try:
+            with open(os.path.join(d, "planner.json")) as f:
+                old = json.load(f)
+            if old.get("sig") == sig:
+                print("Routes are up to date.")
+                return
+        except (FileNotFoundError, ValueError):
+            pass
     routes = plan(geo, cov)
-    out = {"v": geo["v"], "updated": cov["updated"], "routes": routes}
+    out = {"v": geo["v"], "updated": cov["updated"], "sig": sig, "routes": routes}
     with open(os.path.join(d, "planner.json"), "w") as f:
         json.dump(out, f, separators=(",", ":"))
     for r in routes:

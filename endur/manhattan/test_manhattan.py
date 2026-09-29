@@ -17,9 +17,9 @@ def test_union_merges_and_sorts():
 
 
 def test_completion_rule():
-    assert is_complete(90, 100)
-    assert not is_complete(80, 100)
-    assert is_complete(10, 24)          # short stub: <= 15 m left
+    assert is_complete(86, 100)
+    assert not is_complete(160, 200)     # 80% with 40 m left is not done
+    assert is_complete(10, 28)          # short stub: <= 20 m left
     assert not is_complete(200, 250)    # long block: 50 m left is not done
 
 
@@ -71,3 +71,39 @@ def test_running_a_street_credits_it_and_skips_gps_jumps():
     jump = np.array([[5, 0], [5, -2], [5, -238], [5, -240]], dtype=float)
     got = M.match(jump, t=[0, 1, 2, 3])
     assert not got
+
+
+def test_parallel_paths_credit_only_the_one_run():
+    # two park paths 16 m apart, and an avenue with a bike lane 5 m beside it
+    segs = [[(0, 0), (0, -300)], [(16, 0), (16, -300)],
+            [(200, 0), (200, -300)], [(205, 0), (205, -300)]]
+    M = Matcher(segs)
+    rng = np.random.default_rng(1)
+    ys = np.arange(0, 300, 3.0)
+    on_path = np.column_stack([rng.normal(0, 3, len(ys)), -ys])
+    got = M.match(on_path, t=np.arange(len(ys)))
+    assert 0 in got and total(got[0]) > 270
+    assert 1 not in got or total(got[1]) < 30
+    sidewalk = np.column_stack([rng.normal(211, 3, len(ys)), -ys])  # 6-11 m from both
+    got = M.match(sidewalk, t=np.arange(len(ys)))
+    assert total(got.get(2, [])) > 250 and total(got.get(3, [])) > 250
+
+
+def test_streets_compete_only_with_streets_and_carriageways_share_credit():
+    # an avenue (street) with a bike lane (path) 6 m east; a divided street whose two
+    # carriageways (same name) are 22 m apart; and an unrelated street 40 m further on
+    segs = [[(0, 0), (0, -300)], [(6, 0), (6, -300)],
+            [(200, 0), (200, -300)], [(222, 0), (222, -300)], [(262, 0), (262, -300)]]
+    cls = [1, 2, 0, 0, 1]
+    name = [0, -1, 1, 1, 2]
+    M = Matcher(segs, cls=cls, name=name)
+    rng = np.random.default_rng(2)
+    ys = np.arange(0, 300, 3.0)
+    t = np.arange(len(ys))
+    # running in the bike lane: nearer the path, 6-8 m further from the avenue, still covers both
+    got = M.match(np.column_stack([rng.normal(8, 2, len(ys)), -ys]), t=t)
+    assert total(got.get(0, [])) > 250 and total(got.get(1, [])) > 250
+    # running beside the west carriageway covers both carriageways, not the street 40 m on
+    got = M.match(np.column_stack([rng.normal(196, 2, len(ys)), -ys]), t=t)
+    assert total(got.get(2, [])) > 250 and total(got.get(3, [])) > 250
+    assert 4 not in got
