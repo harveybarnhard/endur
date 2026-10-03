@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain
+20437953631,Afternoon Walk,2026-10-03T13:21:42Z,Walk,2115.5,1435,3398,30.0
+20437953881,Brooklyn LR w/ Bettina,2026-10-03T10:29:32Z,Run,27649.3,7998,8909,296.0
 20426812101,Evening Walk,2026-10-02T19:05:00Z,Walk,3030.4,2861,8199,11.0
 20419289495,Reacquainted with Sweat,2026-10-02T06:52:06Z,Run,16144.5,4264,5066,126.0
 20413771139,Chilling,2026-10-01T18:48:01Z,Run,14031.2,4071,4169,117.0
