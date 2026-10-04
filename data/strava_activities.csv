@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain
+20451321545,Lunch Walk,2026-10-04T12:37:32Z,Walk,1294.1,1108,1605,8.0
+20448303861,Finally touching downtown,2026-10-04T07:54:36Z,Run,22185.5,5927,6948,95.0
 20437953631,Afternoon Walk,2026-10-03T13:22:18Z,Walk,1824.6,1414,3362,33.0
 20437953881,Brooklyn LR w/ Bettina,2026-10-03T10:29:32Z,Run,27649.3,7998,8909,296.0
 20426812101,Evening Walk,2026-10-02T19:05:00Z,Walk,3030.4,2861,8199,11.0
