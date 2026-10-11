@@ -1,4 +1,6 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain
+20544155307,Lunch Run,2026-10-11T11:28:27Z,Run,2198.5,580,615,3.0
+20543868670,Rainy Morningside Heights,2026-10-11T09:41:37Z,Run,19547.3,5260,6261,229.0
 20532935997,Afternoon Walk,2026-10-10T14:38:11Z,Walk,4610.1,4051,6457,33.0
 20528846611,Long Run Attempt,2026-10-10T08:26:02Z,Run,19598.9,4808,5665,184.0
 20518321449,Lunch Streets,2026-10-09T12:36:37Z,Run,14346.2,3937,4738,146.0
