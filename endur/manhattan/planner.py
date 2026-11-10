@@ -38,6 +38,8 @@ LEN_COST = 0.3         # score = new metres - LEN_COST * metres - END_COST per e
 HOME_LINES = {"1", "2", "3"}
 END_COST = 1500.0      # an end at another line costs as much as this many new metres ...
 HOME_SLACK = 2500.0    # ... and is used only when the nearest 1/2/3 is this much farther (m)
+LEFT_COST = 0.5        # ... - LEFT_COST * unrun street left inside the route's own area
+LURE = 0.5            # station legs and steps between columns count unrun metres at half length
 SPREAD = 800.0         # keep suggestions apart: route centres at least this far apart (m)
 SNAP = 30.0            # join a dead end to a node this close (m)
 AVE_MIN = 500.0        # a named road with this much north-south length is an avenue (m)
@@ -45,7 +47,7 @@ MAX_GAP = 350.0        # a longer gap between consecutive streets ends the colum
 NOT_AVENUES = {"FDR Dr", "Harlem River Dr", "Henry Hudson Pkwy", "West St",
                "12th Ave", "Joe DiMaggio Hwy", "W Side Hwy"}
 SAME_AS = {"México-Tenochtitlan Ave": "2nd Ave"}  # co-names OSM uses on stretches of an avenue
-ALGO = 4             # bump when planning logic changes, to force a re-plan
+ALGO = 5             # bump when planning logic changes, to force a re-plan
 
 
 class Graph:
@@ -93,8 +95,20 @@ class Graph:
                     w += [c, c]
                     break
         self.m = csr_matrix((w, (rows, cols)), shape=(n, n))
+        self._rc, self._w = (np.array(rows), np.array(cols)), np.array(w, dtype=float)
+        # which segment each matrix entry is (-1 for a snap), for reweighting
+        self._seg = np.full(len(w), -1)
+        self._seg[:2 * len(segs)] = np.repeat(np.arange(len(segs)), 2)
         self.ncomp, self.comp = connected_components(self.m, directed=False)
         self.tree = tree
+
+
+    def weighted(self, mult):
+        """The graph with each segment's length times mult[segment]; snaps unchanged."""
+        w = self._w.copy()
+        k = self._seg >= 0
+        w[k] *= mult[self._seg[k]]
+        return csr_matrix((np.maximum(w, 0.5), self._rc), shape=self.m.shape)
 
 
 class Row:
@@ -111,6 +125,30 @@ class Row:
         return self.nodes[-1] if side else self.nodes[0]
 
 
+def twins(G, nm, cls):
+    """For each segment, the far carriageway of the same divided street beside it. Coverage
+    credits both when either is run (match.py, `same_name`), so the planner does too."""
+    a = np.array([s[0] for s in G.segs], dtype=float)
+    b = np.array([s[-1] for s in G.segs], dtype=float)
+    mid = (a + b) / 2
+    d = b - a
+    L = np.maximum(np.hypot(*d.T), 1.0)
+    u = d / L[:, None]
+    tree = cKDTree(mid)
+    out = [[] for _ in range(len(mid))]
+    for i in range(len(mid)):
+        if nm[i] < 0 or cls[i] == 2:
+            continue
+        for j in tree.query_ball_point(mid[i], L[i] / 2 + 40):
+            if j == i or nm[j] != nm[i] or abs(u[i] @ u[j]) < 0.95:
+                continue
+            r = mid[j] - a[i]
+            along, perp = r @ u[i], abs(u[i][0] * r[1] - u[i][1] * r[0])
+            if 4 < perp < 35 and -5 < along < L[i] + 5:
+                out[i].append(j)
+    return out
+
+
 def columns(G, geo):
     """Runs of rows per column: {(west avenue, east avenue): [(rows, legs), ...]} where
     rows are ordered south to north and legs[k][side] = (nodes, segs, metres) is the
@@ -120,6 +158,13 @@ def columns(G, geo):
     canon = {names.index(a): names.index(b) for a, b in SAME_AS.items() if a in names and b in names}
     nm = np.array([canon.get(x, x) for x in S["n"]])
     cls = np.array(S["cls"])
+    tw = G.tw = twins(G, nm, cls)
+
+    def credit(segs):  # the segments running these credits: their far carriageways too
+        out = list(segs)
+        for i in segs:
+            out += [t for t in tw[i] if t not in out]
+        return out
     vert, horiz = collections.Counter(), collections.Counter()
     for i, (u, v) in enumerate(G.ends):
         if cls[i] == 2 or nm[i] < 0:
@@ -175,6 +220,7 @@ def columns(G, geo):
             if not (dx > 2 * dy and 50 < dx < 700 and L < 1.3 * dx + 20):
                 continue
             row = Row(G, int(name), nodes, segs)
+            row.segs = credit(row.segs)
             w_ave, e_ave = (a, b) if row.nodes[0] == u else (b, a)
             cols[(int(w_ave), int(e_ave))][(row.nodes[0], row.nodes[-1])] = row
 
@@ -189,7 +235,7 @@ def columns(G, geo):
                     y, j = prev[nodes[-1]]
                     nodes.append(y)
                     segs.append(j)
-                return nodes[::-1], segs[::-1], d
+                return nodes[::-1], credit(segs[::-1]), d
             if d > dist[x] or d > limit:
                 continue
             for y, j in ave_adj[x]:
@@ -286,6 +332,24 @@ class Run:
     def new(self, i, j, s, north):
         return self.rnew[j + 1] - self.rnew[i] + self._legs(self.lnew, i, j, s, north)
 
+    def sweep_len(self, i, j, X):  # every leg on side X, rows i to j
+        return sum(self.llen[(X, p)][j] - self.llen[(X, p)][i] for p in (0, 1))
+
+    def sweep_new(self, i, j, s, north, X):  # the legs on side X the zigzag leaves out
+        p = i % 2 if north else (j - 1) % 2
+        want = p if X == 1 - s else 1 - p
+        return self.lnew[(X, 1 - want)][j] - self.lnew[(X, 1 - want)][i]
+
+    def sweep_walk(self, i, j, X, north):
+        nodes, segs = [], []
+        ks = range(i, j) if north else range(j - 1, i - 1, -1)
+        for k in ks:
+            ln, ls, _ = self.legs[k][X]
+            ln = ln if north else ln[::-1]
+            nodes += ln if not nodes else ln[1:]
+            segs += ls
+        return nodes, segs
+
     @staticmethod
     def end_side(i, j, s):
         return s if (j - i + 1) % 2 == 0 else 1 - s
@@ -353,11 +417,20 @@ def chunks(runs_by_col):
                                 stack.append(ch + [p])
 
 
+def legs_on(run, i, j, s, north, X):
+    """Indices k of the avenue legs (row k to k + 1) the zigzag runs on side X."""
+    p = i % 2 if north else (j - 1) % 2
+    want = p if X == 1 - s else 1 - p
+    return [k for k in range(i, j) if k % 2 == want]
+
+
 def plan(geo, cov):
     G = Graph(geo)
     names = geo["names"]
+    S = geo["segs"]
     f = np.array(cov["f"], dtype=float)
     rem = G.length * (1 - f / 100)
+    cls = np.array(S["cls"])
     st = geo["stations"]
     st_xy = np.array([(s["x"], s["y"]) for s in st], dtype=float)
     st_node = G.tree.query(st_xy)[1]
@@ -366,11 +439,27 @@ def plan(geo, cov):
     for k, nd in enumerate(st_node):  # prefer a 1/2/3 station when two share a node
         if int(nd) not in node_st or home[k]:
             node_st[int(nd)] = k
-    # distance from every node to the nearest 1/2/3 station and to the nearest of any line
-    d_home, p_home = dijkstra(G.m, directed=False, indices=st_node[home], return_predecessors=True,
-                              min_only=True)[:2]
-    d_any, p_any = dijkstra(G.m, directed=False, indices=st_node, return_predecessors=True,
-                            min_only=True)[:2]
+
+    def edge_len(u, v):
+        kind, x = G.edge[(u, v)]
+        return G.length[x] if kind == "seg" else x
+
+    # Station legs and steps between columns run on a graph where unrun blocks count as
+    # shorter, so they pick up unrun avenue blocks on the way instead of taking any street.
+    gd = G.weighted(1 - LURE * rem / np.maximum(G.length, 1))
+
+    def legs_from(sources):
+        d, pred = dijkstra(gd, directed=False, indices=sources, return_predecessors=True,
+                           min_only=True)[:2]
+        true = np.full(len(d), np.inf)  # real metres along the chosen way
+        for n in np.argsort(d):
+            if not np.isfinite(d[n]):
+                break
+            true[n] = 0.0 if pred[n] < 0 else true[pred[n]] + edge_len(int(pred[n]), int(n))
+        return true, pred
+
+    d_home, p_home = legs_from(st_node[home])
+    d_any, p_any = legs_from(st_node)
 
     def station(nd):  # (metres, score cost, predecessors) of the leg to the chosen station
         if d_home[nd] <= d_any[nd] + HOME_SLACK:
@@ -381,68 +470,142 @@ def plan(geo, cov):
                    for key, rs in columns(G, geo).items()}
 
     # Lengths don't depend on coverage, so enumerate and length-filter the candidates once.
-    # A candidate: pieces in running order, each (run, i, j, start side, north?).
+    # A candidate: pieces in running order, each (run, i, j, start side, north?), plus the
+    # avenue segments two neighbouring pieces both run (counted once).
+    shared_cache = {}
+
+    def shared_segs(run, i, j, s, north, X):
+        key = (run.key, run.idx, i, j, s, north, X)
+        if key not in shared_cache:
+            shared_cache[key] = frozenset(x for k in legs_on(run, i, j, s, north, X) for x in run.legs[k][X][1])
+        return shared_cache[key]
+
     cands = []
     for ch in chunks(runs_by_col):
-        k = len(ch)
+        rough = sum(run.length(i, j, 0, True) for run, i, j in ch)
+        if not (MIN_LEN - 4000 <= rough <= MAX_LEN):
+            continue
         for order in (ch, ch[::-1]):
             east = order is ch  # moving west to east across the columns
             nxt, prv = (1, 0) if east else (0, 1)
             for north0 in (True, False):
-                firsts = (0, 1) if k == 1 else (None,)
-                for s_first in firsts:
-                    pieces, L, prev_end = [], 0.0, None
+                for s0 in (0, 1):
+                    pieces, L, over, prev = [], 0.0, [], None
                     for t, (run, i, j) in enumerate(order):
                         north = north0 if t % 2 == 0 else not north0
-                        m = j - i + 1
                         if t == 0:
-                            s = s_first if k == 1 else (nxt if m % 2 == 0 else 1 - nxt)
+                            s = s0
                         else:
-                            s = prv
-                        a, b = run.corners(i, j, s, north)
-                        if prev_end is not None:
-                            dx, dy = np.abs(G.xy[a] - G.xy[prev_end])
-                            L += dx + dy  # grid distance to the next column's first corner
+                            # start on whichever side makes the shared avenue's halves
+                            # complementary; ties go to the shorter step over
+                            prun, pi, pj, ps, pn = prev
+                            mine = None
+                            pe = prun.corners(pi, pj, ps, pn)[1]
+                            theirs = shared_segs(prun, pi, pj, ps, pn, nxt)
+                            for s_try in (prv, 1 - prv):
+                                a = run.corners(i, j, s_try, north)[0]
+                                dx, dy = np.abs(G.xy[a] - G.xy[pe])
+                                ov = theirs & shared_segs(run, i, j, s_try, north, prv)
+                                c = (len(ov), dx + dy)
+                                if mine is None or c < mine[0]:
+                                    mine = (c, s_try, ov)
+                            (_, step), s, ov = mine
+                            L += step
+                            over += list(ov)
                         L += run.length(i, j, s, north)
-                        pieces.append((run, i, j, s, north))
-                        prev_end = b
-                    start = pieces[0][0].corners(*pieces[0][1:])[0]
-                    if not (np.isfinite(d_home[start]) and np.isfinite(d_home[prev_end])):
-                        continue
-                    sa, ca, _ = station(start)
-                    sb, cb, _ = station(prev_end)
-                    total = L + sa + sb
-                    if MIN_LEN <= total <= MAX_LEN:
-                        cands.append((pieces, total, ca + cb, start, prev_end))
+                        prev = (run, i, j, s, north)
+                        pieces.append(prev)
+                    first, last = pieces[0], prev
+                    last_end = Run.end_side(*last[1:4])
+                    # A zigzag runs every other block of its outer avenues. A straight sweep
+                    # along one (up it before the first column, or back down it after the
+                    # last) picks up the rest; the score decides whether it's worth the metres.
+                    out0 = first[3] if k == 1 else prv
+                    outL = last_end if k == 1 else nxt
+                    pre_ok, post_ok = first[3] == out0, last_end == outL
+                    variants = [(False, False)]
+                    variants += [(True, False)] if pre_ok else []
+                    variants += [(False, True)] if post_ok else []
+                    if pre_ok and post_ok and not (k == 1 and out0 == outL):
+                        variants.append((True, True))
+                    xy = G.xy[[n for run, i, j, s, nn in pieces
+                               for r in (run.rows[i], run.rows[j]) for n in (r.nodes[0], r.nodes[-1])]]
+                    box = (*xy.min(0), *xy.max(0))
+                    for pre, post in variants:
+                        start = first[0].corners(*first[1:])[0]
+                        end = last[0].corners(*last[1:])[1]
+                        LL = L
+                        if pre:
+                            run, i, j, s, north = first
+                            LL += run.sweep_len(i, j, out0)
+                            start = (run.rows[j] if north else run.rows[i]).end(out0)
+                        if post:
+                            run, i, j, s, north = last
+                            LL += run.sweep_len(i, j, outL)
+                            end = (run.rows[i] if north else run.rows[j]).end(outL)
+                        if not (np.isfinite(d_home[start]) and np.isfinite(d_home[end])):
+                            continue
+                        sa, ca, _ = station(start)
+                        sb, cb, _ = station(end)
+                        total = LL + sa + sb
+                        if MIN_LEN <= total <= MAX_LEN:
+                            cands.append((pieces, total, ca + cb, start, end, np.array(over, dtype=int), box,
+                                          out0 if pre else None, outL if post else None))
+
+    # unrun street (not park paths) per 25 m cell, as a summed-area table, for the leftover term
+    CELL = 25.0
+    mid = np.array([np.mean(c, axis=0) for c in G.segs])
+    gx0, gy0 = mid.min(0) - CELL
+    gi = ((mid - (gx0, gy0)) // CELL).astype(int)
+    shape = gi.max(0) + 2
+
+    def area_table():
+        grid = np.zeros(shape)
+        keep = cls != 2
+        np.add.at(grid, (gi[keep, 0], gi[keep, 1]), rem[keep])
+        return np.pad(grid.cumsum(0).cumsum(1), ((1, 0), (1, 0)))
+
+    def area(T, box):
+        x0, y0, x1, y1 = box
+        a0, b0 = int((x0 - 40 - gx0) // CELL), int((y0 - 40 - gy0) // CELL)
+        a1, b1 = int((x1 + 40 - gx0) // CELL) + 1, int((y1 + 40 - gy0) // CELL) + 1
+        a0, b0 = max(a0, 0), max(b0, 0)
+        a1, b1 = min(a1, T.shape[0] - 1), min(b1, T.shape[1] - 1)
+        return T[a1, b1] - T[a0, b1] - T[a1, b0] + T[a0, b0]
 
     routes, used, centres = [], set(), []
     for _ in range(N_ROUTES):
         for rs in runs_by_col.values():
             for run in rs:
                 run.rescore(rem)
+        T = area_table()
         scored = []
         for c in cands:
-            pieces, total, cost = c[:3]
-            new = sum(run.new(i, j, s, north) for run, i, j, s, north in pieces)
+            pieces, total, cost, _, _, over, box, pre, post = c
+            new = sum(run.new(i, j, s, north) for run, i, j, s, north in pieces) - rem[over].sum()
+            if pre is not None:
+                new += pieces[0][0].sweep_new(*pieces[0][1:], pre)
+            if post is not None:
+                new += pieces[-1][0].sweep_new(*pieces[-1][1:], post)
             if new >= MIN_NEW:
-                scored.append((new - LEN_COST * total - cost, new, c))
+                left = max(0.0, area(T, box) - new)
+                scored.append((new - LEN_COST * total - cost - LEFT_COST * left, c))
         scored.sort(key=lambda x: -x[0])
         pick = None
-        for score, new, c in scored:
+        for score, c in scored:
             pieces = c[0]
             rowset = {(run.key, run.idx, r) for run, i, j, *_ in pieces for r in range(i, j + 1)}
             if rowset & used:
                 continue
-            xs = [G.xy[run.rows[r].nodes[0], 0] for run, i, j, *_ in pieces for r in (i, j)]
-            ys = [run.ys[r] for run, i, j, *_ in pieces for r in (i, j)]
-            ctr = np.array([np.mean(xs), np.mean(ys)])
+            box = c[6]
+            ctr = np.array([(box[0] + box[2]) / 2, (box[1] + box[3]) / 2])
             if any(np.hypot(*(ctr - p)) < SPREAD for p in centres):
                 continue
             pick = (c, rowset, ctr)
             break
         if pick is None:
             break
-        (pieces, total, cost, start, end), rowset, ctr = pick
+        (pieces, total, cost, start, end, over, box, pre, post), rowset, ctr = pick
         used |= rowset
         centres.append(ctr)
 
@@ -450,13 +613,29 @@ def plan(geo, cov):
         _, _, pred_b = station(end)
         nodes = node_path(pred_a, start)[::-1]  # station -> first corner
         segs, steps = [], []
+
+        def go(seq):  # append a walk, stepping over to its first node if needed
+            if nodes[-1] != seq[0]:
+                _, pr = dijkstra(gd, directed=False, indices=nodes[-1], return_predecessors=True,
+                                 limit=3000)
+                nodes.extend(node_path(pr, seq[0])[::-1][1:])
+            nodes.extend(seq[1:])
+
+        def sweep(run, i, j, X, north):
+            sn, ss = run.sweep_walk(i, j, X, north)
+            go(sn)
+            segs.extend(ss)
+            lo, hi = run.rows[i], run.rows[j]
+            steps.append({"avenue": names[run.key[X]], "dir": "north" if north else "south",
+                          "from": names[(lo if north else hi).street],
+                          "to": names[(hi if north else lo).street]})
+
+        if pre is not None:  # straight along the first column's outer avenue, against its zigzag
+            run, i, j, s, north = pieces[0]
+            sweep(run, i, j, pre, not north)
         for run, i, j, s, north in pieces:
             zn, zs = run.walk(i, j, s, north)
-            if nodes[-1] != zn[0]:  # step over to the next column
-                _, pr = dijkstra(G.m, directed=False, indices=nodes[-1], return_predecessors=True,
-                                 limit=3000)
-                nodes += node_path(pr, zn[0])[::-1][1:]
-            nodes += zn[1:]
+            go(zn)
             segs += zs
             lo, hi = run.rows[i], run.rows[j]
             steps.append({"west": names[run.key[0]], "east": names[run.key[1]],
@@ -464,17 +643,24 @@ def plan(geo, cov):
                           "from": names[(lo if north else hi).street],
                           "to": names[(hi if north else lo).street],
                           "streets": j - i + 1, "side": "west" if s == 0 else "east"})
+        if post is not None:  # and straight back along the last column's outer avenue
+            run, i, j, s, north = pieces[-1]
+            sweep(run, i, j, post, not north)
         nodes += node_path(pred_b, end)[1:]
+        # credit everything the route runs, station legs and steps between columns included
+        run_segs = {G.edge[(u, v)][1] for u, v in zip(nodes, nodes[1:]) if G.edge[(u, v)][0] == "seg"}
+        run_segs |= {t for x in run_segs for t in G.tw[x]}
+        run_segs |= set(segs)
         s_i, t_i = node_st[nodes[0]], node_st[nodes[-1]]
-        new_m = float(rem[sorted(set(segs))].sum())
-        L = float(sum(G.length[G.edge[(u, v)][1]] if G.edge[(u, v)][0] == "seg"
-                      else G.edge[(u, v)][1] for u, v in zip(nodes, nodes[1:])))
+        run_segs = sorted(int(x) for x in run_segs)
+        new_m = float(rem[run_segs].sum())
+        L = float(sum(edge_len(u, v) for u, v in zip(nodes, nodes[1:])))
         routes.append({"from": st[s_i]["name"], "from_routes": st[s_i]["routes"],
                        "to": st[t_i]["name"], "to_routes": st[t_i]["routes"],
                        "home": bool(home[s_i] and home[t_i]), "steps": steps,
                        "len_m": round(L), "new_m": round(new_m),
-                       "segs": sorted(set(int(x) for x in segs)), "path": coords(G, nodes)})
-        rem[segs] = 0  # a later route gets no credit for the same blocks
+                       "segs": run_segs, "box": [round(v) for v in box], "path": coords(G, nodes)})
+        rem[run_segs] = 0  # a later route gets no credit for the same blocks
     routes.sort(key=lambda r: (not r["home"], -r["new_m"]))
     return routes
 
@@ -508,7 +694,10 @@ def main():
         print(f"  {r['from']} ({r['from_routes']}) -> {r['to']} ({r['to_routes']}): "
               f"{r['len_m'] / 1609.344:.1f} mi, {r['new_m'] / 1609.344:.1f} new mi")
         for t in r["steps"]:
-            print(f"      {t['west']} / {t['east']}: {t['dir']} {t['from']} to {t['to']}, {t['side']} side")
+            if "avenue" in t:
+                print(f"      straight {t['dir']} on {t['avenue']}, {t['from']} to {t['to']}")
+            else:
+                print(f"      {t['west']} / {t['east']}: {t['dir']} {t['from']} to {t['to']}, {t['side']} side")
 
 
 if __name__ == "__main__":
