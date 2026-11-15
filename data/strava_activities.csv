@@ -1,4 +1,7 @@
 id,name,start_date_local,type,distance,moving_time,elapsed_time,total_elevation_gain
+21002353107,Afternoon Weight Training,2026-11-15T15:23:12Z,WeightTraining,0.0,1228,1228,0
+21000092608,Lunch Walk,2026-11-15T11:23:47Z,Walk,1193.5,1043,1159,6.0
+20999846267,EZ w/ Bettina,2026-11-15T10:53:16Z,Run,5100.1,1656,1688,47.0
 20990666542,Evening Walk,2026-11-14T18:04:35Z,Walk,2676.4,2373,2588,38.0
 20987554013,Lunch Run,2026-11-14T12:17:13Z,Run,178.8,99,105,1.0
 20987149287,Harlem Long Run,2026-11-14T08:51:25Z,Run,35991.2,9659,10384,221.0
